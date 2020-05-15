@@ -8,9 +8,28 @@ class App extends Component {
     this.state = {bananasReceived: ""}
     this.getBananas = this.getBananas.bind(this)
   }
-  getBananas() {
-    this.setState({bananasReceived: "Where are my bananas?"})
+  
+  getBananas = () => {
+    fetch('http://localhost:3000/api/bananas')
+    .then(res => res.json())
+    .then(bananas => {
+      console.log(bananas)
+      this.setState({bananasReceived: JSON.stringify(bananas)})
+    })
   }
+
+  //getBananassssss() {
+  //  $.ajax({
+  //    url: "http://localhost:3000/api/bananas",
+  //    type: "GET",
+  //    context: this, // Allows us to use this.setState inside success
+  //    success: function (result) {
+  //      this.setState({bananasReceived: JSON.stringify(result)})
+  //    }
+  //  })
+  //}
+
+
   render() {
     return (
       <div className="App">
