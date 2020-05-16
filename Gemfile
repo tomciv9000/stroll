@@ -27,6 +27,8 @@ gem 'rack-cors'
 # Eliminate hassle of starting two servers
 gem 'foreman'
 gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master', ref: '9214cd027422df8dc31eb67c60032fbbf8fc100b'
+gem 'fast_jsonapi'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
