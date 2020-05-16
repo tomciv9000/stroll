@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  scope '/api' do
-    resources :bananas
+  namespace '/api' do
+    resources :users
     post 'user_token' => 'user_token#create'
+    post "/login", to: "auth#login"
+    get "/auto_login", to: "auth#auto_login"
+    get "/user_is_authed", to: "auth#user_is_authed"
   end
 
   
