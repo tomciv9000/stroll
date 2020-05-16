@@ -1,11 +1,13 @@
 class BananasController < ApplicationController
-    before_action :set_banana, only: [:show, :update, :destroy]
+  before_action :authenticate_user  
+  before_action :set_banana, only: [:show, :update, :destroy]
 
     # GET /bananas
     def index
-      @bananas = Banana.all
-  
-      render json: @bananas
+      if current_user.admin?
+        @bananas = Banana.all
+        render json: @bananas
+      end
     end
   
     # GET /bananas/1

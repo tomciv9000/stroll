@@ -5,12 +5,64 @@ import './App.css'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {bananasReceived: ""}
+    this.state = {
+      bananasReceived: "",
+      email: "",
+      password: ""
+    }
     this.getBananas = this.getBananas.bind(this)
   }
   
-  getBananas = () => {
-    fetch('http://localhost:3000/api/bananas')
+ 
+
+  handleEmailChange = event => {
+    this.setState({
+      email: event.target.value
+    })
+  }
+ 
+  handlePasswordChange = event => {
+    this.setState({
+      password: event.target.value
+    })
+  }
+ 
+  handleSubmit = event => {
+    event.preventDefault()
+    let loginData = {"auth": {"email": this.state.email, "password": this.state.password}}
+    let requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(loginData)
+    }
+    fetch('http://localhost:3000/api/user_token', requestOptions)
+    .then(res => res.json())
+    .then(result => {
+      console.log(result)
+      localStorage.setItem("jwt", result.jwt)
+      this.setState({
+        email: '',
+        password: ''
+      });
+    }) 
+
+  }
+
+  //does the fetch work without the localhost:3000?
+
+
+
+  getBananas = (admin) => {
+    let token = "Bearer " + localStorage.getItem("jwt")
+    console.log(token)
+    let url = ""
+    url = admin ? 'http://localhost:3000/api/bananas' : 'http://localhost:3000/api/bananas/1'
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: token
+      }
+    })
     .then(res => res.json())
     .then(bananas => {
       console.log(bananas)
@@ -18,24 +70,48 @@ class App extends Component {
     })
   }
 
-  //getBananassssss() {
-  //  $.ajax({
-  //    url: "http://localhost:3000/api/bananas",
-  //    type: "GET",
-  //    context: this, // Allows us to use this.setState inside success
-  //    success: function (result) {
-  //      this.setState({bananasReceived: JSON.stringify(result)})
-  //    }
-  //  })
-  //}
-
 
   render() {
     return (
       <div className="App">
+        <h1 style={{marginTop: "20vh", marginBottom: "5vh"}}>
+          Banana Management System
+        </h1>
+        <form onSubmit={event => this.handleSubmit(event)}>
+          <label htmlFor="email">Email: </label>
+          <br />
+          <input
+            name="email"
+            id="email"
+            type="email"
+            onChange={event => this.handleEmailChange(event)}
+            value={this.state.email}
+          />
+          <br /><br />
+          <label htmlFor="password">Password:</label>
+          <br />
+          <input
+            name="password"
+            id="password"
+            type="password"
+            onChange={event => this.handlePasswordChange(event)}
+            value={this.state.password}
+          />
+          <br />
+          <input type="submit" value="Submit" />
+          </form>
+          <br />
+        <br />
         <button
-          onClick={this.getBananas}
-          style={{marginTop: '25vh'}}
+          onClick={() => { this.getBananas(false) }}
+          style={{marginTop: "10vh"}}
+          >
+          Get One Banana
+        </button>
+        <br />
+        <button
+          onClick={() => { this.getBananas(true) }}
+          style={{marginTop: "2vh"}}
           >
           Get Bananas
         </button>
@@ -43,5 +119,6 @@ class App extends Component {
       </div>
     );
   }
+
 }
 export default App
