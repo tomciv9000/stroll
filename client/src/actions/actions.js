@@ -1,6 +1,6 @@
 export const userPostFetch = user => {
     return dispatch => {
-      return fetch("http://localhost:3000/api/v1/users", {
+      return fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
