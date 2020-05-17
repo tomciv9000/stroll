@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       if @user.valid?
         payload = {user_id: @user.id}
         @token = encode_token(payload)
-        render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
+        render json: { user: UserSerializer.new(@user), token: @token }, status: :created
 
         #render json: { user: UserSerializer.new(@user)}, status: :created
       else
