@@ -20,6 +20,8 @@ class UsersController < ApplicationController
         payload = {user_id: @user.id}
         @token = encode_token(payload)
         render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
+
+        #render json: { user: UserSerializer.new(@user)}, status: :created
       else
         render json: { error: 'failed to create user' }, status: :not_acceptable
       end
@@ -47,6 +49,6 @@ class UsersController < ApplicationController
   
       # Only allow a trusted parameter "white list" through.
       def user_params
-        params.require(:user).permit(:email, :password_digest, :admin)
+        params.require(:user).permit(:email, :password, :password_digest, :admin)
       end
   end

@@ -26,6 +26,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 # Eliminate hassle of starting two servers
 gem 'foreman'
+gem 'jwt'
 gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master', ref: '9214cd027422df8dc31eb67c60032fbbf8fc100b'
 gem 'fast_jsonapi'
 

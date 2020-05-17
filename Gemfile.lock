@@ -170,6 +170,7 @@ DEPENDENCIES
   byebug
   fast_jsonapi
   foreman
+  jwt
   knock!
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
