@@ -1,6 +1,8 @@
+require 'pry'
+
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :update, :destroy]
-  
+  ## eliminate all useless routes
     # GET /users
     def index
       @users = User.all
@@ -11,6 +13,16 @@ class UsersController < ApplicationController
     # GET /users/1
     def show
       render json: @user
+    end
+
+    def find
+      @user = User.find_by(email: params[:user][:email])
+      if @user
+        render json: { user: UserSerializer.new(@user) }
+      else
+        @errors = @user.errors.full_messages
+        render json: @errors
+      end
     end
   
     # POST /users
