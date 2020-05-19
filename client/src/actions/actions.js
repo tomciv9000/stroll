@@ -47,7 +47,7 @@ export const userLoginFetch = user => {
       })
       .then(returnedUser => {
         console.log(returnedUser)
-        dispatch(loginUser(returnedUser))
+        dispatch(loginUser(returnedUser.user.data.attributes))
       })
   }
 }
@@ -94,12 +94,16 @@ export const getProfileFetch = () => {
             // If this happens, you may want to remove the invalid token.
             localStorage.removeItem("token")
           } else {
-            dispatch(loginUser(data.user))
+            dispatch(loginUser(data.user.data.attributes))
           }
         })
     }
   }
 }
+
+export const logoutUser = () => ({
+  type: 'LOGOUT_USER'
+})
 
 
 //export const authenticate = (credentials) => {

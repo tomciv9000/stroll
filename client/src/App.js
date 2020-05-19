@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {connect} from 'react-redux';
-import {getProfileFetch} from './actions/actions';
+import {getProfileFetch, logoutUser} from './actions/actions';
 import Signup from './Signup';
 import Login from './Login';
 
@@ -12,6 +12,14 @@ class App extends Component {
     this.props.getProfileFetch()
   }
 
+  handleClick = event => {
+    event.preventDefault()
+    // Remove the token from localStorage
+    localStorage.removeItem("token")
+    // Remove the user object from the Redux store
+    this.props.logoutUser()
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,16 +27,27 @@ class App extends Component {
         <br />
         <br />
         <Login />
+        <br />
+        {this.props.currentUser.email
+            ? <button onClick={this.handleClick}>Log Out</button>
+            : null
+          }
       </div>
     );
   }
 };
 
-const mapDispatchToProps = dispatch => ({
-  getProfileFetch: () => dispatch(getProfileFetch())
+const mapStateToProps = state => ({
+  currentUser: state.currentUser
+  //once I add multiple reducers, this will need to be changed to state.reducers.currentUser
 })
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  getProfileFetch: () => dispatch(getProfileFetch()),
+  logoutUser: () => dispatch(logoutUser())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
   
   
   
