@@ -1,8 +1,17 @@
-import React, { Component } from 'react'
-import './App.css'
-import Signup from './Signup'
-import Login from './Login'
+import React, { Component } from 'react';
+import './App.css';
+import {connect} from 'react-redux';
+import {getProfileFetch} from './actions/actions';
+import Signup from './Signup';
+import Login from './Login';
+
+
 class App extends Component {
+  
+  componentDidMount = () => {
+    this.props.getProfileFetch()
+  }
+
   render() {
     return (
       <div className="App">
@@ -15,7 +24,11 @@ class App extends Component {
   }
 };
 
-export default App
+const mapDispatchToProps = dispatch => ({
+  getProfileFetch: () => dispatch(getProfileFetch())
+})
+
+export default connect(null, mapDispatchToProps)(App);
   
   
   

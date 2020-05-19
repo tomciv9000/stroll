@@ -2,7 +2,14 @@ require 'pry'
 
 class UsersController < ApplicationController
     before_action :set_user, only: [:show, :update, :destroy]
-  ## eliminate all useless routes
+  
+    ##this is what knock recommends for authentication in controllers
+    ##before_action :authenticate_user
+  
+  
+  
+  
+    ## eliminate all useless routes
     # GET /users
     def index
       @users = User.all
@@ -14,6 +21,11 @@ class UsersController < ApplicationController
     def show
       render json: @user
     end
+
+    def profile
+      render json: { user: UserSerializer.new(current_user) }, status: :accepted
+    end
+
 
     def find
       @user = User.find_by(email: params[:user][:email])
