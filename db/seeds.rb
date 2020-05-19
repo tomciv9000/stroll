@@ -16,7 +16,7 @@ admin.admin = true
 admin.save
 
 user = User.new
-user.email = 'user@bananas.com'
-user.password = 'bananaBro'
-user.password_confirmation = 'bananaBro'
+user.email = 'test@test.com'
+user.password = 'aaaaaaaa'
+user.password_confirmation = 'aaaaaaaa'
 user.save

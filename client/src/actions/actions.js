@@ -38,16 +38,12 @@ export const userLoginFetch = user => {
     })
       .then(resp => resp.json())
       .then(data => {
-        if (data.message) {
-          console.log(data)
-          // Here you should have logic to handle invalid creation of a user.
-          // This assumes your Rails API will return a JSON object with a key of
-          // 'message' if there is an error with creating the user, i.e. invalid username
-        } else {
-          console.log(data)
-          localStorage.setItem("token", data.jwt)
-          return getUser(user.email)
-        }
+        console.log(data)
+        localStorage.setItem("token", data.jwt)
+        return getUser(user.email)
+      })
+      .catch(error => {
+        console.log(error)
       })
       .then(returnedUser => {
         console.log(returnedUser)
