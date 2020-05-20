@@ -10,6 +10,7 @@ class App extends Component {
   
   componentDidMount = () => {
     this.props.getProfileFetch()
+    
   }
 
   handleClick = event => {

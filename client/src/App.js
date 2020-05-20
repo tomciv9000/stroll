@@ -18,26 +18,44 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import NavigationBar from './components/NavigationBar';
 import requireAuth from './components/requireAuth';
-
+import { LandingPage } from './components/Landing';
+import AuthRoute from './components/AuthRoute'
 //i think it's possible to recreate the react tutotrial protexted routes
 // using the thoughtbot hook converstion to try and make something happen
 
 
-export default class App extends Component {
+class App extends Component {
+  
+  componentDidMount = () => {
+    this.props.getProfileFetch()
+  }
+  
   render() {
     return(
         <BrowserRouter>
           <div>
             <NavigationBar/>
             <Switch>
-              <Route path='/login' component={Login} />
-              <Route path='/signup' component={Signup} />
-              <Route path='/private' component={requireAuth(PrivatePage)} />
-              <Route render={() => <h3>No Match</h3>} />
+              <AuthRoute path="/login" type="guest">
+                <Login />
+              </AuthRoute>
+              <AuthRoute path="/signup" type="guest">
+                <Signup />
+              </AuthRoute>
+              <AuthRoute path="/private" type="private">
+                <PrivatePage />
+              </AuthRoute>
+              <Route path='/' render={LandingPage} />
             </Switch>
           </div>
         </BrowserRouter>)
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  getProfileFetch: () => dispatch(getProfileFetch())
+})
+
+export default connect(null, mapDispatchToProps)(App);
 
   

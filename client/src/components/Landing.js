@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class LandingPage extends Component {
- 
-  render() {
-    return (
-      <div>
-        <h1>Landing Shit Page Shit</h1>
-        <br />
-        <br />
-      
-        </div>
-    );
-  }
-};
+export const LandingPage = () => {
+  
+  return (
+    <div>
+      <h1>Landing Shit You Unauthorized FUck</h1>
+      <br />
+      <br />
+    
+      </div>
+  );
+}
 
-
-export default LandingPage
   
   
   
