@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {userPostFetch} from './actions/actions';
+import {userPostFetch} from '../actions/actions';
 
 class Signup extends Component {
   state = {
@@ -55,3 +55,5 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(Signup);
+
+//before submission - look at proptypes

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {userLoginFetch} from './actions/actions';
+import {userLoginFetch} from '../actions/actions';
 
 class Login extends Component {
   state = {
