@@ -8,7 +8,8 @@ class PlaceForm extends Component {
   
   state = {
     name: "",
-    description: ""
+    description: "",
+    user_id: this.props.user_id
   }
 
   handleChange = event => {
@@ -22,7 +23,8 @@ class PlaceForm extends Component {
     this.props.placePostFetch(this.state)
     this.setState({
       name: "",
-      description: ""
+      description: "",
+      user_id: ""
     })
   }
 
@@ -60,8 +62,14 @@ class PlaceForm extends Component {
 //
 //}
 
+const mapStateToProps = state => {
+  return {
+    user_id: state.currentUser.id
+  };
+}
+
 const mapDispatchToProps = dispatch => ({
   placePostFetch: placeInfo => dispatch(placePostFetch(placeInfo))
 })
 
-export default connect(null, mapDispatchToProps)(PlaceForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceForm);
