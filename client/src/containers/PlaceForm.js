@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { createPlace } from '../actions/tripAction'
+import { placePostFetch } from '../actions/placeActions'
 //import PropTypes from 'prop-types';
 
 
