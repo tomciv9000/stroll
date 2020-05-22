@@ -5,7 +5,7 @@ export const LandingPage = () => {
   
   return (
     <div>
-      <h1>Landing Shit You Unauthorized FUck</h1>
+      <h1>Landing Page for Unauthorized Users</h1>
       <br />
       <br />
     

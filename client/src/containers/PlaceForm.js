@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { placePostFetch } from '../actions/placeActions'
 //import PropTypes from 'prop-types';

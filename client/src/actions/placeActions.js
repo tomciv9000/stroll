@@ -1,8 +1,11 @@
+//import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY} from '../actions/types'
+import { NEW_PLACE } from '../actions/types'
+
 const BASE_URL = "http://localhost:3000"
 
 export const placePostFetch = place => {
   return dispatch => {
-    let placeData = {"place": {"name": place.email, "description": place.description}} 
+    let placeData = {"place": {"name": place.name, "description": place.description}} 
     return fetch(`${BASE_URL}/places`, {
       method: "POST",
       headers: {
@@ -20,9 +23,13 @@ export const placePostFetch = place => {
           // 'message' if there is an error with creating the place, i.e. invalid placename
         } else {
           console.log(data)
-          localStorage.setItem("token", data.token)
-          dispatch(loginplace(data.place))
+          dispatch(createPlace(data.place))
         }
       })
   }
 }
+
+const createPlace = placeObj => ({
+  type: NEW_PLACE,
+  payload: placeObj
+})
