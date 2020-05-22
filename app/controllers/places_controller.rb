@@ -14,13 +14,11 @@ class PlacesController < ApplicationController
   def show
     render json: @place
   end
-  def profile
-    render json: { user: UserSerializer.new(current_user) }, status: :accepted
-  end
+
   def find
-    @place = User.find_by(email: params[:user][:email])
+    @place = Place.find_by(id: params[:place][:id])
     if @place
-      render json: { user: UserSerializer.new(@place) }
+      render json: { place: PlaceSerializer.new(@place) }
     else
       @errors = @place.errors.full_messages
       render json: @errors
@@ -29,20 +27,17 @@ class PlacesController < ApplicationController
 
   # POST /users
   def create
-    @place = User.create(user_params)
+    @place = Place.create(place_params)
     if @place.valid?
-      payload = {user_id: @place.id}
-      @token = encode_token(payload)
-      render json: { user: UserSerializer.new(@place), token: @token }, status: :created
-      #render json: { user: UserSerializer.new(@place)}, status: :created
+      render json: { user: PlaceSerializer.new(@place)}, status: :created
     else
-      render json: { error: 'failed to create user' }, status: :not_acceptable
+      render json: { error: 'failed to create place' }, status: :not_acceptable
     end
   end
 
   # PATCH/PUT /users/1
   def update
-    if @place.update(user_params)
+    if @place.update(place_params)
       render json: @place
     else
       render json: @place.errors, status: :unprocessable_entity
@@ -57,11 +52,11 @@ class PlacesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_place
-      @place = User.find(params[:id])
+      @place = Place.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:email, :password, :password_digest, :admin)
+    def place_params
+      params.require(:place).permit(:name, :description, :user_id)
     end
 end
