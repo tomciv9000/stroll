@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { combineReducers } from 'redux';
+import usersReducer from './reducers/usersReducer';
+import placesReducer from './reducers/placesReducer';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/rootReducer.js'
 import './index.css';
 import App from './App';
+
+const rootReducer = combineReducers({
+  places: placesReducer,
+  user: usersReducer
+})
 
 const store = createStore(
   rootReducer, 

@@ -20,6 +20,7 @@ class PlaceForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    console.log(this.state)
     this.props.placePostFetch(this.state)
     this.setState({
       name: "",
@@ -64,7 +65,7 @@ class PlaceForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    user_id: state.currentUser.id
+    user_id: state.user.currentUser.id
   };
 }
 

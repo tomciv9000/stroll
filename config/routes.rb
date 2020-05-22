@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     post 'find_user' => 'users#find'
     get "profile" => 'users#profile'
     resources :users
+    resources :places
 
   
 

@@ -59,6 +59,8 @@ const loginUser = userObj => ({
     payload: userObj
 })
 
+ 
+
 const getUser = email => {
   let loginData = {"user": {"email": email}}
   return fetch(`${BASE_URL}/find_user`, {
@@ -91,12 +93,14 @@ export const getProfileFetch = () => {
         .then(resp => resp.json())
         .then(data => {
           console.log(data)
-          if (data.message) {
+          if (data.user.data) {
             // An error will occur if the token is invalid.
-            // If this happens, you may want to remove the invalid token.
-            localStorage.removeItem("token")
-          } else {
+            // If this happens, you may want to remove the invalid token
             dispatch(loginUser(data.user.data.attributes))
+          } else {
+            console.log(data)
+            localStorage.removeItem("token")
+            dispatch(logoutUser())
           }
         })
     }
@@ -105,4 +109,8 @@ export const getProfileFetch = () => {
 
 export const logoutUser = () => ({
   type: 'LOGOUT_USER'
+})
+
+export const noAuth = () => ({
+  type: 'NOAUTH_USER'
 })

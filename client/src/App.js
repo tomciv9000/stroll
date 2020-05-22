@@ -39,7 +39,9 @@ class App extends Component {
               <AuthRoute path="/private" type="private">
                 <PrivatePage />
               </AuthRoute>
-              <Route path='/' render={LandingPage} />
+              <AuthRoute path='/' type = "guest">
+                <LandingPage />
+              </AuthRoute>
             </Switch>
           </div>
         </BrowserRouter>)

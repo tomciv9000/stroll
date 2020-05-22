@@ -44,7 +44,7 @@ class NavigationBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.isAuthenticated
+    auth: state.user.isAuthenticated
   };
 }
 
