@@ -1,8 +1,7 @@
 import React, { Component} from 'react';
 import {
   BrowserRouter,
-  Switch,
-  Route
+  Switch
 } from "react-router-dom";
 import './App.css';
 

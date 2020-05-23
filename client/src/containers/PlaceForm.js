@@ -24,8 +24,7 @@ class PlaceForm extends Component {
     this.props.placePostFetch(this.state)
     this.setState({
       name: "",
-      description: "",
-      user_id: ""
+      description: ""
     })
   }
 

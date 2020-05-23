@@ -29,7 +29,7 @@ class PlacesController < ApplicationController
   def create
     @place = Place.create(place_params)
     if @place.valid?
-      render json: { user: PlaceSerializer.new(@place)}, status: :created
+      render json: { place: PlaceSerializer.new(@place)}, status: :created
     else
       render json: { error: 'failed to create place' }, status: :not_acceptable
     end
