@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import PlaceForm from '../containers/PlaceForm'
+import { connect } from 'react-redux';
+import { getPlacesFetch } from '../actions/placeActions';
+
 
 class PrivatePage extends Component {
  
+  componentDidMount = () => {
+    this.props.getPlacesFetch()
+  }
+  
   render() {
     return (
       <div>
@@ -15,5 +22,15 @@ class PrivatePage extends Component {
   }
 };
 
+const mapStateToProps = state => {
+  return {
+    places: state.places.places
+  };
+}
 
-export default PrivatePage
+
+const mapDispatchToProps = dispatch => ({
+  getPlacesFetch: () => dispatch(getPlacesFetch())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrivatePage);

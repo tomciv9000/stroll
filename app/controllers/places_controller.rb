@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
     def index
         @places = current_user.places
 
-        render json: @places
+        render json: { place: PlaceSerializer.new(@places) }
     end
 
   # GET /users/1

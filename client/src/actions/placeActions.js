@@ -1,5 +1,5 @@
 //import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY} from '../actions/types'
-import { NEW_PLACE } from '../actions/types'
+import { FETCH_PLACES, NEW_PLACE } from '../actions/types'
 
 const BASE_URL = "http://localhost:3000"
 
@@ -30,7 +30,42 @@ export const placePostFetch = place => {
   }
 }
 
+export const getPlacesFetch = () => {
+  return dispatch => {
+    const token = localStorage.token;
+    if (token) {
+      return fetch(`${BASE_URL}/places`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          console.log(data)
+          if (data.place.data) {
+            // An error will occur if the token is invalid.
+            // If this happens, you may want to remove the invalid token
+            //dispatch(loginUser(data.user.data.attributes))
+            dispatch(fetchPlaces(data.place.data))
+          } else {
+            console.log(data.place.data.attributes)
+            localStorage.removeItem("token")
+            dispatch(fetchPlaces(data.place.data.attributes))
+          }
+        })
+    }
+  }
+}
+
 const createPlace = placeObj => ({
   type: NEW_PLACE,
   payload: placeObj
+})
+
+const fetchPlaces = placesObj => ({
+  type: FETCH_PLACES,
+  payload: placesObj
 })
