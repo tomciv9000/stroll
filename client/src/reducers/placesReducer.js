@@ -20,7 +20,7 @@ export default function(state = initialState, action){
         case NEW_PLACE:
         return {
           ...state,
-          place: action.payload
+          places: state.places.concat(action.payload)
         }
   
         case GET_PLACE:

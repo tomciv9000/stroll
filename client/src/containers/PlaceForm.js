@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { placePostFetch } from '../actions/placeActions'
+import { placePostFetch, getPlacesFetch } from '../actions/placeActions'
 //import PropTypes from 'prop-types';
 
 
@@ -12,6 +12,7 @@ class PlaceForm extends Component {
     user_id: this.props.user_id
   }
 
+  
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -69,7 +70,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  placePostFetch: placeInfo => dispatch(placePostFetch(placeInfo))
+  placePostFetch: placeInfo => dispatch(placePostFetch(placeInfo)),
+  getPlacesFetch: () => dispatch(getPlacesFetch())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceForm);
