@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux'
 
-class PlaceList extends Component {
+export const PlaceList = () => {
+    const place = useSelector(state => state.places.place)
+    
+    
 
-
-    componentDidMount(){
-        console.log(this.props)
-    }
-
-    render(){
         return (
             <div>
-                <h1></h1>
+               <h1>{place.name}</h1> 
+               <p>{place.description}</p>
             </div>
         )
-    }
 }
+

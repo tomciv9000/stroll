@@ -73,7 +73,6 @@ export const getPlaceFetch = (id) => {
       })
   .then(res => res.json())
   .then(data => {
-    console.log(data)
     dispatch(getPlace(data))  
   })
 }

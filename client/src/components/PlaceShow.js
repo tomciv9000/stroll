@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
-//import LocationList from './LocationList';
-//import { Link } from 'react-router-dom';
+import { PlaceList } from './PlaceList';
+import { Link } from 'react-router-dom';
 //import NewPlacesForm from '../containers/NewPlacesForm'
 //import GoogleMaps from './GoogleMaps'
 //import Autofill from './Autofill'
@@ -18,7 +18,7 @@ class PlaceShow extends Component{
     componentDidMount(){
         const {id} =  this.props.match.params;
         this.props.getPlaceFetch(id);
-        console.log(id)
+        
         this.setState({
           id: id
         })
@@ -32,8 +32,7 @@ class PlaceShow extends Component{
 //
     callPlace = () => {
       if (this.props.place){
-        console.log(this.props.place)
-        //return (<LocationList trip = {this.props} />)
+        return (<PlaceList />)
       }else {
         return (<h1>No info yet </h1>)
       }
@@ -57,8 +56,8 @@ class PlaceShow extends Component{
     render(){
       return(
         <div >
-            
-          This is an individual PLACE page, based on ID
+            <p><Link to='/private'>Back To All Your Places</Link></p><br></br>
+         
         {this.callPlace()}
         </div>
 
