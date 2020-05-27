@@ -14,9 +14,8 @@ import NavigationBar from './components/NavigationBar';
 import { LandingPage } from './components/Landing';
 import AuthRoute from './components/AuthRoute';
 import PlaceShow from './components/PlaceShow'
-//i think it's possible to recreate the react tutotrial protexted routes
-// using the thoughtbot hook converstion to try and make something happen
 
+console.log(process.env.REACT_APP_GOOGLE_API_KEY)
 
 class App extends Component {
   

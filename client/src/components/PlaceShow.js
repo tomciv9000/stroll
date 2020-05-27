@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
 import { PlaceList } from './PlaceList';
 import { Link } from 'react-router-dom';
+import TestMap from './TestMap';
 //import NewPlacesForm from '../containers/NewPlacesForm'
 //import GoogleMaps from './GoogleMaps'
 //import Autofill from './Autofill'
@@ -59,6 +60,7 @@ class PlaceShow extends Component{
             <p><Link to='/private'>Back To All Your Places</Link></p><br></br>
          
         {this.callPlace()}
+        <TestMap />
         </div>
 
       )
