@@ -24,7 +24,7 @@ class NavigationBar extends Component {
   render() {
     const userLinks = (
     <div>
-    <p>Signed in as: {this.props.current_user.email}</p>
+    <p>Welcome, {this.props.current_user.email}</p>
       <ul className="nav navbar-nav navbar-right">
         <li><a href="/" onClick={this.handleClick}>Logout</a></li>
       </ul>

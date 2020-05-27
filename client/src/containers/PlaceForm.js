@@ -16,8 +16,9 @@ class PlaceForm extends Component {
     this.state = {
       name: "",
       description: "",
-      user_id: this.props.user_id,
-      placeData: {}
+      lat: 0,
+      lng: 0,
+      user_id: this.props.user_id
     }
 }
   
@@ -46,7 +47,9 @@ class PlaceForm extends Component {
     this.googleField.current.value = ""
     this.setState({
           name: "",
-          description: ""
+          description: "",
+          lat: 0,
+          lng: 0
         })
   }
 
@@ -65,13 +68,7 @@ class PlaceForm extends Component {
       if (place.geometry.viewport){
           console.log("location", `${place.geometry.location.lat()} ${place.geometry.location.lng()}`)
 
-          const placeData = {
-            location: place.name,
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-            user_id: this.props.user_id
-          }
-          this.setState({  name: place.name, placeData: placeData })
+          this.setState({  name: place.name, lat: place.geometry.location.lat(), lng: place.geometry.location.lng(), })
       }
     } else {
       console.log('Autocomplete is not loaded yet!')
