@@ -22,9 +22,6 @@ class PrivatePage extends Component {
   render() {
     return (
       <div>
-        <h1>STROLL</h1>
-        <br />
-        <br />
         <PlaceForm />
         {this.callPlaceContainer()}
       </div>

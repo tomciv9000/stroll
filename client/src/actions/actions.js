@@ -21,7 +21,6 @@ export const userPostFetch = user => {
         } else {
           console.log(data)
           return loginNewUser(user)
-          //dispatch(loginUser(data.user))
         }
       })
       .then(returnedUser => {

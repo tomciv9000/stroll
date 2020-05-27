@@ -2,8 +2,6 @@ Things I need to do:
 
 implement catch error handling
 
-hide any API keys / my_secret
 
 
-
-const currentUser = useSelector(state => state.currentUser)
+Add the lng and lat values of a new place to the rails db on #create, use that value to center map when link is clicked

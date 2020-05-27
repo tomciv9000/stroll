@@ -13,11 +13,22 @@ class NavigationBar extends Component {
     this.props.logoutUser()
   }
 
+  callUser = () => {
+    if (this.props.current_user){
+    return (<p>User: {this.props.current_user.email}</p>)
+    }else {
+      return (<p>Guest</p>)
+    }
+  }
+
   render() {
     const userLinks = (
+    <div>
+    <p>Signed in as: {this.props.current_user.email}</p>
       <ul className="nav navbar-nav navbar-right">
         <li><a href="/" onClick={this.handleClick}>Logout</a></li>
       </ul>
+      </div>
     );
 
     const guestLinks = (
@@ -44,7 +55,8 @@ class NavigationBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.user.isAuthenticated
+    auth: state.user.isAuthenticated,
+    current_user: state.user.currentUser
   };
 }
 
