@@ -15,7 +15,7 @@ import { LandingPage } from './components/Landing';
 import AuthRoute from './components/AuthRoute';
 import PlaceShow from './components/PlaceShow'
 
-console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+
 
 class App extends Component {
   

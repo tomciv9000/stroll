@@ -81,7 +81,7 @@ class PlaceForm extends Component {
 render() {
     return (
         <div>
-          <h2>Where have you lived?</h2>
+          <h2>Where have you been?</h2>
         <LoadScript
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 

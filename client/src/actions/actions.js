@@ -20,11 +20,37 @@ export const userPostFetch = user => {
           // 'message' if there is an error with creating the user, i.e. invalid username
         } else {
           console.log(data)
-          localStorage.setItem("token", data.token)
-          dispatch(loginUser(data.user))
+          return loginNewUser(user)
+          //dispatch(loginUser(data.user))
         }
       })
+      .then(returnedUser => {
+        console.log(returnedUser)
+        dispatch(loginUser(returnedUser.user.data.attributes))
+      })
   }
+}
+
+
+const loginNewUser = user => {
+  let loginData = {"auth": {"email": user.email, "password": user.password}} 
+  return fetch(`${BASE_URL}/user_token`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(loginData)
+  })
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data)
+      localStorage.setItem("token", data.jwt)
+      return getUser(user.email)
+    })
+    .catch(error => {
+      console.log(error)
+    })
 }
 
 export const userLoginFetch = user => {

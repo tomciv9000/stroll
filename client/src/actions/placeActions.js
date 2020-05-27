@@ -51,7 +51,7 @@ export const getPlacesFetch = () => {
             dispatch(fetchPlaces(data.place.data))
           } else {
             console.log(data.place.data.attributes)
-            localStorage.removeItem("token")
+            
             dispatch(fetchPlaces(data.place.data.attributes))
           }
         })
