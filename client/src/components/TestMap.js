@@ -25,8 +25,8 @@ class TestMap extends Component {
       activeMarker: {},
       selectedSpot: {},
       //I might need to pass place_id in as a prop when it's called
-      place_id: this.props.id,
-      place: this.props.place,
+      
+      place: {},
       spotData: {},
       center: {lat:0,lng:0},
       fetch: false
@@ -35,15 +35,23 @@ class TestMap extends Component {
 
   componentDidMount(){
     console.log(this.state)
-    this.calculateCenter()
+    //this.calculateCenter()
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.props)
+    // Typical usage (don't forget to compare props):
+    if (this.props.place_id !== prevProps.place_id) {
+      console.log(prevProps)
+      this.calculateCenter()
+      ;
+    }
   }
 
   calculateCenter = () => {
-    
-    this.setState({center:{
-      lat: this.state.place.lat,
-      lng: this.state.place.lng
-    }})
+    let place = this.props.place
+    let center = {lat: place.lat,lng: place.lng}
+    return center
     //const spots = this.props.places.place.spots
     //if(this.props.trip.trip.places){
     //  return(this.setState({center:{
@@ -69,7 +77,7 @@ class TestMap extends Component {
 
   onLoad (autocomplete) {
     
-    console.log('autocomplete: ', autocomplete)
+    //console.log('autocomplete: ', autocomplete)
     this.autocomplete = autocomplete
   }
     
@@ -93,7 +101,7 @@ class TestMap extends Component {
   }
 
   render() {
-    console.log(this.state.center)
+    console.log(this.props.place)
     return (
         <div>
         
@@ -106,7 +114,7 @@ class TestMap extends Component {
         </button>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
-            center={this.state.center}
+            center={this.calculateCenter()}
             zoom={10}
           >
               <Autocomplete
