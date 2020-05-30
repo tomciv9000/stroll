@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:3000"
 
 export const placePostFetch = place => {
   return dispatch => {
-    let placeData = {"place": {"name": place.name, "description": place.description, "user_id": place.user_id}} 
+    let placeData = {"place": {"name": place.name, "description": place.description, "lat": place.lat, "lng": place.lng, "user_id": place.user_id}} 
     return fetch(`${BASE_URL}/places`, {
       method: "POST",
       headers: {

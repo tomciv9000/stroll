@@ -43,7 +43,7 @@ class PlaceForm extends Component {
   handleSubmit = (e) => {
   
     console.log(this.state)
-    console.log(this.googleField.current.value)
+    this.props.placePostFetch(this.state)
     this.googleField.current.value = ""
     this.setState({
           name: "",
