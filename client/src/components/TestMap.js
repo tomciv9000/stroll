@@ -4,118 +4,135 @@ import { connect } from 'react-redux'
 import { getSpotFetch, spotPostFetch } from '../actions/placeActions';
 
 const mapContainerStyle = {
-    height: "400px",
-    width: "800px"
-  }
+  height: "50vh",
+  width: "100%"
+}
   
-  const center = {
-    lat: 41.390628,
-    lng: -81.878976
-  }
+const center = {
+  lat: 41.390628,
+  lng: -81.878976
+}
 
-  const libraries = ["places"]
+const libraries = ["places"]
 
 class TestMap extends Component {
-    constructor (props) {
-        super(props)
-        this.autocomplete = null
-        this.onLoad = this.onLoad.bind(this)
-        this.onPlaceChanged = this.onPlaceChanged.bind(this)
-        this.state = {
-            position: null,
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedSpot: {},
-            //I might need to pass place_id in as a prop when it's called
-           // place_id: this.props.place_id,
-            spotData: {},
-            center: {lat:0,lng:0},
-            fetch: false
-        }
+  constructor (props) {
+    super(props)
+    this.autocomplete = null
+    this.onLoad = this.onLoad.bind(this)
+    this.onPlaceChanged = this.onPlaceChanged.bind(this)
+    this.state = {
+      position: null,
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedSpot: {},
+      //I might need to pass place_id in as a prop when it's called
+      // place_id: this.props.place_id,
+      spotData: {},
+      center: {lat:0,lng:0},
+      fetch: false
+      }
+  }
+
+  componentDidMount(){
+    //this.calculateCenter();
+  }
+
+  calculateCenter = () => {
+    const spots = this.props.places.place.spots
+    if(this.props.trip.trip.places){
+      return(this.setState({center:{
+        lat: places.reduce((total, place) => {
+          return total+place.lat
+        }, 0)/places.length ,
+        lng: places.reduce((total, place) => {
+          return total+place.lng
+        }, 0)/places.length
+      }}))
+    }else{
+      return(<h1>no info yet</h1>)
     }
+
+  }
     
-    handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(this.state.spotData)
-        //this.props.createPlace(this.state.placeData)
-      }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state.spotData)
+    //this.props.createPlace(this.state.placeData)
+  }
 
 
-      onLoad (autocomplete) {
-        console.log('autocomplete: ', autocomplete)
-        
+  onLoad (autocomplete) {
+    console.log('autocomplete: ', autocomplete)
+    this.autocomplete = autocomplete
+  }
     
-        this.autocomplete = autocomplete
-      }
-    
-      onPlaceChanged () {
-        if (this.autocomplete !== null) {
-          const spot = this.autocomplete.getPlace()
-          if (!spot.geometry) return;
-          if (spot.geometry.viewport){
-              console.log("location", `${spot.geometry.location.lat()} ${spot.geometry.location.lng()}`)
-
-              const spotData = {
-                location: spot.name,
-                lat: spot.geometry.location.lat(),
-                lng: spot.geometry.location.lng(),
-                place_id: this.state.place_id
-              }
-              this.setState({ position: spot.geometry.location, spotData: spotData })
+  onPlaceChanged () {
+    if (this.autocomplete !== null) {
+      const spot = this.autocomplete.getPlace()
+      if (!spot.geometry) return;
+      if (spot.geometry.viewport){
+          console.log("location", `${spot.geometry.location.lat()} ${spot.geometry.location.lng()}`)
+          const spotData = {
+            location: spot.name,
+            lat: spot.geometry.location.lat(),
+            lng: spot.geometry.location.lng(),
+            place_id: this.state.place_id
           }
-        } else {
-          console.log('Autocomplete is not loaded yet!')
-        }
+          this.setState({ position: spot.geometry.location, spotData: spotData })
       }
+    } else {
+      console.log('Autocomplete is not loaded yet!')
+    }
+  }
 
-    render() {
-        return (
-            
-            <LoadScript
-              googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
-              libraries={libraries} 
-            >
-                <button onClick={this.handleSubmit}> 
-                Save Spot
-            </button>
-              <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                center={center}
-                zoom={2.5}
-              >
-                  <Autocomplete
-            onLoad={this.onLoad}
-            onPlaceChanged={this.onPlaceChanged}
+  render() {
+    return (
+        
+        <LoadScript
+          googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
+          libraries={libraries} 
+        >
+            <button onClick={this.handleSubmit}> 
+            Save Spot
+        </button>
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            center={center}
+            zoom={2.5}
           >
-              
-
-            <input
-              type="text"
-              placeholder="Customized your placeholder"
-              style={{
-                boxSizing: `border-box`,
-                border: `1px solid transparent`,
-                width: `240px`,
-                height: `32px`,
-                padding: `0 12px`,
-                borderRadius: `3px`,
-                boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-                fontSize: `14px`,
-                outline: `none`,
-                textOverflow: `ellipses`,
-                position: "absolute",
-                left: "50%",
-                marginLeft: "-120px"
-              }}
-            />
-            
-            
-          </Autocomplete>
+              <Autocomplete
+        onLoad={this.onLoad}
+        onPlaceChanged={this.onPlaceChanged}
+      >
           
-              </GoogleMap>
-            </LoadScript>
-          )
-        }
+        <input
+          type="text"
+          placeholder="Customized your placeholder"
+          style={{
+            boxSizing: `border-box`,
+            border: `1px solid transparent`,
+            width: `240px`,
+            height: `32px`,
+            padding: `0 12px`,
+            borderRadius: `3px`,
+            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+            fontSize: `14px`,
+            outline: `none`,
+            textOverflow: `ellipses`,
+            position: "absolute",
+            left: "50%",
+            marginLeft: "-120px"
+          }}
+        />
+        
+        
+      </Autocomplete>
+      
+          </GoogleMap>
+        </LoadScript>
+      )
+    }
 }
 
 const mapStateToProps = state => {

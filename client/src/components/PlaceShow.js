@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
-import { PlaceList } from './PlaceList';
+import {PlaceDetails} from './PlaceDetails'
 import { Link } from 'react-router-dom';
 import TestMap from './TestMap';
 //import NewPlacesForm from '../containers/NewPlacesForm'
@@ -33,7 +33,7 @@ class PlaceShow extends Component{
 //
     callPlace = () => {
       if (this.props.place){
-        return (<PlaceList />)
+        return (<PlaceDetails />)
       }else {
         return (<h1>No info yet </h1>)
       }

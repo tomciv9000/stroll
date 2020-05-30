@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { placePostFetch, getPlacesFetch } from '../actions/placeActions'
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api'
+import { LoadScript, Autocomplete } from '@react-google-maps/api'
 //import PropTypes from 'prop-types';
 
 const libraries = ["places"]
@@ -29,16 +29,6 @@ class PlaceForm extends Component {
       [event.target.name]: event.target.value
     });
   }
-
-  //handleSubmit = (event) => {
-  //  event.preventDefault()
-  //  console.log(this.state)
-  //  this.props.placePostFetch(this.state)
-  //  this.setState({
-  //    name: "",
-  //    description: ""
-  //  })
-  //}
 
   handleSubmit = (e) => {
   
