@@ -7,11 +7,9 @@ const mapContainerStyle = {
   height: "50vh",
   width: "100%"
 }
+
+
   
-const center = {
-  lat: 41.390628,
-  lng: -81.878976
-}
 
 const libraries = ["places"]
 
@@ -27,7 +25,8 @@ class TestMap extends Component {
       activeMarker: {},
       selectedSpot: {},
       //I might need to pass place_id in as a prop when it's called
-      // place_id: this.props.place_id,
+      place_id: this.props.id,
+      place: this.props.place,
       spotData: {},
       center: {lat:0,lng:0},
       fetch: false
@@ -35,23 +34,29 @@ class TestMap extends Component {
   }
 
   componentDidMount(){
-    //this.calculateCenter();
+    console.log(this.state)
+    this.calculateCenter()
   }
 
   calculateCenter = () => {
-    const spots = this.props.places.place.spots
-    if(this.props.trip.trip.places){
-      return(this.setState({center:{
-        lat: places.reduce((total, place) => {
-          return total+place.lat
-        }, 0)/places.length ,
-        lng: places.reduce((total, place) => {
-          return total+place.lng
-        }, 0)/places.length
-      }}))
-    }else{
-      return(<h1>no info yet</h1>)
-    }
+    
+    this.setState({center:{
+      lat: this.state.place.lat,
+      lng: this.state.place.lng
+    }})
+    //const spots = this.props.places.place.spots
+    //if(this.props.trip.trip.places){
+    //  return(this.setState({center:{
+    //    lat: places.reduce((total, place) => {
+    //      return total+place.lat
+    //    }, 0)/places.length ,
+    //    lng: places.reduce((total, place) => {
+    //      return total+place.lng
+    //    }, 0)/places.length
+    //  }}))
+    //}else{
+    //  return(<h1>no info yet</h1>)
+    //}
 
   }
     
@@ -63,6 +68,7 @@ class TestMap extends Component {
 
 
   onLoad (autocomplete) {
+    
     console.log('autocomplete: ', autocomplete)
     this.autocomplete = autocomplete
   }
@@ -87,7 +93,9 @@ class TestMap extends Component {
   }
 
   render() {
+    console.log(this.state.center)
     return (
+        <div>
         
         <LoadScript
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
@@ -98,8 +106,8 @@ class TestMap extends Component {
         </button>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
-            center={center}
-            zoom={2.5}
+            center={this.state.center}
+            zoom={10}
           >
               <Autocomplete
         onLoad={this.onLoad}
@@ -131,12 +139,14 @@ class TestMap extends Component {
       
           </GoogleMap>
         </LoadScript>
+        </div>
       )
     }
 }
 
 const mapStateToProps = state => {
     return {
+      place: state.places.place,
       user_id: state.user.currentUser.id,
       place_id: state.places.place.id
     };

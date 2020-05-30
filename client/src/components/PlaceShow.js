@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
 import {PlaceDetails} from './PlaceDetails'
 import { Link } from 'react-router-dom';
-import TestMap from './TestMap';
+import TestMap from './TestMap'
 //import NewPlacesForm from '../containers/NewPlacesForm'
 //import GoogleMaps from './GoogleMaps'
 //import Autofill from './Autofill'
@@ -39,13 +39,13 @@ class PlaceShow extends Component{
       }
     }
 //
-    //passTripInfor = () => {
-    //  if (this.props.trip){
-    //    return (<Autofill trip = {this.props} id={this.state.id} />)
-    //  }else {
-    //    return (<h1>No info yet </h1>)
-    //  }
-    //}
+    passPlaceInfo = () => {
+      if (this.props.place.id){
+        return (<TestMap place = {this.props.place} id={this.props.place.id} />)
+      }else {
+        return (<h1>No info yet </h1>)
+      }
+    }
 //
     //onDeleteClick = () => {
     //  const {id} =  this.props.match.params;
@@ -60,14 +60,15 @@ class PlaceShow extends Component{
             <p><Link to='/private'>Back To All Your Places</Link></p><br></br>
          
         {this.callPlace()}
-        <TestMap />
+        {this.passPlaceInfo()}
+        
         </div>
 
       )
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
       place: state.places.place,
       spot: state.places.place.spot
