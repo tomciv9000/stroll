@@ -80,17 +80,17 @@ export const getPlaceFetch = (id) => {
 
 
 
-export const spotPostFetch = place => {
+export const spotPostFetch = spot => {
   return dispatch => {
-    let placeData = {"place": {"name": place.name, "description": place.description, "user_id": place.user_id}} 
-    return fetch(`${BASE_URL}/places`, {
+    let spotData = {"spot": {"location": spot.location, "lat": spot.lat, "lng": spot.lng, "place_id": spot.place_id}} 
+    return fetch(`${BASE_URL}/spots`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
         "Authorization": `Bearer ${localStorage.token}`,
         Accept: 'application/json',
       },
-      body: JSON.stringify(placeData)
+      body: JSON.stringify(spotData)
     })
       .then(resp => resp.json())
       .then(data => {
@@ -100,8 +100,8 @@ export const spotPostFetch = place => {
           // This assumes your Rails API will return a JSON object with a key of
           // 'message' if there is an error with creating the place, i.e. invalid placename
         } else {
-          console.log(data.place.data)
-          dispatch(createSpot(data.place.data))
+          console.log(data)
+          dispatch(createSpot(data.spot.data))
         }
       })
   }

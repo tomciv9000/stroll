@@ -34,7 +34,7 @@ export default function(state = initialState, action){
         case NEW_SPOT:
           return{
             ...state,
-            place: action.payload
+            spot: action.payload
           }
   
           case GET_SPOT:

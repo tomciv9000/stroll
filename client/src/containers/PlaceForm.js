@@ -45,7 +45,7 @@ class PlaceForm extends Component {
 
 
   onLoad (autocomplete) {
-    console.log('autocomplete: ', autocomplete)
+    //console.log('autocomplete: ', autocomplete)
     
 
     this.autocomplete = autocomplete

@@ -20,37 +20,36 @@ class TestMap extends Component {
     this.onLoad = this.onLoad.bind(this)
     this.onPlaceChanged = this.onPlaceChanged.bind(this)
     this.state = {
-      position: null,
+      //position: null,
       showingInfoWindow: false,
       activeMarker: {},
       selectedSpot: {},
-      //I might need to pass place_id in as a prop when it's called
-      
-      place: {},
+      //place: {},
       spotData: {},
-      center: {lat:0,lng:0},
+      //center: {lat:0,lng:0},
       fetch: false
       }
   }
 
   componentDidMount(){
-    console.log(this.state)
+    console.log('Component State: ',this.state)
     //this.calculateCenter()
   }
 
-  componentDidUpdate(prevProps) {
-    console.log(this.props)
-    // Typical usage (don't forget to compare props):
-    if (this.props.place_id !== prevProps.place_id) {
-      console.log(prevProps)
-      this.calculateCenter()
-      ;
-    }
-  }
+  //componentDidUpdate(prevProps) {
+  //  console.log(this.props)
+  //  // Typical usage (don't forget to compare props):
+  //  if (this.props.place_id !== prevProps.place_id) {
+  //    console.log(prevProps)
+  //    this.calculateCenter()
+  //    ;
+  //  }
+  //}
 
   calculateCenter = () => {
     let place = this.props.place
     let center = {lat: place.lat,lng: place.lng}
+    console.log('Center Coordinates: ', center)
     return center
     //const spots = this.props.places.place.spots
     //if(this.props.trip.trip.places){
@@ -70,8 +69,12 @@ class TestMap extends Component {
     
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state.spotData)
-    //this.props.createPlace(this.state.placeData)
+    console.log('Spot Data:', this.state.spotData)
+    this.props.spotPostFetch(this.state.spotData)
+    
+    //return format
+    //{location: "St John's Jesuit High School", lat: 41.612906, lng: -83.68219540000001, place_id: undefined}
+
   }
 
 
@@ -86,12 +89,13 @@ class TestMap extends Component {
       const spot = this.autocomplete.getPlace()
       if (!spot.geometry) return;
       if (spot.geometry.viewport){
-          console.log("location", `${spot.geometry.location.lat()} ${spot.geometry.location.lng()}`)
+        console.log("Spot: ", `${spot.geometry.location}`)  
+        console.log("Spot Coordinates: ", `${spot.geometry.location.lat()} ${spot.geometry.location.lng()}`)
           const spotData = {
             location: spot.name,
             lat: spot.geometry.location.lat(),
             lng: spot.geometry.location.lng(),
-            place_id: this.state.place_id
+            place_id: this.props.place_id
           }
           this.setState({ position: spot.geometry.location, spotData: spotData })
       }
@@ -101,7 +105,6 @@ class TestMap extends Component {
   }
 
   render() {
-    console.log(this.props.place)
     return (
         <div>
         
@@ -109,44 +112,49 @@ class TestMap extends Component {
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 
         >
-            <button onClick={this.handleSubmit}> 
-            Save Spot
-        </button>
-          <GoogleMap
-            mapContainerStyle={mapContainerStyle}
-            center={this.calculateCenter()}
-            zoom={10}
-          >
-              <Autocomplete
+          <Autocomplete
         onLoad={this.onLoad}
         onPlaceChanged={this.onPlaceChanged}
       >
           
         <input
           type="text"
-          placeholder="Customized your placeholder"
+          placeholder="Enter a spot"
           style={{
             boxSizing: `border-box`,
             border: `1px solid transparent`,
             width: `240px`,
             height: `32px`,
-            padding: `0 12px`,
+            padding: `12px`,
             borderRadius: `3px`,
             boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
             fontSize: `14px`,
             outline: `none`,
             textOverflow: `ellipses`,
-            position: "absolute",
-            left: "50%",
-            marginLeft: "-120px"
+            position: "relative",
+            left: "0%",
+            marginLeft: "0px"
           }}
         />
         
         
       </Autocomplete>
-      
+      <br></br>
+      <button onClick={this.handleSubmit}> 
+          Save This Spot
+        </button>
+        <br></br>
+        <br></br>
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            center={this.calculateCenter()}
+            zoom={10}
+          >
+            
           </GoogleMap>
         </LoadScript>
+        <br></br>
+       
         </div>
       )
     }
