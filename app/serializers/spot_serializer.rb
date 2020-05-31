@@ -1,9 +1,9 @@
 class SpotSerializer
   include FastJsonapi::ObjectSerializer
-  has_many :entries
+  has_many :memories
 
   def entries
-    object.entries.map { |j| {entryID: j.id, description: j.description, hotels: j.hotels, restaurants: j.restaurants, tours: j.tours, dates: j.dates, placeID: j.place_id, userID: j.user_id, photos: j.photos}}
+    object.memories.map { |j| {memoryID: j.id, description: j.description, spotID: j.spot_id, userID: j.user_id}}
   end
   
   attributes :id, :location, :place_id, :lat, :lng

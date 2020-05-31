@@ -46,7 +46,7 @@ export default function(state = initialState, action){
           case NEW_MEMORY:
             return{
               ...state,
-              entry: action.payload
+              memory: action.payload
             }
           case DELETE_MEMORY:
             console.log(state.first)
