@@ -100,8 +100,8 @@ export const spotPostFetch = spot => {
           // This assumes your Rails API will return a JSON object with a key of
           // 'message' if there is an error with creating the place, i.e. invalid placename
         } else {
-          console.log(data)
-          dispatch(createSpot(data.spot.data))
+          console.log(data.spot.data)
+          dispatch(createSpot(data.spot.data.attributes))
         }
       })
   }
