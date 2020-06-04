@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @place
+    render json: { place: PlaceSerializer.new(@place) }
   end
 
   def find

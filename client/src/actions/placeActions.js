@@ -73,7 +73,8 @@ export const getPlaceFetch = (id) => {
       })
   .then(res => res.json())
   .then(data => {
-    dispatch(getPlace(data))  
+    
+    dispatch(getPlace(data.place.data.attributes))  
   })
 }
 }}

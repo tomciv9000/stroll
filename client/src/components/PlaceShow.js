@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
-import {PlaceDetails} from './PlaceDetails'
+import PlaceList from './PlaceList'
 import { Link } from 'react-router-dom';
 import TestMap from './TestMap'
 //import NewPlacesForm from '../containers/NewPlacesForm'
 //import GoogleMaps from './GoogleMaps'
 //import Autofill from './Autofill'
 
+
+
+//Get to a place where you can delete placedetails.js
 
 class PlaceShow extends Component{
     
@@ -32,8 +35,9 @@ class PlaceShow extends Component{
     //  }
 //
     callPlace = () => {
+      
       if (this.props.place){
-        return (<PlaceDetails />)
+        return (<PlaceList place = {this.props.place} />)
       }else {
         return (<h1>No info yet </h1>)
       }
