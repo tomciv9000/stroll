@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const AllSpots = (props) => {
     //const spot = useSelector(state => state.places.spot)
     let spotData = props.spotData
-    console.log(spotData)
+    
     
 
         return (

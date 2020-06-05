@@ -20,7 +20,8 @@ class PlaceShow extends Component{
     }
 
     componentDidMount(){
-        const {id} =  this.props.match.params;
+      console.log("PlaceShow.js was mounted")  
+      const {id} =  this.props.match.params;
         this.props.getPlaceFetch(id);
         
         this.setState({
@@ -28,6 +29,7 @@ class PlaceShow extends Component{
         })
     }
 
+    
     //componentWillReceiveProps(nextProps) {
     //    if(nextProps.place) {
     //      this.props.trip.places.push(nextProps.place)
@@ -35,9 +37,9 @@ class PlaceShow extends Component{
     //  }
 //
     callPlace = () => {
-      
+      console.log('Current Spot:', this.props.spot)
       if (this.props.place){
-        return (<PlaceList place = {this.props.place} />)
+        return (<PlaceList place = {this.props.place}/>)
       }else {
         return (<h1>No info yet </h1>)
       }
@@ -75,7 +77,7 @@ class PlaceShow extends Component{
 const mapStateToProps = (state) => {
     return {
       place: state.places.place,
-      spot: state.places.place.spot
+      spot: state.places.spot
     };
 }
 

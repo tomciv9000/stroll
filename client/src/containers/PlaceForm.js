@@ -141,39 +141,6 @@ render() {
     }
 }
 
-  //render () {
-  //  return(
-  //    <div>
-  //      <h2>Enter a place that means something to you.</h2>
-  //      <form onSubmit={this.handleSubmit}>
-//
-  //      <label>Name of this Place</label>
-  //      <input
-  //        name='name'
-  //        placeholder='Ex. Swanton, OH'
-  //        value={this.state.name}
-  //        onChange={this.handleChange}
-  //        /><br/>
-//
-  //      <label>Description</label>
-  //      <input
-  //        name='description'
-  //        placeholder='Ex. Where I grew up'
-  //        value={this.state.description}
-  //        onChange={this.handleChange}
-  //        /><br/>
-  //      <input type='submit'/>
-  //    </form>
-  //    </div>
-//
-  //  )
-//
-  //}
-//}
-//TripForm.propTypes = {
-//  createTrip: PropTypes.func.isRequired
-//
-//}
 
 const mapStateToProps = state => {
   return {

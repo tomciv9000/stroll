@@ -19,15 +19,16 @@ class TestMap extends Component {
     this.autocomplete = null
     this.onLoad = this.onLoad.bind(this)
     this.onPlaceChanged = this.onPlaceChanged.bind(this)
+    this.googleField = React.createRef()
     this.state = {
       //position: null,
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedSpot: {},
+      //showingInfoWindow: false,
+      //activeMarker: {},
+      //selectedSpot: {},
       //place: {},
       spotData: {},
       //center: {lat:0,lng:0},
-      fetch: false
+      //fetch: false
       }
   }
 
@@ -49,7 +50,7 @@ class TestMap extends Component {
   calculateCenter = () => {
     let place = this.props.place
     let center = {lat: place.lat,lng: place.lng}
-    console.log('Center Coordinates: ', center)
+    //console.log('Center Coordinates: ', center)
     return center
     //const spots = this.props.places.place.spots
     //if(this.props.trip.trip.places){
@@ -69,12 +70,12 @@ class TestMap extends Component {
     
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Spot Data:', this.state.spotData)
-    this.props.spotPostFetch(this.state.spotData)
     
-    //return format
-    //{location: "St John's Jesuit High School", lat: 41.612906, lng: -83.68219540000001, place_id: undefined}
-
+    this.props.spotPostFetch(this.state.spotData)
+    this.googleField.current.value = ""
+    this.setState({
+      spotData: {}
+    })
   }
 
 
@@ -89,8 +90,7 @@ class TestMap extends Component {
       const spot = this.autocomplete.getPlace()
       if (!spot.geometry) return;
       if (spot.geometry.viewport){
-        console.log("Spot: ", `${spot.geometry.location}`)  
-        console.log("Spot Coordinates: ", `${spot.geometry.location.lat()} ${spot.geometry.location.lng()}`)
+        
           const spotData = {
             location: spot.name,
             lat: spot.geometry.location.lat(),
@@ -119,6 +119,8 @@ class TestMap extends Component {
           
         <input
           type="text"
+          ref={this.googleField}
+          name="spot"
           placeholder="Enter a spot"
           style={{
             boxSizing: `border-box`,
