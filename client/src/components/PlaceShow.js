@@ -29,20 +29,23 @@ class PlaceShow extends Component{
         })
     }
 
-    
-    //componentWillReceiveProps(nextProps) {
-    //    if(nextProps.place) {
-    //      this.props.trip.places.push(nextProps.place)
-    //     }
-    //  }
-//
+  componentDidUpdate(prevProps){
+    if (this.props.spot !== prevProps.spot){
+      console.log("A Spot was entered")
+      this.props.getPlaceFetch(this.props.place.id)
+      //this.props.spots.push(this.props.spot)
+    }
+  }
+
+  //THIS SHIT IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
     callPlace = () => {
       console.log('Current Spot:', this.props.spot)
-      if (this.props.place){
-        return (<PlaceList place = {this.props.place}/>)
-      }else {
-        return (<h1>No info yet </h1>)
-      }
+      return (<PlaceList />)
+      //if (this.props.place){
+      //  return (<PlaceList place = {this.props.place}/>)
+      //}else {
+      //  return (<h1>No info yet </h1>)
+      //}
     }
 //
     passPlaceInfo = () => {
