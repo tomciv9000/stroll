@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Autocomplete, Marker } from '@react-google-maps/api'
 import { connect } from 'react-redux'
 import { getSpotFetch, spotPostFetch } from '../actions/placeActions';
 
@@ -104,6 +104,18 @@ class TestMap extends Component {
     }
   }
 
+  callPlace = () => {
+    if (this.props.place.spots) {
+      return (this.props.place.spots.map((spot) => {
+        return <Marker 
+          onClick = { console.log("Marker Clicked")}
+          position = {{lat:spot.lat, lng:spot.lng}} />
+      }))
+    } else {
+      return (<h1>No info yet</h1>)
+    }
+  }
+
   render() {
     return (
         <div>
@@ -152,7 +164,7 @@ class TestMap extends Component {
             center={this.calculateCenter()}
             zoom={10}
           >
-            
+            {this.callPlace()}
           </GoogleMap>
         </LoadScript>
         <br></br>
