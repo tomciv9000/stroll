@@ -5,14 +5,14 @@ import {
 } from "react-router-dom";
 import './App.css';
 
-import PrivatePage from './components/Private'
+import Homepage from './components/Homepage'
 import {connect} from 'react-redux';
 import {getProfileFetch} from './actions/actions';
-import Signup from './components/Signup';
-import Login from './components/Login';
+import Signup from './components/auth/Signup';
+import Login from './components/auth/Login';
 import NavigationBar from './components/NavigationBar';
 import { LandingPage } from './components/Landing';
-import AuthRoute from './components/AuthRoute';
+import AuthRoute from './components/auth/AuthRoute';
 import PlaceShow from './components/PlaceShow'
 
 
@@ -39,7 +39,7 @@ class App extends Component {
               </AuthRoute>
               
               <AuthRoute path="/private" type="private">
-                <PrivatePage />
+                <Homepage />
               </AuthRoute>
               
               <AuthRoute path="/places/:id" type="private" component = {PlaceShow}>

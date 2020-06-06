@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
 import { PlaceDetails } from './PlaceDetails'
 import { Link } from 'react-router-dom';
-import TestMap from './TestMap'
+import TestMap from './map/TestMap'
 
 
 
@@ -38,7 +38,8 @@ class PlaceShow extends Component{
 //
     passPlaceInfo = () => {
       if (this.props.place.id){
-        return (<TestMap place = {this.props.place} id={this.props.place.id} />)
+        //return (<TestMap  />)
+        return (<TestMap place={this.props.place} id={this.props.place.id} />)
       }else {
         return (<h1>No info yet </h1>)
       }

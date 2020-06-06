@@ -68,7 +68,8 @@ class PlaceForm extends Component {
 render() {
     return (
         <div>
-          <h2>Where have you been?</h2>
+          <h2>Oh, The Places You've Been</h2>
+          <h4>The locations in the story of your life.</h4>
         <LoadScript
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 
@@ -85,7 +86,7 @@ render() {
           type="text"
           ref={this.googleField}
           name="city"
-          placeholder="Enter city or town"
+          placeholder="Enter a City" 
           style={{
             boxSizing: `border-box`,
             border: `1px solid transparent`,
@@ -114,7 +115,7 @@ render() {
         <br/>
         <input
           name='description'
-          placeholder='Enter a brief description'
+          placeholder='One Sentence Description'
           value={this.state.description}
           onChange={this.handleChange}
           style={{

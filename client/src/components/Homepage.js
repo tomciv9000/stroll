@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getPlacesFetch } from '../actions/placeActions';
 import PlaceContainer from '../containers/PlaceContainer'
 
-class PrivatePage extends Component {
+class Homepage extends Component {
  
   componentDidMount = () => {
     this.props.getPlacesFetch()
@@ -41,4 +41,4 @@ const mapDispatchToProps = dispatch => ({
   getPlacesFetch: () => dispatch(getPlacesFetch())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrivatePage);
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

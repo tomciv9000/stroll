@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Autocomplete, Marker } from '@react-google-maps/api'
 import { connect } from 'react-redux'
-import { getSpotFetch, spotPostFetch } from '../actions/placeActions';
+import { getSpotFetch, spotPostFetch } from '../../actions/placeActions';
 
 const mapContainerStyle = {
   height: "50vh",
@@ -25,46 +25,51 @@ class TestMap extends Component {
       //showingInfoWindow: false,
       //activeMarker: {},
       //selectedSpot: {},
-      //place: {},
+      //place: this.props.place,
       spotData: {},
-      //center: {lat:0,lng:0},
+      center: {lat:0,lng:0},
       //fetch: false
       }
   }
 
   componentDidMount(){
     //console.log('Component State: ',this.state)
-    //this.calculateCenter()
+    this.calculateCenter()
   }
 
-  //componentDidUpdate(prevProps) {
-  //  console.log(this.props)
-  //  // Typical usage (don't forget to compare props):
-  //  if (this.props.place_id !== prevProps.place_id) {
-  //    console.log(prevProps)
-  //    this.calculateCenter()
-  //    ;
-  //  }
-  //}
+  componentDidUpdate(prevProps) {
+    console.log("Map should update")
+    if (this.props.place !== prevProps.place) {
+      console.log("Oh hey, it's a new place!")
+      this.calculateCenter()
+    }
+  }
 
   calculateCenter = () => {
+   //IF NO SPOTS ARE ENTERED, THE CENTER SHOULD BE THE PLACE CENTER, OTHERWISE CALCULATE
+   //BASED ON THE PLACE'S SPOTS
+   
     let place = this.props.place
-    let center = {lat: place.lat,lng: place.lng}
+    console.log(place)
+   // let center = {lat: place.lat,lng: place.lng}
     //console.log('Center Coordinates: ', center)
-    return center
-    //const spots = this.props.places.place.spots
-    //if(this.props.trip.trip.places){
-    //  return(this.setState({center:{
-    //    lat: places.reduce((total, place) => {
-    //      return total+place.lat
-    //    }, 0)/places.length ,
-    //    lng: places.reduce((total, place) => {
-    //      return total+place.lng
-    //    }, 0)/places.length
-    //  }}))
-    //}else{
-    //  return(<h1>no info yet</h1>)
-    //}
+    //return center
+    
+    //let spots = this.props.place.spots
+    if(place.spots){
+      console.log("Spots detected")
+      return(this.setState({center:{
+        lat: place.spots.reduce((total, spot) => {
+          return total+spot.lat
+        }, 0)/place.spots.length ,
+        lng: place.spots.reduce((total, spot) => {
+          return total+spot.lng
+        }, 0)/place.spots.length
+      }}))
+    }else{
+      console.log("No spots entered")
+      return(<h1>no info yet</h1>)
+    }
 
   }
     
@@ -163,7 +168,7 @@ class TestMap extends Component {
         <br></br>
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
-            center={this.calculateCenter()}
+            center={this.state.center}
             zoom={10}
           >
             {this.callPlace()}
@@ -178,7 +183,7 @@ class TestMap extends Component {
 
 const mapStateToProps = state => {
     return {
-      place: state.places.place,
+      //place: state.places.place,
       user_id: state.user.currentUser.id,
       place_id: state.places.place.id
     };

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {userLoginFetch} from '../actions/actions';
+import {userPostFetch} from '../../actions/actions';
 
-class Login extends Component {
+class Signup extends Component {
   state = {
     email: "",
     password: ""
@@ -16,7 +16,7 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.userLoginFetch(this.state)
+    this.props.userPostFetch(this.state)
     this.setState({
       email: "",
       password: ""
@@ -26,7 +26,7 @@ class Login extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h1>Login to an Existing Account</h1>
+        <h1>Sign Up For An Account</h1>
 
         <label>Email</label>
         <input
@@ -51,7 +51,9 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  userLoginFetch: userInfo => dispatch(userLoginFetch(userInfo))
+  userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
 })
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Signup);
+
+//before submission - look at proptypes
