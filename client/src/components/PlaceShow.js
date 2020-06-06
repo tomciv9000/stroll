@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
-import PlaceList from './PlaceList'
+import PlaceDetails from './PlaceDetails'
 import { Link } from 'react-router-dom';
 import TestMap from './TestMap'
 //import NewPlacesForm from '../containers/NewPlacesForm'
@@ -15,17 +15,17 @@ import TestMap from './TestMap'
 
 class PlaceShow extends Component{
     
-    state = {
-        id: ""
-    }
+    //state = {
+    //    id: ""
+    //}
 
     componentDidMount(){ 
       const {id} =  this.props.match.params;
         this.props.getPlaceFetch(id);
         
-        this.setState({
-          id: id
-        })
+        //this.setState({
+        //  id: id
+        //})
     }
 
   componentDidUpdate(prevProps){
@@ -38,9 +38,9 @@ class PlaceShow extends Component{
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
     callPlace = () => {
-      return (<PlaceList />)
+      return (<PlaceDetails />)
       //if (this.props.place){
-      //  return (<PlaceList place = {this.props.place}/>)
+      //  return (<PlaceDetails place = {this.props.place}/>)
       //}else {
       //  return (<h1>No info yet </h1>)
       //}
