@@ -108,8 +108,10 @@ class TestMap extends Component {
     if (this.props.place.spots) {
       return (this.props.place.spots.map((spot) => {
         return <Marker 
+          key = {spot.id}
           onClick = { console.log("Marker Clicked")}
-          position = {{lat:spot.lat, lng:spot.lng}} />
+          position = {{lat:spot.lat, lng:spot.lng}}
+          animation = {2} />
       }))
     } else {
       return (<h1>No info yet</h1>)
