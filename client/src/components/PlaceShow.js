@@ -2,30 +2,20 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
-import PlaceDetails from './PlaceDetails'
+import { PlaceDetails } from './PlaceDetails'
 import { Link } from 'react-router-dom';
 import TestMap from './TestMap'
-//import NewPlacesForm from '../containers/NewPlacesForm'
-//import GoogleMaps from './GoogleMaps'
-//import Autofill from './Autofill'
 
 
 
-//Get to a place where you can delete placedetails.js
 
 class PlaceShow extends Component{
-    
-    //state = {
-    //    id: ""
-    //}
+
 
     componentDidMount(){ 
       const {id} =  this.props.match.params;
         this.props.getPlaceFetch(id);
         
-        //this.setState({
-        //  id: id
-        //})
     }
 
   componentDidUpdate(prevProps){
@@ -37,7 +27,7 @@ class PlaceShow extends Component{
   }
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
-    callPlace = () => {
+    callPlaceDetails = () => {
       return (<PlaceDetails />)
       //if (this.props.place){
       //  return (<PlaceDetails place = {this.props.place}/>)
@@ -66,7 +56,7 @@ class PlaceShow extends Component{
         <div >
             <p><Link to='/private'>Back To All Your Places</Link></p><br></br>
          
-        {this.callPlace()}
+        {this.callPlaceDetails()}
         {this.passPlaceInfo()}
         
         </div>
