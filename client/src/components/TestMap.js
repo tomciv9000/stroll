@@ -33,7 +33,7 @@ class TestMap extends Component {
   }
 
   componentDidMount(){
-    console.log('Component State: ',this.state)
+    //console.log('Component State: ',this.state)
     //this.calculateCenter()
   }
 
@@ -109,7 +109,7 @@ class TestMap extends Component {
       return (this.props.place.spots.map((spot) => {
         return <Marker 
           key = {spot.id}
-          onClick = { console.log("Marker Clicked")}
+          //onClick = { console.log("Marker Clicked")}
           position = {{lat:spot.lat, lng:spot.lng}}
           animation = {2} />
       }))

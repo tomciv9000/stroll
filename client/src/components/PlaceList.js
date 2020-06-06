@@ -8,7 +8,6 @@ class PlaceList extends Component {
 
   
   call = () => {
-      console.log('List of current Place Spots:', this.props.place.spots)
     if (this.props.place.spots){
       return this.props.place.spots.map((spotItem) =>{
         return <AllSpots key = {spotItem.id} spotData={spotItem} />

@@ -117,7 +117,7 @@ export const getProfileFetch = () => {
       })
         .then(resp => resp.json())
         .then(data => {
-          console.log(data)
+          
           if (data.user.data) {
             // An error will occur if the token is invalid.
             // If this happens, you may want to remove the invalid token

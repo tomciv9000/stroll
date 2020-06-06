@@ -19,8 +19,7 @@ class PlaceShow extends Component{
         id: ""
     }
 
-    componentDidMount(){
-      console.log("PlaceShow.js was mounted")  
+    componentDidMount(){ 
       const {id} =  this.props.match.params;
         this.props.getPlaceFetch(id);
         
@@ -37,9 +36,8 @@ class PlaceShow extends Component{
     }
   }
 
-  //THIS SHIT IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
+  //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
     callPlace = () => {
-      console.log('Current Spot:', this.props.spot)
       return (<PlaceList />)
       //if (this.props.place){
       //  return (<PlaceList place = {this.props.place}/>)
