@@ -1,10 +1,7 @@
 import React, { Component} from 'react';
-import {
-  BrowserRouter,
-  Switch
-} from "react-router-dom";
-import './App.css';
-
+import { BrowserRouter, Switch } from "react-router-dom";
+//import './App.css';
+import BackgroundImage from './images/wall_background.jpg'
 import Homepage from './components/Homepage'
 import {connect} from 'react-redux';
 import {getProfileFetch} from './actions/actions';
@@ -17,6 +14,13 @@ import PlaceShow from './components/PlaceShow'
 
 
 
+const sectionStyle = {
+  width: '100%',
+  height: '800px',
+  backgroundImage: `url(${BackgroundImage})`,
+  backgroundSize: 'cover'
+}
+
 class App extends Component {
   
   componentDidMount = () => {
@@ -26,7 +30,8 @@ class App extends Component {
   render() {
     return(
         <BrowserRouter>
-          <div>
+          <div style={sectionStyle}>
+            
             <NavigationBar/>
             <Switch>
               

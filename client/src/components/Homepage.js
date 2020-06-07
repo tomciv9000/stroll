@@ -3,6 +3,9 @@ import PlaceForm from '../containers/PlaceForm'
 import { connect } from 'react-redux';
 import { getPlacesFetch } from '../actions/placeActions';
 import PlaceContainer from '../containers/PlaceContainer'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class Homepage extends Component {
  
@@ -21,10 +24,16 @@ class Homepage extends Component {
   
   render() {
     return (
-      <div>
-        <PlaceForm />
-        {this.callPlaceContainer()}
-      </div>
+      <Container>
+        <Row className="justify-content-md-center">
+          <h1 class="display-1">S  t  r  o  l  l</h1>
+        </Row>
+        <Row>
+          <Col >{this.callPlaceContainer()}</Col>
+          <Col ><PlaceForm /></Col>
+          
+        </Row>
+      </Container>
     );
   }
 };
