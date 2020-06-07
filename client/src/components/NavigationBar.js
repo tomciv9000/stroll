@@ -25,30 +25,30 @@ class NavigationBar extends Component {
     const userLinks = (
     <div>
     <p>Welcome, {this.props.current_user.email}</p>
-      <ul className="nav navbar-nav navbar-right">
+      <ul>
         <li><a href="/" onClick={this.handleClick}>Logout</a></li>
       </ul>
       </div>
     );
 
     const guestLinks = (
-        <ul className="nav navbar-nav navbar-right">
+        <ul>
           <li><Link to="/signup">Sign up</Link></li>
           <li><Link to="/login">Login</Link></li>
         </ul>
     );
 
     return (
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <Link to="/" className="navbar-brand">Stroll</Link>
+        //<nav className="navbar navbar-default">
+          <div>
+            <div>
+              <Link to="/">Stroll</Link>
             </div>
-            <div className="collapse navbar-collapse">
+            <div>
               {this.props.auth ? userLinks : guestLinks}
             </div>
           </div>
-        </nav>
+       // </nav>
     );
   }
 }
