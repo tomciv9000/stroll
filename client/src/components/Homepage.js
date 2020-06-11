@@ -18,7 +18,15 @@ class Homepage extends Component {
   callPlaceContainer = () => {
     if (this.props.places){
       return (<PlaceContainer places={this.props.places} />)
-    }else {
+    } else {
+      return (<h1>No Places Registered Yet</h1>)
+    }
+  }
+
+  passToMap = () => {
+    if (this.props.places){
+      return(<AllSpotsMap places={this.props.places} />)
+    } else {
       return (<h1>No Places Registered Yet</h1>)
     }
   }
@@ -39,11 +47,12 @@ class Homepage extends Component {
         
         <Row className="justify-content-md-center">
           <Col >
-          <PlaceForm />
-          
+            <PlaceForm />
           </Col>
           
-          <Col >{this.callPlaceContainer()}</Col>
+          <Col >
+            {this.callPlaceContainer()}
+          </Col>
           
         </Row>
       </Container>
