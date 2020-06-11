@@ -27,7 +27,10 @@ class Homepage extends Component {
     return (
       <Container>
         <Row className="justify-content-md-center">
-          <p class="display-3">S  t  r  o  l  l</p>
+          <p class="display-4"><b>
+            Build the maps of your life.
+            </b>
+          </p>
           
         </Row>
         <Row className="justify-content-md-center">
@@ -35,9 +38,12 @@ class Homepage extends Component {
         </Row>
         
         <Row className="justify-content-md-center">
-          <Col >{this.callPlaceContainer()}</Col>
+          <Col >
+          <PlaceForm />
           
-          <Col ><PlaceForm /></Col>
+          </Col>
+          
+          <Col >{this.callPlaceContainer()}</Col>
           
         </Row>
       </Container>

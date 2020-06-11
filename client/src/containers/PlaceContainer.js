@@ -5,7 +5,7 @@ import PlaceListItem from '../components/PlaceListItem'
 const PlaceContainer = (props) => {
     return (
     <div>
-        <h3>Where you've been</h3>
+        <h5>Your Maps</h5>
         <ul>
             {props.places.map((placeItem) =>{
                 return <PlaceListItem key ={placeItem.id} placeData={placeItem} />

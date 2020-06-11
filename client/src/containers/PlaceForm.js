@@ -37,7 +37,7 @@ class PlaceForm extends Component {
     this.googleField.current.value = ""
     this.setState({
           name: "",
-          description: "",
+          
           lat: 0,
           lng: 0
         })
@@ -112,25 +112,7 @@ render() {
         
         
         <br/>
-        <input
-          name='description'
-          placeholder='One Sentence Description'
-          value={this.state.description}
-          onChange={this.handleChange}
-          style={{
-            boxSizing: `border-box`,
-            border: `1px solid transparent`,
-            width: `240px`,
-            height: `32px`,
-            padding: `12px 12px`,
-            borderRadius: `3px`,
-            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-            fontSize: `14px`,
-            outline: `none`,
-            textOverflow: `ellipses`,
-            
-          }}
-          /><br/>
+        
         
       
         <button onClick={this.handleSubmit}> 

@@ -6,10 +6,10 @@ const PlaceListItem = (props) => {
     let placeDetails = props.placeData.attributes
     return (
     <li>
-      <h4>
+      <h5>
         <Link to={`/places/${placeDetails.id}`}>
           {placeDetails.name}</Link>
-      </h4>
+      </h5>
     </li>
        
   )
