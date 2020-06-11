@@ -1,11 +1,13 @@
 import React from 'react';
+import logo from '../images/logo_transparent.png'
 
+import '../index.css';
 
 export const LandingPage = () => {
   
   return (
     <div>
-      <h1>Landing Page for Unauthorized Users</h1>
+      <img src={logo} className="logo" alt="Stroll Logo" />
       <br />
       <br />
     

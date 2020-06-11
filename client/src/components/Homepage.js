@@ -6,6 +6,7 @@ import PlaceContainer from '../containers/PlaceContainer'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../index.css';
 
 class Homepage extends Component {
  
@@ -26,10 +27,16 @@ class Homepage extends Component {
     return (
       <Container>
         <Row className="justify-content-md-center">
-          <h1 class="display-1">S  t  r  o  l  l</h1>
+          <p class="display-3">S  t  r  o  l  l</p>
+          
         </Row>
-        <Row>
+        <Row className="justify-content-md-center">
+          
+        </Row>
+        
+        <Row className="justify-content-md-center">
           <Col >{this.callPlaceContainer()}</Col>
+          
           <Col ><PlaceForm /></Col>
           
         </Row>
