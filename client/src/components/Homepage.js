@@ -6,6 +6,7 @@ import PlaceContainer from '../containers/PlaceContainer'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import AllSpotsMap from './map/AllSpotsMap'
 import '../index.css';
 
 class Homepage extends Component {
@@ -24,26 +25,26 @@ class Homepage extends Component {
   }
 
   passToMap = () => {
-    if (this.props.places){
-      return(<AllSpotsMap places={this.props.places} />)
-    } else {
-      return (<h1>No Places Registered Yet</h1>)
-    }
+   if (this.props.places){
+    console.log(this.props.places) 
+    return(<AllSpotsMap places={this.props.places} />)
+   } else {
+     return (<h1>No Places Registered Yet</h1>)
+   }
   }
   
   render() {
     return (
+      <div>
       <Container>
         <Row className="justify-content-md-center">
-          <p class="display-4"><b>
+          <p className="display-4"><b>
             Build the maps of your life.
             </b>
           </p>
           
         </Row>
-        <Row className="justify-content-md-center">
-          
-        </Row>
+      
         
         <Row className="justify-content-md-center">
           <Col >
@@ -55,7 +56,19 @@ class Homepage extends Component {
           </Col>
           
         </Row>
+        <Row>
+          
+        </Row>
       </Container>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+        {this.passToMap()}
+      
+      </div>
     );
   }
 };
