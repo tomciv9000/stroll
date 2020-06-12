@@ -11,7 +11,7 @@ import NavigationBar from './components/NavigationBar';
 import { LandingPage } from './components/Landing';
 import AuthRoute from './components/auth/AuthRoute';
 import PlaceShow from './components/PlaceShow'
-
+import SpotShow from './components/SpotShow'
 
 
 const sectionStyle = {
@@ -48,6 +48,10 @@ class App extends Component {
               </AuthRoute>
               
               <AuthRoute path="/places/:id" type="private" component = {PlaceShow}>
+                
+              </AuthRoute>
+
+              <AuthRoute path="/spots/:id" type="private" component = {SpotShow}>
                 
               </AuthRoute>
               

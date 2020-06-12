@@ -21,8 +21,7 @@ export const PlaceDetails = () => {
 
   return (
     <div>
-        <h1>{place.name}</h1>
-        <p>{place.description}</p>    
+        <h1>{place.name}</h1>  
         
         <ul>
          {call()}
