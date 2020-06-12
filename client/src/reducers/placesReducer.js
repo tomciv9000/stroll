@@ -40,7 +40,7 @@ export default function(state = initialState, action){
           case GET_SPOT:
           return{
             ...state,
-            [action.payload.id]: action.payload
+            spot: action.payload
           }
   
           case NEW_MEMORY:

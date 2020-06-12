@@ -9,19 +9,10 @@ class SpotsController < ApplicationController
     end
 
   
-  def show
-    render json: @spot
-  end
-
-  def find
-    @spot = Spot.find_by(id: params[:spot][:id])
-    if @spot
+    def show
       render json: { spot: SpotSerializer.new(@spot) }
-    else
-      @errors = @spot.errors.full_messages
-      render json: @errors
     end
-  end
+
 
   
   def create

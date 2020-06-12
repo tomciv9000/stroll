@@ -122,7 +122,8 @@ export const getSpotFetch = (id) => {
       })
   .then(res => res.json())
   .then(data => {
-    dispatch(getSpot(data))  
+    console.log(data)
+    dispatch(getSpot(data.spot.data.attributes))  
   })
 }
 }}
