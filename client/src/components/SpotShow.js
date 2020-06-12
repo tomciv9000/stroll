@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { getSpotFetch } from '../actions/placeActions';
-import { PlaceDetails } from './PlaceDetails'
+import { SpotDetails } from './SpotDetails'
 import { Link } from 'react-router-dom';
 import TestMap from './map/TestMap'
 
@@ -25,8 +25,8 @@ class SpotShow extends Component{
     //}
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
-    callPlaceDetails = () => {
-      return (<PlaceDetails />)
+    callSpotDetails = () => {
+      return (<SpotDetails />)
       //if (this.props.place){
       //  return (<PlaceDetails place = {this.props.place}/>)
       //}else {
@@ -64,7 +64,7 @@ class SpotShow extends Component{
             {this.linkBack()}
             <br></br>
         
-        {this.callPlaceDetails()}
+        {this.callSpotDetails()}
         {this.passPlaceInfo()}
         
         </div>

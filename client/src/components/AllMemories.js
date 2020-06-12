@@ -25,30 +25,15 @@ class AllMemories extends Component {
                 {this.props.memoryData.description}
             </Card.Text>
             <Card.Text>
-                {this.props.memoryData.people}
+                People: {this.props.memoryData.people}
             </Card.Text>
             <Card.Text>
-                {this.props.memoryData.dates}
+                Dates{this.props.memoryData.dates}
             </Card.Text>
-            <Card.Link href="#">Delete Memory</Card.Link>
+            <Card.Link onClick={this.onDeleteClick}>Delete Memory</Card.Link>
           </Card.Body>
         </Card>
 
-
-            <Card>
-              <Card.Content>
-                <Image floated='center' size='large' src={this.props.tripData.photos} />
-                  <Card.Description textAlign="left"><p className="cardtext">{this.props.tripData.description}</p></Card.Description>
-                  <br></br>
-                  <Card.Description textAlign="left"><p className="cardtext">hotels: {this.props.tripData.hotels}</p></Card.Description>
-                  <br></br>
-                  <Card.Description textAlign="left"><p className="cardtext">restaurants: {this.props.tripData.restaurants}</p></Card.Description>
-                  <br></br>
-                  <Card.Description textAlign="left"><p className="cardtext">tours: {this.props.tripData.tours}</p></Card.Description>
-                  <br></br>
-                <Button onClick={this.onDeleteClick} >Delete this entry</Button>
-              </Card.Content>
-            </Card>
 
           )
         }
