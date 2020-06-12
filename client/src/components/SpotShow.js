@@ -14,7 +14,7 @@ class SpotShow extends Component{
 
     componentDidMount(){ 
       const {id} =  this.props.match.params;
-        this.props.getPlaceFetch(id);
+        this.props.getSpotFetch(id);
         
     }
 
@@ -74,7 +74,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getPlaceFetch: placeID => dispatch(getPlaceFetch(placeID))
-  })
+    getSpotFetch: spotID => dispatch(getSpotFetch(spotID))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpotShow)

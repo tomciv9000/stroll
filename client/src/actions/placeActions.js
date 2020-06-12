@@ -1,5 +1,5 @@
 //import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY} from '../actions/types'
-import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT } from '../actions/types'
+import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT } from '../actions/types'
 
 const BASE_URL = "http://localhost:3000"
 
@@ -112,7 +112,7 @@ export const getSpotFetch = (id) => {
   return dispatch => {
   const token = localStorage.token;
     if (token) {
-      return fetch(`${BASE_URL}/places/${id}`, {
+      return fetch(`${BASE_URL}/spots/${id}`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -148,6 +148,6 @@ const createSpot = spotObj => ({
 })
 
 const getSpot = spotObj => ({
-  type: GET_PLACE,
+  type: GET_SPOT,
   payload: spotObj
 })
