@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 //import { connect } from 'react-redux'; 
-import {AllSpots} from './AllSpots'
+import {AllMemories} from './AllMemories'
 
 
 export const SpotDetails = () => {
@@ -11,8 +11,8 @@ export const SpotDetails = () => {
   const call = () => {
     
     if (spot.memories){
-      return place.spots.map((spotItem) =>{
-        return <AllSpots key = {spotItem.id} spotData={spotItem} />
+      return spot.memories.map((memoryItem) =>{
+        return <AllMemories key = {memoryItem.id} memoryData={memoryItem} />
       })
     }else {
       return (<h1>No Memories Yet</h1>)
@@ -21,7 +21,7 @@ export const SpotDetails = () => {
 
   return (
     <div>
-        <h1>{place.name}</h1>  
+        <h1>{spot.name}</h1>  
         
         <ul>
          {call()}
