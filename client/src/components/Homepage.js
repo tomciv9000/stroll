@@ -41,7 +41,7 @@ class Homepage extends Component {
       <Container>
         <Row className="justify-content-md-center">
           <p className="display-4"><b>
-            The map of your life.
+            Map the moments of your life
             </b>
           </p>
           

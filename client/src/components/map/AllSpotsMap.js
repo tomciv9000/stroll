@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, InfoWindow, Marker } from '@react-google-maps/api'
 
+const markerIcon = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png'
+
 
 const mapContainerStyle = {
   height: "45vh",
@@ -32,7 +34,7 @@ class AllSpotsMap extends Component {
       selectedSpot: {},
       //place: this.props.place,
       spotData: {},
-      center: {lat:46,lng:-77},
+      center: {lat:15,lng:0},
       fetch: false
       }
   }
@@ -79,7 +81,7 @@ class AllSpotsMap extends Component {
                 key = {m.id}
                 onclick = { this.onMarkerClick }
                 position = {{lat:m.lat, lng:m.lng}} 
-                //label = {m.location} 
+                icon = {markerIcon} 
                 animation = {2}>
                     
                     </Marker>)
@@ -102,7 +104,7 @@ class AllSpotsMap extends Component {
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
-            zoom={2}
+            zoom={1.2}
             options={mapOptions}
           >
             {this.callPlace()}
