@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, InfoWindow, Marker } from '@react-google-maps/ap
 
 
 const mapContainerStyle = {
-  height: "75vh",
+  height: "45vh",
   position: 'relative',
   width: "100%",
   
@@ -32,7 +32,7 @@ class AllSpotsMap extends Component {
       selectedSpot: {},
       //place: this.props.place,
       spotData: {},
-      center: {lat:18,lng:-66},
+      center: {lat:46,lng:-77},
       fetch: false
       }
   }

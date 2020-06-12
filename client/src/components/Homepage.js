@@ -27,7 +27,9 @@ class Homepage extends Component {
   passToMap = () => {
    if (this.props.places){
     console.log(this.props.places) 
-    return(<AllSpotsMap places={this.props.places} />)
+    return(
+        <AllSpotsMap places={this.props.places} />
+      )
    } else {
      return (<h1>No Places Registered Yet</h1>)
    }
@@ -39,7 +41,7 @@ class Homepage extends Component {
       <Container>
         <Row className="justify-content-md-center">
           <p className="display-4"><b>
-            Build the maps of your life.
+            The map of your life.
             </b>
           </p>
           
@@ -54,6 +56,10 @@ class Homepage extends Component {
           <Col >
             {this.callPlaceContainer()}
           </Col>
+
+          <Col xs={6}>
+          {this.passToMap()}
+          </Col>
           
         </Row>
         <Row>
@@ -66,7 +72,12 @@ class Homepage extends Component {
       <br></br>
       <br></br>
       <br></br>
-        {this.passToMap()}
+      <Container>
+        
+          
+        
+      </Container>
+        
       
       </div>
     );
