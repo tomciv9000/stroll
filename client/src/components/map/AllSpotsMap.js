@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, InfoWindow, Marker } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 
 const markerIcon = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png'
 
