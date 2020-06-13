@@ -26,6 +26,7 @@ class SpotShow extends Component{
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
     callSpotDetails = () => {
+      
       return (<SpotDetails />)
       //if (this.props.place){
       //  return (<PlaceDetails place = {this.props.place}/>)
