@@ -17,7 +17,7 @@ class MemoryForm extends Component {
 
   handleChange = (event) => {
     this.setState({
-        [event.target.name]: event.target.value
+        [event.target.id]: event.target.value
     });
   }
 
@@ -50,19 +50,19 @@ class MemoryForm extends Component {
       <div>
         <h3>Add A New Memory</h3>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="memory.Description">
+            <Form.Group controlId="description">
                 <Form.Label>Memory Description:</Form.Label>
                 <Form.Control as="textarea" rows="3" onChange={this.handleChange} value={this.state.description} />
             </Form.Group>
-            <Form.Group controlId="memory.People">
+            <Form.Group controlId="people">
                 <Form.Label>People:</Form.Label>
                 <Form.Control type="text" onChange={this.handleChange} value={this.state.people}/>
             </Form.Group>
-            <Form.Group controlId="memory.Dates">
+            <Form.Group controlId="dates">
                 <Form.Label>Dates:</Form.Label>
                 <Form.Control type="text" onChange={this.handleChange} value={this.state.dates}/>
             </Form.Group>
-            <Form.Group controlId="memory.Photo">
+            <Form.Group controlId="photos">
                 <Form.Label>Photo Image URL:</Form.Label>
                 <Form.Control type="text" onChange={this.handleChange} value={this.state.photos}/>
             </Form.Group>

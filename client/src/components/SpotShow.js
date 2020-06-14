@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import MemoryForm from '../containers/MemoryForm'
 import { connect } from 'react-redux';
 import { getSpotFetch } from '../actions/placeActions';
 import { SpotDetails } from './SpotDetails'
@@ -66,6 +66,9 @@ class SpotShow extends Component{
             <br></br>
         
         {this.callSpotDetails()}
+        <div>
+          <MemoryForm />
+        </div>
         {this.passPlaceInfo()}
         
         </div>
