@@ -7,17 +7,17 @@ import AllMemories from './AllMemories'
 export const SpotDetails = () => {
   
   const spot = useSelector(state => state.places.spot)
-  console.log("Spot: ", spot )
+  
   
   const call = () => {
-    console.log('SpotDetails call function executed')
+    
     if (spot.memories && spot.memories.length > 0){
-      console.log("Memories detected")
+      
       return spot.memories.map((memoryItem) =>{
         return <AllMemories key = {memoryItem.id} memoryData={memoryItem} />
       })
     }else {
-      console.log("No Memories Yet")
+      
       return (<h1>No Memories Yet</h1>)
 
     }

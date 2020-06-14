@@ -26,7 +26,7 @@ class Homepage extends Component {
 
   passToMap = () => {
    if (this.props.places){
-    console.log(this.props.places) 
+    
     return(
         <AllSpotsMap places={this.props.places} />
       )

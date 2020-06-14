@@ -57,7 +57,7 @@ class AllSpotsMap extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.places)
+    //console.log(this.props.places)
     
   }
 

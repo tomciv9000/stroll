@@ -38,7 +38,7 @@ class TestMap extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("Map should update")
+    
     if (this.props.place !== prevProps.place) {
       console.log("Oh hey, it's a new place!")
       this.calculateCenter()
@@ -50,14 +50,14 @@ class TestMap extends Component {
    //BASED ON THE PLACE'S SPOTS
    
     let place = this.props.place
-    console.log(place)
+    
    // let center = {lat: place.lat,lng: place.lng}
     //console.log('Center Coordinates: ', center)
     //return center
     
     //let spots = this.props.place.spots
     if(place.spots){
-      console.log("Spots detected")
+      
       return(this.setState({center:{
         lat: place.spots.reduce((total, spot) => {
           return total+spot.lat
