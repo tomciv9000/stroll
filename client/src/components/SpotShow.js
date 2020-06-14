@@ -16,13 +16,13 @@ class SpotShow extends Component{
       this.props.getSpotFetch(id);   
     }
 
-    //componentDidUpdate(prevProps){
-    //  if (this.props.spot !== prevProps.spot){
-    //    console.log("A Spot was entered")
-    //    this.props.getPlaceFetch(this.props.place.id)
-    //    //this.props.spots.push(this.props.spot)
-    //  }
-    //}
+    componentDidUpdate(prevProps){
+      if (this.props.memory !== prevProps.memory){
+        console.log("A Memory was entered")
+        this.props.getSpotFetch(this.props.spot.id)
+        //this.props.spots.push(this.props.spot)
+      }
+    }
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
     callSpotDetails = () => {
@@ -80,7 +80,8 @@ class SpotShow extends Component{
 const mapStateToProps = (state) => {
     return {
       place: state.places.place,
-      spot: state.places.spot
+      spot: state.places.spot,
+      memory: state.places.memory
     };
 }
 

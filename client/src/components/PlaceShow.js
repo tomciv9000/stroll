@@ -22,7 +22,7 @@ class PlaceShow extends Component{
     if (this.props.spot !== prevProps.spot){
       console.log("A Spot was entered")
       this.props.getPlaceFetch(this.props.place.id)
-      //this.props.spots.push(this.props.spot)
+  
     }
   }
 
