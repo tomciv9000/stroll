@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users
     resources :places
     resources :spots
+    resources :memories
 
     ## LIMIT AVAILABLE ROUTES
 

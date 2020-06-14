@@ -29,16 +29,15 @@ class MemoryForm extends Component {
       people: this.state.people,
       dates: this.state.dates,
       photos: this.state.photos,
-      spot_id: this.props.spot_id
+      spot_id: this.props.spot_id,
+      user_id: this.props.user_id
     }
     console.log('newMemory Object:', newMemory)
-    //this.props.memoryPostFetch(newMemory)
+    this.props.memoryPostFetch(newMemory)
     this.setState({
       description: '',
-      place_id: '',
-      restaurants: '',
-      hotels: '',
-      tours: '',
+      people: '',
+      dates: '',
       photos: ''
     })
     
