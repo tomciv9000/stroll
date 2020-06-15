@@ -1,5 +1,5 @@
 //import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY} from '../actions/types'
-import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY } from '../actions/types'
+import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, CLEAR_PLACE } from '../actions/types'
 
 const BASE_URL = "http://localhost:3000"
 
@@ -154,6 +154,17 @@ export const memoryPostFetch = memory => {
       })
   }
 }
+
+export const clearPlaceState = () => {
+  return dispatch => {
+    console.log('State - Place Clear')
+    dispatch(clearPlace())
+  }
+}
+
+const clearPlace = () => ({
+  type: CLEAR_PLACE
+})
 
 
 const createPlace = placeObj => ({

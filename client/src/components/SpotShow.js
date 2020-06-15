@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getSpotFetch } from '../actions/placeActions';
 import { SpotDetails } from './SpotDetails'
 import { Link } from 'react-router-dom';
-import TestMap from './map/TestMap'
+import SingleSpotMap from './map/SingleSpotMap'
 
 
 
@@ -38,7 +38,8 @@ class SpotShow extends Component{
     passPlaceInfo = () => {
       if (this.props.place.id){
         //return (<TestMap  />)
-        return (<TestMap place={this.props.place} id={this.props.place.id} />)
+        return (<SingleSpotMap spot={this.props.spot} />)
+        //return (<TestMap place={this.props.place} id={this.props.place.id} />)
       }else {
         return (<h1>No info yet </h1>)
       }

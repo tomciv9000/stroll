@@ -5,7 +5,7 @@ import {AllSpots} from './AllSpots'
 
 
 export const PlaceDetails = () => {
-  const place = useSelector(state => state.places.place)
+  let place = useSelector(state => state.places.place)
 
   
   const call = () => {
@@ -19,10 +19,14 @@ export const PlaceDetails = () => {
     }
   }
 
+  const callPlaceName = () => {
+    return <h1>{place.name}</h1>
+  }
+
   return (
     <div>
-        <h1>{place.name}</h1>  
-        
+         
+        {callPlaceName()}
         <ul>
          {call()}
        </ul>

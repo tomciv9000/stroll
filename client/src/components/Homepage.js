@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlaceForm from '../containers/PlaceForm'
 import { connect } from 'react-redux';
-import { getPlacesFetch } from '../actions/placeActions';
+import { getPlacesFetch, clearPlaceState } from '../actions/placeActions';
 import PlaceContainer from '../containers/PlaceContainer'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,6 +13,8 @@ class Homepage extends Component {
  
   componentDidMount = () => {
     this.props.getPlacesFetch()
+    console.log("Place Cleared")
+    this.props.clearPlaceState()
   }
 
 
@@ -93,7 +95,8 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = dispatch => ({
-  getPlacesFetch: () => dispatch(getPlacesFetch())
+  getPlacesFetch: () => dispatch(getPlacesFetch()),
+  clearPlaceState: () => dispatch(clearPlaceState())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

@@ -7,3 +7,6 @@ export const NEW_MEMORY = 'NEW_MEMORY';
 export const DELETE_PLACE = 'DELETE_PLACE';
 export const DELETE_SPOT = 'DELETE_SPOT';
 export const DELETE_MEMORY = 'DELETE_MEMORY';
+
+
+export const CLEAR_PLACE = 'CLEAR_PLACE';

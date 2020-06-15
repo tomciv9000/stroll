@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker, StreetViewPanorama } from '@react-google-maps/api'
 
-const markerIcon = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png'
+const markerIcon = 'http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png'
 
 
 const mapContainerStyle = {
-  height: "45vh",
+  height: "400px",
   position: 'relative',
-  width: "100%",
+  width: "800px",
   
 }
 
 const mapOptions = {
-    disableDefaultUI: true
+    //disableDefaultUI: true
 }
 
 
@@ -20,13 +20,10 @@ const mapOptions = {
 
 const libraries = ["places"]
 
-class AllSpotsMap extends Component {
+class SingleSpotMap extends Component {
   constructor (props) {
     super(props)
-   // this.autocomplete = null
-   // this.onLoad = this.onLoad.bind(this)
-    //this.onPlaceChanged = this.onPlaceChanged.bind(this)
-    
+
     this.state = {
       position: null,
       showingInfoWindow: false,
@@ -34,7 +31,7 @@ class AllSpotsMap extends Component {
       selectedSpot: {},
       //place: this.props.place,
       spotData: {},
-      center: {lat:15,lng:0},
+      center: {lat:0,lng:0},
       fetch: false
       }
   }
@@ -62,34 +59,36 @@ class AllSpotsMap extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    //console.log("Map should update")
-    //if (this.props.place !== prevProps.place) {
-    //  console.log("Oh hey, it's a new place!")
-    //  this.calculateCenter()
-    //}
+    if (this.props.spot !== prevProps.spot) {
+        let spot = this.props.spot
+        console.log(spot)
+        //if (spot.lng)
+        this.setState({
+        center: {lat:spot.lat,lng:spot.lng}
+        })
+    }
   }
 
-//instead of this bullshit callPlace method, i think I can utilize component did update and component did mount
+
 
   callPlace = () => {
-    if (this.props.places) {
-        let spotsObjArray = this.props.places.map((place)=> {return place.attributes.spots})
-        console.log('Why loading so much?', spotsObjArray)
-        let newArray = [].concat(...spotsObjArray)
-        let spotsArray = newArray.map((m)=> {
+    let spot = this.props.spot
+    //If the spot object is not empty, place the marker
+    if (Object.keys(spot).length !== 0) {
+        console.log("Spot registered: ", this.props.spot)
+        
+        
             return (
             <Marker
-                key = {m.id}
                 onclick = { this.onMarkerClick }
-                position = {{lat:m.lat, lng:m.lng}} 
+                position = {{lat: spot.lat, lng: spot.lng}} 
+                
                 icon = {markerIcon} 
                 animation = {2}>
                     
                     </Marker>)
-        })
-        return spotsArray
     } else {
-        return (<h1>No information yet</h1>)
+  return (<h1>This spot isn't available for some reason...</h1>)
     }
   }
 
@@ -105,11 +104,12 @@ class AllSpotsMap extends Component {
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
-            zoom={1.2}
-            options={mapOptions}
+            zoom={7}
           >
-            {this.callPlace()}
-            
+            <StreetViewPanorama
+                position={this.state.center}
+                visible={true}
+            />
           </GoogleMap>
         </LoadScript>
         <br></br>
@@ -127,4 +127,4 @@ class AllSpotsMap extends Component {
 //}
 
 
-export default AllSpotsMap
+export default SingleSpotMap
