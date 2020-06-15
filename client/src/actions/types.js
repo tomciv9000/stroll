@@ -10,3 +10,4 @@ export const DELETE_MEMORY = 'DELETE_MEMORY';
 
 
 export const CLEAR_PLACE = 'CLEAR_PLACE';
+export const CLEAR_SPOT= 'CLEAR_SPOT';

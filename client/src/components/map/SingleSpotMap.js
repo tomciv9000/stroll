@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Marker, StreetViewPanorama } from '@react-google-maps/api'
+import { connect } from 'react-redux';
+import { GoogleMap, LoadScript, StreetViewPanorama, StreetViewService } from '@react-google-maps/api'
 
-const markerIcon = 'http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png'
+//const markerIcon = 'http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png'
 
 
 const mapContainerStyle = {
@@ -12,7 +13,7 @@ const mapContainerStyle = {
 }
 
 const mapOptions = {
-    //disableDefaultUI: true
+    streetViewControl: false
 }
 
 
@@ -23,73 +24,73 @@ const libraries = ["places"]
 class SingleSpotMap extends Component {
   constructor (props) {
     super(props)
+    this.onLoad = this.onLoad.bind(this)
 
     this.state = {
-      position: null,
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedSpot: {},
-      //place: this.props.place,
-      spotData: {},
       center: {lat:0,lng:0},
-      fetch: false
       }
   }
 
-  onMarkerClick = (props, marker, e) => {
-    this.setState({
-      selectedSpot: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
-  }
-
-  onMapClick = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      });
-    }
-  }
+  
 
   componentDidMount(){
-    //console.log(this.props.places)
-    
+    console.log("Did Mount Spot: ", this.props.spot)
   }
+
+  componentWillUnmount(){
+    console.log("Unmounted Spot: ", this.props.spot)
+    this.setState({
+        center: {lat:0,lng:0}
+        })
+  }
+
+  onLoad = (streetViewService) => {
+    let spot = this.props.spot
+    let center = {lat:spot.lat, lng:spot.lng}
+    console.log("SVSonLoad spot: ", spot)
+    streetViewService.getPanorama({
+      location: center, 
+      radius: 200
+    }, (data, status) => {
+        console.log(status)
+        console.log(data)
+        //if (status === OK) {
+        //    console.log("Status was fucking cool")
+        //}
+    }
+        
+    )
+  };
+
+ 
 
   componentDidUpdate(prevProps) {
     if (this.props.spot !== prevProps.spot) {
         let spot = this.props.spot
-        console.log(spot)
+        console.log("componentDidUpdate Spot:", spot)
         //if (spot.lng)
         this.setState({
         center: {lat:spot.lat,lng:spot.lng}
         })
+    
     }
   }
 
-
-
-  callPlace = () => {
-    let spot = this.props.spot
-    //If the spot object is not empty, place the marker
-    if (Object.keys(spot).length !== 0) {
-        console.log("Spot registered: ", this.props.spot)
-        
-        
-            return (
-            <Marker
-                onclick = { this.onMarkerClick }
-                position = {{lat: spot.lat, lng: spot.lng}} 
-                
-                icon = {markerIcon} 
-                animation = {2}>
-                    
-                    </Marker>)
-    } else {
-  return (<h1>This spot isn't available for some reason...</h1>)
-    }
+  
+  callStreetView = () => {
+     let spot = this.props.spot
+     console.log('CSV Spot: ', spot)
+     if (Object.keys(spot).length !== 0) {  
+        console.log("callStreetView spot: ", spot) 
+        return (
+            <StreetViewService
+                onLoad={this.onLoad}
+            />
+        )
+     } else {
+         console.log("Spot is null")
+   return (<h1>This spot isn't available for some reason...</h1>)
+     }
   }
 
   render() {
@@ -105,7 +106,10 @@ class SingleSpotMap extends Component {
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
             zoom={7}
+            mapOptions={mapOptions}
           >
+            
+            {this.callStreetView()}
             <StreetViewPanorama
                 position={this.state.center}
                 visible={true}
@@ -119,12 +123,16 @@ class SingleSpotMap extends Component {
     }
 }
 
-//const mapStateToProps = state => {
-//    return {
-//      places: state.places.places
-//     
-//    };
-//}
+const mapStateToProps = state => {
+    return {
+      spot: state.places.spot,
+      
+    };
+}
 
+const mapDispatchToProps = dispatch => ({
+    //getSpotFetch: spotID => dispatch(getSpotFetch(spotID)),
+    //spotPostFetch: spotInfo => dispatch(spotPostFetch(spotInfo))
+})
 
-export default SingleSpotMap
+export default connect(mapStateToProps, mapDispatchToProps)(SingleSpotMap)

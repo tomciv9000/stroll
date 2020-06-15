@@ -61,6 +61,8 @@ class AllSpotsMap extends Component {
     
   }
 
+  
+
   componentDidUpdate(prevProps) {
     //console.log("Map should update")
     //if (this.props.place !== prevProps.place) {

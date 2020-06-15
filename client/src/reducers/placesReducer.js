@@ -1,4 +1,4 @@
-import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY, CLEAR_PLACE} from '../actions/types'
+import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY, CLEAR_PLACE, CLEAR_SPOT} from '../actions/types'
 
 const initialState = {
     places: [],
@@ -49,6 +49,13 @@ export default function(state = initialState, action){
             ...state,
             spot: action.payload
           }
+
+        case CLEAR_PLACE:
+  
+        return{
+          ...state,
+          spot: {}
+        }
   
           case NEW_MEMORY:
             return{
