@@ -26,9 +26,7 @@ class SpotShow extends Component{
 
     componentWillUnmount(){
       console.log("Unmounted Spot:Show ", this.props.spot)
-      //this.setState({
-      //    center: {lat:0,lng:0}
-      //    })
+      this.props.clearSpotState()
     }
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT

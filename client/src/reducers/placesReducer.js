@@ -50,7 +50,7 @@ export default function(state = initialState, action){
             spot: action.payload
           }
 
-        case CLEAR_PLACE:
+        case CLEAR_SPOT:
   
         return{
           ...state,
