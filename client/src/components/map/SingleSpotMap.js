@@ -54,10 +54,10 @@ class SingleSpotMap extends Component {
     console.log("SVSonLoad spot: ", spot)
     streetViewService.getPanorama({
       location: center, 
-      radius: 50
+      radius: 200
     }, (data, status) => {
         console.log(status)
-        console.log(data.location.latLng.lat())
+       
         if (status === "OK") {
             console.log("Status was fucking cool")
             this.setState({
@@ -65,6 +65,14 @@ class SingleSpotMap extends Component {
                 center: {
                     lat: data.location.latLng.lat(),
                     lng: data.location.latLng.lng()}
+                })
+        } else {
+            console.log ("Couldn't find that place")
+            this.setState({
+                panoStatus: false,
+                center: {
+                    lat: spot.lat,
+                    lng: spot.lng}
                 })
         }
     }
@@ -117,7 +125,7 @@ class SingleSpotMap extends Component {
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
-            zoom={7}
+            zoom={19}
             mapOptions={mapOptions}
           >
             <StreetViewService
