@@ -50,7 +50,7 @@ class SingleSpotMap extends Component {
     console.log("SVSonLoad spot: ", spot)
     streetViewService.getPanorama({
       location: center, 
-      radius: 200
+      radius: 50
     }, (data, status) => {
         console.log(status)
         console.log(data)
@@ -82,6 +82,7 @@ class SingleSpotMap extends Component {
      console.log('CSV Spot: ', spot)
      if (Object.keys(spot).length !== 0) {  
         console.log("callStreetView spot: ", spot) 
+        
         return (
             <StreetViewService
                 onLoad={this.onLoad}
