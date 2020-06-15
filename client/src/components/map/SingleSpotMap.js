@@ -27,20 +27,24 @@ class SingleSpotMap extends Component {
     this.onLoad = this.onLoad.bind(this)
 
     this.state = {
-      center: {lat:0,lng:0},
-      }
+        position: null,
+        center: {lat:0,lng:0},
+        panoStatus: false
+    }
   }
 
   
 
   componentDidMount(){
-    console.log("Did Mount Spot: ", this.props.spot)
+   //console.log("Did Mount Spot: ", this.props.spot)
   }
 
   componentWillUnmount(){
     console.log("Unmounted Spot: ", this.props.spot)
     this.setState({
-        center: {lat:0,lng:0}
+        center: {lat:0,lng:0},
+        panoStatus: false,
+        position: null
         })
   }
 
@@ -53,10 +57,16 @@ class SingleSpotMap extends Component {
       radius: 50
     }, (data, status) => {
         console.log(status)
-        console.log(data)
-        //if (status === OK) {
-        //    console.log("Status was fucking cool")
-        //}
+        console.log(data.location.latLng.lat())
+        if (status === "OK") {
+            console.log("Status was fucking cool")
+            this.setState({
+                panoStatus: true,
+                center: {
+                    lat: data.location.latLng.lat(),
+                    lng: data.location.latLng.lng()}
+                })
+        }
     }
         
     )
@@ -79,13 +89,14 @@ class SingleSpotMap extends Component {
   
   callStreetView = () => {
      let spot = this.props.spot
-     console.log('CSV Spot: ', spot)
-     if (Object.keys(spot).length !== 0) {  
+     //console.log('CSV Spot: ', spot)
+     if (Object.keys(spot).length !== 0 && this.state.panoStatus) {  
         console.log("callStreetView spot: ", spot) 
         
         return (
-            <StreetViewService
-                onLoad={this.onLoad}
+            <StreetViewPanorama
+                position={this.state.center}
+                visible={true}
             />
         )
      } else {
@@ -109,12 +120,11 @@ class SingleSpotMap extends Component {
             zoom={7}
             mapOptions={mapOptions}
           >
-            
-            {this.callStreetView()}
-            <StreetViewPanorama
-                position={this.state.center}
-                visible={true}
+            <StreetViewService
+                onLoad={this.onLoad}
             />
+            {this.callStreetView()}
+            
           </GoogleMap>
         </LoadScript>
         <br></br>
