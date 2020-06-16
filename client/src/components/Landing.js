@@ -9,10 +9,12 @@ export const LandingPage = () => {
     <div>
      
       <img src={logo} className="logo" alt="Stroll Logo" />
-     
-      <h1 className="display-2 logotext"><b>S  t  r  o  l  l</b></h1>
+      <div className="black-banner">
+        <b><h1 className="logotext display-1" id="stroll">S  t  r  o  l  l</h1></b>
 
-      <h3 className="logotext">A Virtual Memory Lane</h3>
+        <h3 className="logotext" id="tagline">It's like a virtual memory lane.</h3>
+      </div>
+      
       
     
     

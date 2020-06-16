@@ -1,22 +1,40 @@
 
 .logo {
-  height: 400px;
+  height: 61vh;
   width: auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+
+
 .logotext {
-  color: #ffffffa1;
+  color: #dbc9b5;
   text-align: center;
 }
 
+#stroll {
+  color: #d6d1d1;
+  background: #00000066;
+  font-weight: 500;
+  
+}
+
+
+
+
+
 @media (max-width: 650px ) {
   .logo {
-    height: 250px;
+    height: 400px;
   }
 
   
+ 
+  
 }
+
+
+
 
