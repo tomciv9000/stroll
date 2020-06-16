@@ -1,5 +1,4 @@
-export default {
-    mapStyle: 
+
     [
         {
             "featureType": "all",
@@ -203,4 +202,3 @@ export default {
             ]
         }
     ]
-}

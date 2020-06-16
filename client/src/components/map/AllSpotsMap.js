@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 
+let mapstyles = require('./mapstyles.json')
+
 const markerIcon = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png'
 
 
@@ -12,7 +14,8 @@ const mapContainerStyle = {
 }
 
 const mapOptions = {
-    disableDefaultUI: true
+  disableDefaultUI: true,
+  styles: mapstyles
 }
 
 
