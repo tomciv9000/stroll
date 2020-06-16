@@ -59,13 +59,13 @@ class Homepage extends Component {
             {this.callPlaceContainer()}
           </Col>
 
-          <Col xs={6}>
-          {this.passToMap()}
-          </Col>
+          
           
         </Row>
         <Row>
-          
+        <Col>
+          {this.passToMap()}
+          </Col>
         </Row>
       </Container>
       <br></br>

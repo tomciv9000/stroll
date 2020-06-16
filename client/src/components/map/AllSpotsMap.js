@@ -27,6 +27,7 @@ class AllSpotsMap extends Component {
    // this.onLoad = this.onLoad.bind(this)
     //this.onPlaceChanged = this.onPlaceChanged.bind(this)
     
+    //evaluate which states aren't used
     this.state = {
       position: null,
       showingInfoWindow: false,
