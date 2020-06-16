@@ -42,17 +42,17 @@ class Homepage extends Component {
       <div>
       <Container>
         <Row className="justify-content-md-center">
-          <p className="display-4"><b>
-            Map the moments of your life
+          <p className="display-4 white-text"><b>
+            Where have you been?
             </b>
           </p>
-          
         </Row>
       
         
         <Row className="justify-content-md-center">
           <Col >
             <PlaceForm />
+            {this.passToMap()}
           </Col>
           
           <Col >
@@ -62,11 +62,7 @@ class Homepage extends Component {
           
           
         </Row>
-        <Row>
-        <Col>
-          {this.passToMap()}
-          </Col>
-        </Row>
+       
       </Container>
       <br></br>
       <br></br>

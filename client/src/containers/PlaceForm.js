@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { placePostFetch, getPlacesFetch } from '../actions/placeActions'
 import { LoadScript, Autocomplete } from '@react-google-maps/api'
 //import PropTypes from 'prop-types';
+import '../index.css';
 
 const libraries = ["places"]
 
