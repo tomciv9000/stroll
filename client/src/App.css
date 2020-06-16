@@ -1,2 +1,14 @@
+.App {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
 
+@media (min-width: 650px ) {
+  .App {
+      background-position: center center;
+  }
 
+  
+}

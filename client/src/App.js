@@ -1,10 +1,13 @@
-import React, { Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch } from "react-router-dom";
 import './App.css';
-import BackgroundImage from './images/background-city-blur.jpg'
+import desktopImage from './images/Wide_NYC_background.jpg'
+import mobileImage from './images/narrow_NYC_background.jpg'
 import Homepage from './components/Homepage'
-import {connect} from 'react-redux';
+import { useDispatch } from 'react-redux'
+
 import {getProfileFetch} from './actions/actions';
+
 import Signup from './components/auth/Signup';
 import NewLogin from './components/auth/NewLogin';
 import NavigationBar from './components/NavigationBar';
@@ -14,66 +17,72 @@ import PlaceShow from './components/PlaceShow'
 import SpotShow from './components/SpotShow'
 
 
+const App = () => {
+
+    const dispatch = useDispatch();
+    const imageUrl = useWindowWidth() >= 650 ? desktopImage : mobileImage;
 
 
+    useEffect(() => {
+        dispatch(getProfileFetch());
+    });
 
-const sectionStyle = {
-width: '100vw',
-height: '100vh',
-backgroundRepeat: 'no-repeat',
-backgroundPosition: 'center',
-backgroundImage: `url(${BackgroundImage})`,
-backgroundSize: 'cover'
-}
-
-class App extends Component {
   
-  componentDidMount = () => {
-    this.props.getProfileFetch()
-  }
-  
-  render() {
     return(
-        <BrowserRouter>
-          <div className="background" style={sectionStyle}>
-            
-            <NavigationBar/>
-            <Switch>
-              
-              <AuthRoute path="/login" type="guest">
-                <NewLogin />
-              </AuthRoute>
-              
-              <AuthRoute path="/signup" type="guest">
-                <Signup />
-              </AuthRoute>
-              
-              <AuthRoute path="/private" type="private">
-                <Homepage />
-              </AuthRoute>
-              
-              <AuthRoute path="/places/:id" type="private" component = {PlaceShow}>
-                
-              </AuthRoute>
+        <div className="App" style={{backgroundImage: `url(${imageUrl})` }}>
+            <BrowserRouter>
 
-              <AuthRoute path="/spots/:id" type="private" component = {SpotShow}>
-                
-              </AuthRoute>
-              
-              <AuthRoute path='/' type = "guest">
-                <LandingPage />
-              </AuthRoute>
-            
-            </Switch>
-          </div>
-        </BrowserRouter>)
-  }
+
+                <NavigationBar/>
+                <Switch>
+
+                  <AuthRoute path="/login" type="guest">
+                    <NewLogin />
+                  </AuthRoute>
+
+                  <AuthRoute path="/signup" type="guest">
+                    <Signup />
+                  </AuthRoute>
+
+                  <AuthRoute path="/private" type="private">
+                    <Homepage />
+                  </AuthRoute>
+
+                  <AuthRoute path="/places/:id" type="private" component = {PlaceShow}>
+
+                  </AuthRoute>
+
+                  <AuthRoute path="/spots/:id" type="private" component = {SpotShow}>
+
+                  </AuthRoute>
+
+                  <AuthRoute path='/' type = "guest">
+                    <LandingPage />
+                  </AuthRoute>
+
+                </Switch>
+
+            </BrowserRouter>
+        </div> 
+        );
 }
 
-const mapDispatchToProps = dispatch => ({
-  getProfileFetch: () => dispatch(getProfileFetch())
-})
+const useWindowWidth = () => {
+    const [windowWidth, setWindowWidth ] = useState(window.innerWidth);
 
-export default connect(null, mapDispatchToProps)(App);
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+        return () => window.removeEventListener('resize', handleWindowResize);
+    },[]);
+
+    return windowWidth;
+};
+
+
+export default App
 
   

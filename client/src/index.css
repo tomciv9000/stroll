@@ -7,16 +7,16 @@
   margin-right: auto;
 }
 
-.crop {
-  height: 200px;
-  width: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .logotext {
   color: #ffffffa1;
   text-align: center;
+}
+
+@media (max-width: 650px ) {
+  .logo {
+    height: 250px;
+  }
+
+  
 }
 
