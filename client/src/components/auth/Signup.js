@@ -1,59 +1,60 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { useState } from "react";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button'
 import {userPostFetch} from '../../actions/actions';
+import { useDispatch } from 'react-redux';
 
-class Signup extends Component {
-  state = {
-    email: "",
-    password: ""
+import "../../containers/login.css";
+
+export default function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch()
+
+  //need to add validations (unique username, password req.)
+  const validateForm = () => {
+    return email.length > 0 && password.length > 0;
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+  const handleSubmit = event => {
+      event.preventDefault()
+      let newUserObj = {
+          email: email,
+          password: password
+      }
+      console.log(newUserObj) 
+      dispatch(userPostFetch(newUserObj))
+      setEmail("")
+      setPassword("")
   }
-
-  handleSubmit = event => {
-    event.preventDefault()
-    this.props.userPostFetch(this.state)
-    this.setState({
-      email: "",
-      password: ""
-    })
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Sign Up For An Account</h1>
-
-        <label>Email</label>
-        <input
-          name='email'
-          placeholder='Email'
-          value={this.state.email}
-          onChange={this.handleChange}
-          /><br/>
-
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={this.state.password}
-          onChange={this.handleChange}
-          /><br/>
-        <input type='submit'/>
-      </form>
-    )
-  }
+  
+  return (
+    <div className="Login">
+      <h3 className="white-text" id="account-login">Create Account</h3>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="email" size="large">
+          <Form.Label className="white-text">Email</Form.Label>
+          <Form.Control
+            autoFocus
+            
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="password" size="large">
+          <Form.Label className="white-text">Password</Form.Label>
+          <Form.Control
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            type="password"
+          />
+        </Form.Group>
+        <Button block size="large" disabled={!validateForm()} type="submit">
+          Login
+        </Button>
+      </Form>
+    </div>
+  )
 }
-
-const mapDispatchToProps = dispatch => ({
-  userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
-})
-
-export default connect(null, mapDispatchToProps)(Signup);
-
-//before submission - look at proptypes

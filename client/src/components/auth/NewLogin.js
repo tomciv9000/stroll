@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import {userLoginFetch} from '../../actions/actions';
-//import Container from 'react-bootstrap/Container';
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
 import { useDispatch } from 'react-redux';
 
 import "../../containers/login.css";
