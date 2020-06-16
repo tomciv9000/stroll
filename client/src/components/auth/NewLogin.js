@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {userLoginFetch} from '../../actions/actions';
+//import Container from 'react-bootstrap/Container';
+//import Row from 'react-bootstrap/Row';
+//import Col from 'react-bootstrap/Col';
 import { useDispatch } from 'react-redux';
 
 import "../../containers/login.css";
@@ -25,7 +26,7 @@ export default function Login() {
             password: password
         }
         console.log(loginObj) 
-        //this.props.userLoginFetch(this.state)
+        dispatch(userLoginFetch(loginObj))
         setEmail("")
         setPassword("")
     }
