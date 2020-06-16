@@ -1,5 +1,6 @@
+
 .logo {
-  height: 500px;
+  height: 400px;
   width: auto;
   display: block;
   margin-left: auto;
@@ -13,3 +14,9 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.logotext {
+  color: #ffffffa1;
+  text-align: center;
+}
+

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userLoginFetch} from '../../actions/actions';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 class Login extends Component {
   state = {
@@ -25,27 +27,20 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Login to an Existing Account</h1>
-
-        <label>Email</label>
-        <input
-          name='email'
-          placeholder='Email'
-          value={this.state.email}
-          onChange={this.handleChange}
-          /><br/>
-
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={this.state.password}
-          onChange={this.handleChange}
-          /><br/>
-        <input type='submit'/>
-      </form>
+      <div className = "Login">
+      <h1>Login to an Existing Account</h1>
+      <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="email">
+                <Form.Label>Email:</Form.Label>
+                <Form.Control type="email" onChange={this.handleChange} value={this.state.email} />
+            </Form.Group>
+            <Form.Group controlId="password">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control type="password" onChange={this.handleChange} value={this.state.password}/>
+            </Form.Group>
+      </Form>
+      <Button type="submit">Submit</Button>
+      </div>
     )
   }
 }

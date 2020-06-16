@@ -1,12 +1,12 @@
 import React, { Component} from 'react';
 import { BrowserRouter, Switch } from "react-router-dom";
-//import './App.css';
-import BackgroundImage from './images/wall_background.jpg'
+import './App.css';
+import BackgroundImage from './images/background-city-blur.jpg'
 import Homepage from './components/Homepage'
 import {connect} from 'react-redux';
 import {getProfileFetch} from './actions/actions';
 import Signup from './components/auth/Signup';
-import Login from './components/auth/Login';
+import NewLogin from './components/auth/NewLogin';
 import NavigationBar from './components/NavigationBar';
 import { LandingPage } from './components/Landing';
 import AuthRoute from './components/auth/AuthRoute';
@@ -14,11 +14,16 @@ import PlaceShow from './components/PlaceShow'
 import SpotShow from './components/SpotShow'
 
 
+
+
+
 const sectionStyle = {
-  width: '100%',
-  height: '800px',
-  backgroundImage: `url(${BackgroundImage})`,
-  backgroundSize: 'cover'
+width: '100vw',
+height: '100vh',
+backgroundRepeat: 'no-repeat',
+backgroundPosition: 'center',
+backgroundImage: `url(${BackgroundImage})`,
+backgroundSize: 'cover'
 }
 
 class App extends Component {
@@ -30,13 +35,13 @@ class App extends Component {
   render() {
     return(
         <BrowserRouter>
-          <div style={sectionStyle}>
+          <div className="background" style={sectionStyle}>
             
             <NavigationBar/>
             <Switch>
               
               <AuthRoute path="/login" type="guest">
-                <Login />
+                <NewLogin />
               </AuthRoute>
               
               <AuthRoute path="/signup" type="guest">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import cropLogo from '../images/crop_logo.png'
+import cropLogo from '../images/logo_white_transparent_crop.png'
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/actions';
 import Navbar from 'react-bootstrap/Navbar';
@@ -45,7 +45,7 @@ class NavigationBar extends Component {
 
     return (
         //<nav className="navbar navbar-default">
-        <Navbar expand="lg">
+        <Navbar  bg= "dark" variant="dark" expand="lg">
           
           <Navbar.Brand href="/">
             <img

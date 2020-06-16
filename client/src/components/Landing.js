@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../images/logo_transparent.png'
+import logo from '../images/logo_white_transparent_crop.png'
 
 import '../index.css';
 
@@ -7,9 +7,14 @@ export const LandingPage = () => {
   
   return (
     <div>
+     
       <img src={logo} className="logo" alt="Stroll Logo" />
-      <br />
-      <br />
+     
+      <h1 className="display-2 logotext"><b>S  t  r  o  l  l</b></h1>
+
+      <h3 className="logotext">A Virtual Memory Lane</h3>
+      
+    
     
       </div>
   );
