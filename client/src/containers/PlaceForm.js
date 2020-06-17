@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form';
 import { placePostFetch, getPlacesFetch } from '../actions/placeActions'
 import { LoadScript, Autocomplete } from '@react-google-maps/api'
 //import PropTypes from 'prop-types';
@@ -16,7 +18,7 @@ class PlaceForm extends Component {
     this.googleField = React.createRef()
     this.state = {
       name: "",
-      description: "",
+      //description: "",
       lat: 0,
       lng: 0,
       user_id: this.props.user_id
@@ -69,7 +71,6 @@ class PlaceForm extends Component {
 render() {
     return (
         <div>
-          <p>Add a new location</p>
         <LoadScript
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 
@@ -81,26 +82,17 @@ render() {
         onPlaceChanged={this.onPlaceChanged}
       >
           
-
-        <input
-          type="text"
-          ref={this.googleField}
-          name="city"
-          placeholder="Enter a City" 
-          style={{
-            boxSizing: `border-box`,
-            border: `1px solid transparent`,
-            width: `240px`,
-            height: `32px`,
-            padding: `12px 12px`,
-            borderRadius: `3px`,
-            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-            fontSize: `14px`,
-            outline: `none`,
-            textOverflow: `ellipses`,
-            
-          }}
-        />
+        
+        
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="name">
+            <Form.Label className="white-text">Add new location:</Form.Label>
+            <Form.Control 
+              ref = {this.googleField}
+              placeholder="City, town, or area" />
+           </Form.Group>
+        </Form>
+      
         
         
         
@@ -112,13 +104,11 @@ render() {
 
         
         
-        <br/>
-        
         
       
-        <button onClick={this.handleSubmit}> 
+        <Button onClick={this.handleSubmit}> 
                 Add Place
-        </button>
+        </Button>
         </div>
       )
     }

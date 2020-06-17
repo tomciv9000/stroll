@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-
+//import pushPin from '../../images/red-pushpin.png'
 let mapstyles = require('./mapstyles.json')
 
-const markerIcon = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png'
-
+const markerIcon = 'http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png'
+//onst markerIcon = pushPin
 
 const mapContainerStyle = {
   height: "45vh",
