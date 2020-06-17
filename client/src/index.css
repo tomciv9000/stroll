@@ -1,4 +1,14 @@
 
+
+ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
 .logo {
   height: 400px;
   width: auto;
@@ -27,16 +37,62 @@
 
 
 
-
 @media (max-width: 650px ) {
   .logo {
     height: 400px;
   }
-
-  
- 
-  
 }
+
+.button{
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	font-size: 30px;
+	position: relative;
+	padding: 10px;
+}
+
+
+
+/* BUTTON TWEE */
+
+a.button.two:before, a.button.two:after{
+  opacity: 0;
+  transition: all 0.3s ease;	
+	font-size: 30px;
+}
+a.button.two:before{
+  content: '[';
+}
+a.button.two:after{
+  content: ']';
+}
+
+a.button.two:hover:before{
+  margin-right: 10px;
+  content: '[';
+  -webkit-transform: translateX(20px);
+  -moz-transform: translateX(20px);
+  transform: translateX(20px);
+  opacity: 1;
+}
+a.button.two:hover:after{
+  margin-left: 10px;
+  content: ']';
+  -webkit-transform: translateX(-20px);
+  -moz-transform: translateX(-20px);
+  transform: translateX(-20px);
+  opacity: 1;
+}
+
+.place-input{
+  padding-top: 10px;
+  display: block;
+}
+
+
+
+
 
 
 

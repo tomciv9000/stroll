@@ -7,7 +7,7 @@ const markerIcon = 'http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png'
 //onst markerIcon = pushPin
 
 const mapContainerStyle = {
-  height: "45vh",
+  height: "500px",
   position: 'relative',
   width: "100%",
   
@@ -111,14 +111,14 @@ class AllSpotsMap extends Component {
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
-            zoom={1.2}
+            zoom={3}
             options={mapOptions}
           >
             {this.callPlace()}
             
           </GoogleMap>
         </LoadScript>
-        <br></br>
+       
        
         </div>
       )

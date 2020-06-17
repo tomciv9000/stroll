@@ -41,40 +41,34 @@ class Homepage extends Component {
     return (
       <div>
       <Container>
-        <Row className="justify-content-md-center">
-          <p className="display-4 white-text"><b>
-            Where have you been?
-            </b>
-          </p>
-        </Row>
-      
-        
-        <Row className="justify-content-md-center">
+        <Row >
           <Col >
+          <p className="display-4 white-text">
+            <b>Where have you been?</b>
+          </p>
+          </Col>
+          <Col>
             <PlaceForm />
-            {this.passToMap()}
           </Col>
           
+        </Row>
+        
+        <Row >
           <Col >
             {this.callPlaceContainer()}
           </Col>
-
-          
-          
+     
+   
         </Row>
        
-      </Container>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <Container>
-        
-          
         
       </Container>
+     
+      <div>{this.passToMap()}</div>
+      
+      
+        
+      
         
       
       </div>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
+
 import { placePostFetch, getPlacesFetch } from '../actions/placeActions'
 import { LoadScript, Autocomplete } from '@react-google-maps/api'
 //import PropTypes from 'prop-types';
@@ -85,12 +86,17 @@ render() {
         
         
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="name">
-            <Form.Label className="white-text">Add new location:</Form.Label>
-            <Form.Control 
-              ref = {this.googleField}
-              placeholder="City, town, or area" />
-           </Form.Group>
+          <Form.Row className="place-input">
+            <Form.Group controlId="name">
+            
+              <Form.Control 
+                size="lg" 
+                type="text"
+                ref = {this.googleField}
+                placeholder="City, town, or area" />
+             </Form.Group>
+             
+          </Form.Row>
         </Form>
       
         
@@ -100,15 +106,9 @@ render() {
       
           
         </LoadScript>
-        
-
-        
-        
-        
+       
       
-        <Button onClick={this.handleSubmit}> 
-                Add Place
-        </Button>
+        
         </div>
       )
     }
