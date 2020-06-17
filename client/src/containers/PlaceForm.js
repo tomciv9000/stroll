@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form';
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { placePostFetch, getPlacesFetch } from '../actions/placeActions'
 import { LoadScript, Autocomplete } from '@react-google-maps/api'
 //import PropTypes from 'prop-types';
 import '../index.css';
+import Form from 'react-bootstrap/Form'
 
 const libraries = ["places"]
 
@@ -76,39 +77,31 @@ render() {
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 
         >
+        <Autocomplete
+          onLoad={this.onLoad}
+          onPlaceChanged={this.onPlaceChanged}
+        >
+          <Form >
+            <Row >
+              <Col>
+                <Form.Control
+                  type="text"
+                  ref={this.googleField}
+                  name="city"
+                  placeholder="Enter a city or region" 
+                />
+              </Col>
+              <Col> 
+              <Button variant="outline-warning" onClick={this.handleSubmit}>Add Place</Button>
+              </Col>
+              </Row>
             
+          </Form>
           
-              <Autocomplete
-        onLoad={this.onLoad}
-        onPlaceChanged={this.onPlaceChanged}
-      >
-          
-        
-        
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Row className="place-input">
-            <Form.Group controlId="name">
-            
-              <Form.Control 
-                size="lg" 
-                type="text"
-                ref = {this.googleField}
-                placeholder="City, town, or area" />
-             </Form.Group>
-             
-          </Form.Row>
-        </Form>
-      
-        
-        
-        
-      </Autocomplete>
-      
+        </Autocomplete>
           
         </LoadScript>
-       
-      
-        
+
         </div>
       )
     }

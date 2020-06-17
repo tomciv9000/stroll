@@ -40,19 +40,18 @@ class Homepage extends Component {
   render() {
     return (
       <div>
-      <Container>
-        <Row >
-          <Col >
-          <p className="display-4 white-text">
-            <b>Where have you been?</b>
-          </p>
-          </Col>
-          <Col>
+      <Container >
+        <Row xs = {1} lg={2} >
+        <Col lg xl={6} className = "question">
+          <h1 className = "question-text white-text">
+            Where have you been?
+          </h1>
+        </Col>
+         
+        <Col lg xl={6} className="answer">
             <PlaceForm />
-          </Col>
-          
+        </Col>
         </Row>
-        
         <Row >
           <Col >
             {this.callPlaceContainer()}
