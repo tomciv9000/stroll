@@ -45,8 +45,11 @@ class SpotShow extends Component{
 //
     passPlaceInfo = () => {
       if (this.props.spot.id){
-        //return (<TestMap  />)
-        return (<SingleSpotMap location={this.props.spot}/>)
+        let spot = this.props.spot
+        return (
+          <div><h1 className = "question-text white-text">{spot.location}</h1>
+        <SingleSpotMap location={this.props.spot}/></div>
+          )
         //return (<TestMap place={this.props.place} id={this.props.place.id} />)
       }else {
         return (<h1>No info yet </h1>)
@@ -72,20 +75,24 @@ class SpotShow extends Component{
       return(
         <div >
           {this.linkBack()}
-        <Container>
+        <Container className = "spot-show">
           <Row>
+            <Col>{this.passPlaceInfo()}</Col>
+           
             
-              {this.callSpotDetails()}
             
+          </Row>
+          <Row>
+          <Col><MemoryForm /></Col>  
+          
+            
+          </Row>
+          <Row>
+           <Col>{this.callSpotDetails()}</Col>
           </Row>
           
         </Container>
         
-        
-        <div>
-          <MemoryForm />
-        </div>
-        {this.passPlaceInfo()}
         
         </div>
 

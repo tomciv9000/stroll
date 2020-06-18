@@ -26,7 +26,7 @@ export const SpotDetails = () => {
 
   return (
     <div>
-        <h1 className = "question-text white-text">{spot.location}</h1>  
+          
         <CardDeck>
           {call()}
         </CardDeck>

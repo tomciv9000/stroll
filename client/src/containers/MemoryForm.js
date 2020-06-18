@@ -4,6 +4,7 @@ import { memoryPostFetch } from '../actions/placeActions'
 //import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import '../index.css';
 
 class MemoryForm extends Component {
   state={
@@ -47,27 +48,22 @@ class MemoryForm extends Component {
   render () {
     return(
       <div>
-        <h3>Add A New Memory</h3>
+        <h3 className="white-text">Add A New Memory</h3>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId="description">
-                <Form.Label>Memory Description:</Form.Label>
-                <Form.Control as="textarea" rows="3" onChange={this.handleChange} value={this.state.description} />
+                <Form.Label className="white-text">What do you remember?</Form.Label>
+                <Form.Control 
+                  autoFocus
+                  as="textarea" 
+                  rows="3" 
+                  onChange={this.handleChange} 
+                  value={this.state.description} />
             </Form.Group>
-            <Form.Group controlId="people">
-                <Form.Label>People:</Form.Label>
-                <Form.Control type="text" onChange={this.handleChange} value={this.state.people}/>
-            </Form.Group>
-            <Form.Group controlId="dates">
-                <Form.Label>Dates:</Form.Label>
-                <Form.Control type="text" onChange={this.handleChange} value={this.state.dates}/>
-            </Form.Group>
-            <Form.Group controlId="photos">
-                <Form.Label>Photo Image URL:</Form.Label>
-                <Form.Control type="text" onChange={this.handleChange} value={this.state.photos}/>
-            </Form.Group>
+          
 
-            <Button type="submit">Submit</Button>
+            <Button variant="outline-warning" type="submit">Submit</Button>
         </Form>
+        <br></br>
     </div>
 
 

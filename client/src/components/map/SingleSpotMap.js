@@ -8,7 +8,7 @@ import { GoogleMap, LoadScript, StreetViewPanorama, StreetViewService } from '@r
 const mapContainerStyle = {
   height: "400px",
   position: 'relative',
-  width: "800px",
+  width: "100%",
   
 }
 
@@ -116,7 +116,6 @@ class SingleSpotMap extends Component {
   render() {
     return (
         <div>
-        
         <LoadScript
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 
