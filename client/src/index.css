@@ -6,7 +6,9 @@ ul{
   margin: 0;
 }
 
-
+div.map-container{
+  padding-top: 20px;
+}
 
 
 .logo {

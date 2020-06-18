@@ -52,9 +52,13 @@ class Homepage extends Component {
             <PlaceForm />
         </Col>
         </Row>
+        <br/>
         <Row >
-          <Col >
+          <Col sm={3} className="places-list">
             {this.callPlaceContainer()}
+          </Col>
+          <Col sm = {9}>
+            
           </Col>
      
    
@@ -62,8 +66,11 @@ class Homepage extends Component {
        
         
       </Container>
+      <div>
+       {this.passToMap()}
+       </div>
      
-      <div>{this.passToMap()}</div>
+      
       
       
         
