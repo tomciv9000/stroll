@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-//import pushPin from '../../images/red-pushpin.png'
+import dot from '../../images/tiny_icon.png'
 let mapstyles = require('./mapstyles.json')
 
-const markerIcon = 'http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png'
-//onst markerIcon = pushPin
+//const markerIcon = 'http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png'
+const markerIcon = dot
 
 const mapContainerStyle = {
   height: "400px",
@@ -38,7 +38,7 @@ class AllSpotsMap extends Component {
       selectedSpot: {},
       //place: this.props.place,
       spotData: {},
-      center: {lat:15,lng:0},
+      center: {lat:38,lng:-45},
       fetch: false
       }
   }
@@ -60,25 +60,12 @@ class AllSpotsMap extends Component {
     }
   }
 
-  componentDidMount(){
-    //console.log(this.props.places)
-    
-  }
-
   
-
-  componentDidUpdate(prevProps) {
-    //console.log("Map should update")
-    //if (this.props.place !== prevProps.place) {
-    //  console.log("Oh hey, it's a new place!")
-    //  this.calculateCenter()
-    //}
-  }
 
 //instead of this bullshit callPlace method, i think I can utilize component did update and component did mount
 
   callPlace = () => {
-    if (this.props.places) {
+    if (this.props.places.length) {
         let spotsObjArray = this.props.places.map((place)=> {return place.attributes.spots})
         console.log('Why loading so much?', spotsObjArray)
         let newArray = [].concat(...spotsObjArray)
@@ -111,7 +98,7 @@ class AllSpotsMap extends Component {
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
-            zoom={3}
+            zoom={2}
             options={mapOptions}
           >
             {this.callPlace()}

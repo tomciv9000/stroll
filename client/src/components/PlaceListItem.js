@@ -6,7 +6,7 @@ const PlaceListItem = (props) => {
    
     let placeDetails = props.placeData.attributes
     return (
-    <li>
+    <li className='places-list'>
       
         <Link 
           to={`/places/${placeDetails.id}`} 

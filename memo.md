@@ -4,18 +4,110 @@ implement catch error handling
 
 
 
-Add the lng and lat values of a new place to the rails db on #create, use that value to center map when link is clicked
+import React, { Component } from 'react';
+import PlaceForm from '../containers/PlaceForm'
+import { connect } from 'react-redux';
+import { getPlacesFetch, clearPlaceState } from '../actions/placeActions';
+import PlaceContainer from '../containers/PlaceContainer'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import AllSpotsMap from './map/AllSpotsMap'
+import '../index.css';
 
-<Form className="place-input" onSubmit={this.handleSubmit}>
-          <InputGroup size = "lg" className="mb-3">
-              <Form.Control className="form-text"
-                placeholder="city or town"
-                aria-label="City or town"
-                aria-describedby="basic-addon2"
-                ref = {this.googleField}
-              />
-           <InputGroup.Append>
-              <Button variant="outline-secondary">Add</Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </Form>
+class Homepage extends Component {
+ 
+  componentDidMount = () => {
+    this.props.getPlacesFetch()
+    console.log("Place Cleared")
+    this.props.clearPlaceState()
+  }
+
+
+  callPlaceContainer = () => {
+    if (this.props.places){
+      return (<PlaceContainer places={this.props.places} />)
+    } else {
+      return (<h1>No Places Registered Yet</h1>)
+    }
+  }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  passToMap = () => {
+   if (this.props.places){
+    
+    return(
+        <AllSpotsMap places={this.props.places} />
+      )
+   } 
+   
+  }
+  
+  render() {
+    return (
+      <div>
+      <Container >
+        <Row xs = {1} md= {2} lg={2} >
+        <Col lg xl={6} className = "question">
+          <h1 className = "question-text white-text">
+            Where have you been?
+          </h1>
+        </Col>
+         
+        <Col lg xl={6} className="answer">
+            <PlaceForm />
+        </Col>
+        </Row>
+        
+        <Row >
+          <Col  xs={3}className="places-list">
+            {this.callPlaceContainer()}
+          </Col>
+          <Col  xs={8} className="map-box">
+            
+          
+       {this.passToMap()}
+       
+     
+            
+          </Col>
+     
+   
+        </Row>
+       
+        
+      </Container>
+     
+      
+      
+      
+        
+      
+        
+      
+      </div>
+    );
+  }
+};
+
+const mapStateToProps = state => {
+  return {
+    places: state.places.places,
+    place: state.places.place
+  };
+}
+
+
+const mapDispatchToProps = dispatch => ({
+  getPlacesFetch: () => dispatch(getPlacesFetch()),
+  clearPlaceState: () => dispatch(clearPlaceState())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

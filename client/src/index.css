@@ -22,7 +22,7 @@ div.map-container{
 
 
 .logotext {
-  color: #dbc9b5;
+  color: #ffc107;
   text-align: center;
 }
 
@@ -47,7 +47,7 @@ div.map-container{
 
 .button{
 	text-decoration: none;
-	color: white;
+	color: #ffc107;
 	font-weight: bold;
 	font-size: 25px;
 	position: relative;
@@ -128,5 +128,6 @@ input:focus {
 }
 
 
-
-
+.places-list{
+  justify-content: center;
+}
