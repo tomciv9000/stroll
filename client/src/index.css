@@ -128,6 +128,10 @@ input:focus {
 }
 
 
-.places-list{
-  justify-content: center;
+.yellow-link{
+  color: #ffffff;
+}
+
+a.yellow-link:hover{
+  color: #ffc107;
 }

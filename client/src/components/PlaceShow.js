@@ -58,7 +58,7 @@ class PlaceShow extends Component{
     render(){
       return(
         <div >
-          <p><Link to='/private'>Back To All Your Places</Link></p><br></br>
+          <p><Link className = "yellow-link" to='/private'>Back To All Your Places</Link></p>
           <Container>
             <Row xs = {1} md= {2} lg={2}> 
               <Col>

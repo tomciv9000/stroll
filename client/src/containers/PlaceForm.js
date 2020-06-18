@@ -8,6 +8,7 @@ import { LoadScript, Autocomplete } from '@react-google-maps/api'
 //import PropTypes from 'prop-types';
 import '../index.css';
 import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 const libraries = ["places"]
 
@@ -81,22 +82,20 @@ render() {
           onLoad={this.onLoad}
           onPlaceChanged={this.onPlaceChanged}
         >
-          <Form >
-            <Row >
-              <Col >
+          <InputGroup className="mb-3">
                 <Form.Control
                   type="text"
                   ref={this.googleField}
                   name="city"
                   placeholder="Enter a city or region" 
                 />
-              </Col>
-              <Col > 
-              <Button variant="outline-warning" onClick={this.handleSubmit}>Add Place</Button>
-              </Col>
-              </Row>
+              <InputGroup.Append>
+                <Button variant="outline-warning" onClick={this.handleSubmit}>Add Place</Button>
+              </InputGroup.Append>
+              </InputGroup>
+              
             
-          </Form>
+          
           
         </Autocomplete>
           

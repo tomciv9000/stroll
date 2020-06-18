@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Autocomplete, Marker } from '@react-google-maps/api'
 import { connect } from 'react-redux'
 import { getSpotFetch, spotPostFetch } from '../../actions/placeActions';
+import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Form from 'react-bootstrap/Form'
 
 const mapContainerStyle = {
   height: "50vh",
@@ -136,36 +139,24 @@ class TestMap extends Component {
         onPlaceChanged={this.onPlaceChanged}
       >
           
-        <input
-          type="text"
-          ref={this.googleField}
-          name="spot"
-          placeholder="Enter a spot"
-          style={{
-            boxSizing: `border-box`,
-            border: `1px solid transparent`,
-            width: `240px`,
-            height: `32px`,
-            padding: `12px`,
-            borderRadius: `3px`,
-            boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-            fontSize: `14px`,
-            outline: `none`,
-            textOverflow: `ellipses`,
-            position: "relative",
-            left: "0%",
-            marginLeft: "0px"
-          }}
-        />
         
+        
+        <InputGroup className="mb-3">
+          <Form.Control
+            type="text"
+            ref={this.googleField}
+            name="spot"
+            placeholder="Enter a spot"
+      
+          />
+        <InputGroup.Append>
+          <Button variant="outline-warning" onClick={this.handleSubmit}>Save Spot</Button>
+        </InputGroup.Append>
+        </InputGroup>
         
       </Autocomplete>
-      <br></br>
-      <button onClick={this.handleSubmit}> 
-          Save This Spot
-        </button>
-        <br></br>
-        <br></br>
+     
+        
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
@@ -174,7 +165,7 @@ class TestMap extends Component {
             {this.callPlace()}
           </GoogleMap>
         </LoadScript>
-        <br></br>
+        
        
         </div>
       )

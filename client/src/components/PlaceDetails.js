@@ -2,8 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 //import { connect } from 'react-redux'; 
 import {AllSpots} from './AllSpots'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 
 
 export const PlaceDetails = () => {

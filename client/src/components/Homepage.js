@@ -57,7 +57,7 @@ class Homepage extends Component {
           <Col  xs={3}className="places-list">
             {this.callPlaceContainer()}
           </Col>
-          <Col  xs={8} className="map-box">
+          <Col   className="map-box">
             
           
        {this.passToMap()}
