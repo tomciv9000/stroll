@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import { getPlaceFetch } from '../actions/placeActions';
 import { PlaceDetails } from './PlaceDetails'
 import { Link } from 'react-router-dom';
 import TestMap from './map/TestMap'
+
+import '../index.css';
 
 
 
@@ -12,11 +16,10 @@ import TestMap from './map/TestMap'
 class PlaceShow extends Component{
 
 
-    componentDidMount(){ 
-      const {id} =  this.props.match.params;
-        this.props.getPlaceFetch(id);
-        
-    }
+  componentDidMount(){ 
+    const {id} =  this.props.match.params;
+      this.props.getPlaceFetch(id);  
+  }
 
   componentDidUpdate(prevProps){
     if (this.props.spot !== prevProps.spot){
@@ -55,10 +58,23 @@ class PlaceShow extends Component{
     render(){
       return(
         <div >
-            <p><Link to='/private'>Back To All Your Places</Link></p><br></br>
+          <p><Link to='/private'>Back To All Your Places</Link></p><br></br>
+          <Container>
+            <Row xs = {1} md= {2} lg={2}> 
+              <Col>
+                {this.callPlaceDetails()}
+              </Col>
+              <Col>
+                {this.passPlaceInfo()}
+              </Col>
+            </Row>
+            
+          </Container>
+
+            
          
-        {this.callPlaceDetails()}
-        {this.passPlaceInfo()}
+        
+        
         
         </div>
 

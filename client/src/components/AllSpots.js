@@ -11,7 +11,11 @@ export const AllSpots = (props) => {
             <div>
                 <ul>
                     <li>
-                    <h3><Link to={`/spots/${spotData.id}`}>{spotData.location}</Link></h3>
+                    <Link 
+                        to={`/spots/${spotData.id}`}
+                        style={{textDecoration : 'none'}}
+                        className='button two place'>
+                        {spotData.location}</Link>
                     </li>
                 </ul>
             </div>

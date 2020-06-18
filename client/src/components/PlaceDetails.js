@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 //import { connect } from 'react-redux'; 
 import {AllSpots} from './AllSpots'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 export const PlaceDetails = () => {
@@ -20,16 +22,18 @@ export const PlaceDetails = () => {
   }
 
   const callPlaceName = () => {
-    return <h1>{place.name}</h1>
+    return <h1 className = "question-text white-text">{place.name}</h1>
   }
 
   return (
     <div>
-         
-        {callPlaceName()}
-        <ul>
-         {call()}
-       </ul>
+        
+          
+            {callPlaceName()}
+            {call()}
+          
+        
+       
     </div>
   )
 }
