@@ -7,7 +7,7 @@ const markerIcon = 'http://maps.google.com/mapfiles/kml/paddle/ylw-blank.png'
 //onst markerIcon = pushPin
 
 const mapContainerStyle = {
-  height: "900px",
+  height: "400px",
   position: 'relative',
   width: "100%",
   

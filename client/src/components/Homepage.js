@@ -41,7 +41,7 @@ class Homepage extends Component {
     return (
       <div>
       <Container >
-        <Row xs = {1} lg={2} >
+        <Row xs = {1} md= {2} lg={2} >
         <Col lg xl={6} className = "question">
           <h1 className = "question-text white-text">
             Where have you been?
@@ -52,12 +52,17 @@ class Homepage extends Component {
             <PlaceForm />
         </Col>
         </Row>
-        <br/>
+        
         <Row >
-          <Col sm={3} className="places-list">
+          <Col  xs={3}className="places-list">
             {this.callPlaceContainer()}
           </Col>
-          <Col sm = {9}>
+          <Col  xs={8} className="map-box">
+            
+          
+       {this.passToMap()}
+       
+     
             
           </Col>
      
@@ -66,9 +71,6 @@ class Homepage extends Component {
        
         
       </Container>
-      <div>
-       {this.passToMap()}
-       </div>
      
       
       

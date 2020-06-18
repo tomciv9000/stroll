@@ -83,7 +83,7 @@ render() {
         >
           <Form >
             <Row >
-              <Col>
+              <Col >
                 <Form.Control
                   type="text"
                   ref={this.googleField}
@@ -91,7 +91,7 @@ render() {
                   placeholder="Enter a city or region" 
                 />
               </Col>
-              <Col> 
+              <Col > 
               <Button variant="outline-warning" onClick={this.handleSubmit}>Add Place</Button>
               </Col>
               </Row>
