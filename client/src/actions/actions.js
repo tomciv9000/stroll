@@ -55,7 +55,7 @@ const loginNewUser = user => {
 export const userLoginFetch = user => {
   return dispatch => {
     let loginData = {"auth": {"email": user.email, "password": user.password}} 
-    return fetch(`${BASE_URL}/user_token`, {
+    fetch(`${BASE_URL}/user_token`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -63,18 +63,29 @@ export const userLoginFetch = user => {
       },
       body: JSON.stringify(loginData)
     })
-      .then(resp => resp.json())
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 299) {
+          return response.json();
+        } else {
+          throw Error(response.statusText);
+        }
+      })
       .then(data => {
         console.log(data)
         localStorage.setItem("token", data.jwt)
         return getUser(user.email)
       })
       .catch(error => {
-        console.log(error)
+        console.log("Error Catch :", error.message)
+        dispatch(loginFail(error.message))
+        return undefined
       })
-      .then(returnedUser => {
-        console.log(returnedUser)
-        dispatch(loginUser(returnedUser.user.data.attributes))
+      .then(returnedData => {
+        if(returnedData){
+          console.log("User Object :", returnedData)
+          dispatch(loginUser(returnedData.user.data.attributes))
+        } 
+        
       })
   }
 }
@@ -82,6 +93,11 @@ export const userLoginFetch = user => {
 const loginUser = userObj => ({
     type: 'LOGIN_USER',
     payload: userObj
+})
+
+const loginFail = failObj => ({
+    type: 'LOGIN_FAIL',
+    payload: failObj
 })
 
  

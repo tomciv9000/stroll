@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useSelector } from 'react-redux'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
 import {userLoginFetch} from '../../actions/actions';
 import { useDispatch } from 'react-redux';
 
 import "../../containers/login.css";
 
 export default function Login() {
+  
+    const errors = useSelector(state => state.user.errors)
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -28,7 +33,26 @@ export default function Login() {
         setPassword("")
     }
 
+     const handleErrors = () => {
+      if (errors) {
+        console.log(errors)
+        return (
+          <Alert variant="warning">
+            Unable to log in with those credentials, try again.
+          </Alert>
+          )
+      }
+      
+    }
+    
+
   return (
+    <div>
+    <div className="alert-header">
+      {handleErrors()}
+    </div>
+    
+      
     <div className="Login">
       <h3 className="white-text" id="account-login">Account Login</h3>
       <Form onSubmit={handleSubmit}>
@@ -55,5 +79,6 @@ export default function Login() {
         </Button>
       </Form>
     </div>
+  </div>
   );
 }
