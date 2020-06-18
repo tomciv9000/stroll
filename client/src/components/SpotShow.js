@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import MemoryForm from '../containers/MemoryForm'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 import { getSpotFetch, clearSpotState } from '../actions/placeActions';
 import { SpotDetails } from './SpotDetails'
 import { Link } from 'react-router-dom';
 import SingleSpotMap from './map/SingleSpotMap'
 
-
+import '../index.css';
 
 
 class SpotShow extends Component{
@@ -52,9 +55,9 @@ class SpotShow extends Component{
 
     linkBack = () => {
         if(this.props.place){
-          return (<Link to={`/places/${this.props.place.id}`}>Back to Place Page</Link>)
+          return (<p><Link className = "yellow-link" to={`/places/${this.props.place.id}`}>Back to Place Page</Link></p>)
         }else {
-          return(<h1>loading...</h1>)
+          return(<p className = "white-text">loading...</p>)
         }
     }
 //
@@ -68,10 +71,17 @@ class SpotShow extends Component{
     render(){
       return(
         <div >
-            {this.linkBack()}
-            <br></br>
+          {this.linkBack()}
+        <Container>
+          <Row>
+            
+              {this.callSpotDetails()}
+            
+          </Row>
+          
+        </Container>
         
-        {this.callSpotDetails()}
+        
         <div>
           <MemoryForm />
         </div>

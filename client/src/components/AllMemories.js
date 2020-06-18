@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 //import { deleteEntry } from '../actions/tripAction';
 //import { Link } from 'react-router-dom';
-//import { Button, Card, Image } from 'semantic-ui-react'
+
 import Card from 'react-bootstrap/Card'
 
 class AllMemories extends Component {
@@ -17,7 +17,9 @@ class AllMemories extends Component {
   render(){
 
     return(
-        <Card style={{ width: '18rem' }}>
+      
+      
+        <Card bg="warning">
           <Card.Body>
             <Card.Title>Memory Title?</Card.Title>
             
@@ -33,6 +35,7 @@ class AllMemories extends Component {
             <Card.Link onClick={this.onDeleteClick}>Delete Memory</Card.Link>
           </Card.Body>
         </Card>
+        
 
 
           )

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 //import { connect } from 'react-redux'; 
 import AllMemories from './AllMemories'
+import CardDeck from 'react-bootstrap/CardDeck'
 
 
 export const SpotDetails = () => {
@@ -25,11 +26,13 @@ export const SpotDetails = () => {
 
   return (
     <div>
-        <h1>{spot.location}</h1>  
+        <h1 className = "question-text white-text">{spot.location}</h1>  
+        <CardDeck>
+          {call()}
+        </CardDeck>
         
-        <ul>
-         {call()}
-       </ul>
+         
+       
     </div>
   )
 }

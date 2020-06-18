@@ -146,7 +146,7 @@ class TestMap extends Component {
             type="text"
             ref={this.googleField}
             name="spot"
-            placeholder="Enter a spot"
+            placeholder="Add a new spot"
       
           />
         <InputGroup.Append>
