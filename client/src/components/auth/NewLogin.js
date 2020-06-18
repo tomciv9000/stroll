@@ -10,10 +10,11 @@ import "../../containers/login.css";
 
 export default function Login() {
   
-    const errors = useSelector(state => state.user.errors)
+    let errors = useSelector(state => state.user.errors)
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
 
     const dispatch = useDispatch()
 
@@ -33,23 +34,23 @@ export default function Login() {
         setPassword("")
     }
 
-     const handleErrors = () => {
-      if (errors) {
-        console.log(errors)
-        return (
-          <Alert variant="warning">
-            Unable to log in with those credentials, try again.
-          </Alert>
-          )
-      }
-      
-    }
+    // const handleErrors = () => {
+    //  if (errors) {
+    //    console.log(errors)
+    //    return (
+    //      <Alert variant="warning">
+    //        Unable to log in with those credentials, try again.
+    //      </Alert>
+    //      )
+    //  }
+    //  
+    //}
     
 
   return (
     <div>
     <div className="alert-header">
-      {handleErrors()}
+    { errors && <Alert variant="warning">Unable to log in with those credentials, try again.</Alert> }
     </div>
     
       
