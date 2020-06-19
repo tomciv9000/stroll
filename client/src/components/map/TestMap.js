@@ -117,7 +117,7 @@ class TestMap extends Component {
       return (this.props.place.spots.map((spot) => {
         return <Marker 
           key = {spot.id}
-          //onClick = { console.log("Marker Clicked")}
+          clickable = {false}
           position = {{lat:spot.lat, lng:spot.lng}}
           animation = {2} />
       }))
