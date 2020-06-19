@@ -31,12 +31,14 @@ class PlaceShow extends Component{
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
     callPlaceDetails = () => {
-      return (<PlaceDetails />)
-      //if (this.props.place){
-      //  return (<PlaceDetails place = {this.props.place}/>)
-      //}else {
-      //  return (<h1>No info yet </h1>)
-      //}
+      console.log(this.props.place.spots)
+      if (this.props.place.spots){
+        return (<PlaceDetails/>)
+      }else {
+        return (<h5 className = "white-text">
+        Think of a spot that holds a specific memory for you.
+        </h5>)
+      }
     }
 //
     passPlaceInfo = () => {
@@ -60,11 +62,11 @@ class PlaceShow extends Component{
         <div >
           <p><Link className = "yellow-link" to='/private'>Back To All Your Places</Link></p>
           <Container>
-            <Row xs = {1} md= {2} lg={2}> 
-              <Col>
+            <Row xs={2}> 
+              <Col sm={5}>
                 {this.callPlaceDetails()}
               </Col>
-              <Col>
+              <Col sm={7}>
                 {this.passPlaceInfo()}
               </Col>
             </Row>

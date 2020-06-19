@@ -20,22 +20,18 @@ class AllMemories extends Component {
 
     return(
       
-      <Col sm={3}>
+      <Col>
         <Card bg="warning" >
           <Card.Body>
-            <Card.Title>Memory Title?</Card.Title>
             
-            <Card.Text>
+            
+            
                 {this.props.memoryData.description}
-            </Card.Text>
-            <Card.Text>
-                People: {this.props.memoryData.people}
-            </Card.Text>
-            <Card.Text>
-                Dates{this.props.memoryData.dates}
-            </Card.Text>
-            <Card.Link onClick={this.onDeleteClick}>Delete Memory</Card.Link>
+            
+          
+            
           </Card.Body>
+          <Card.Link onClick={this.onDeleteClick}>Delete Memory</Card.Link>
         </Card>
         </Col>
        

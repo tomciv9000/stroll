@@ -87,9 +87,9 @@ class SpotShow extends Component{
           
             
           </Row>
-          <Row >
-           <Col>{this.callSpotDetails()}</Col>
-          </Row>
+          
+           {this.callSpotDetails()}
+          
           
         </Container>
         

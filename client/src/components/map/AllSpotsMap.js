@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker, MarkerClusterer } from '@react-google-maps/api'
-//import dot from '../../images/tiny_icon.png'
+
 let mapstyles = require('./mapstyles.json')
 
-//let markerIcon = dot
+
 
 const mapContainerStyle = {
   height: "400px",

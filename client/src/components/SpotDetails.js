@@ -20,14 +20,14 @@ export const SpotDetails = () => {
       })
     }else {
       
-      return (<h1>No Memories Yet</h1>)
+      return (<h5>No Memories Yet</h5>)
 
     }
   }
 
   return (
     <div>
-        <Row >
+        <Row>
         <CardDeck>
           {call()}
         </CardDeck>

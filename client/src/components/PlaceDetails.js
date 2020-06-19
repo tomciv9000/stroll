@@ -11,12 +11,14 @@ export const PlaceDetails = () => {
   
   const call = () => {
     
-    if (place.spots){
+    if (!!place.spots.length){
       return place.spots.map((spotItem) =>{
         return <AllSpots key = {spotItem.id} spotData={spotItem} />
       })
     }else {
-      return (<h1>No Spots Yet</h1>)
+      return (<h5 className = "white-text">
+      Add a spot that holds a memory.
+      </h5>)
     }
   }
 

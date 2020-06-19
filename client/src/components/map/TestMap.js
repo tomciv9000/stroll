@@ -6,9 +6,17 @@ import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 
+let mapstyles = require('./mapstyles.json')
+
 const mapContainerStyle = {
-  height: "50vh",
+  height: "400px",
+  position: 'relative',
   width: "100%"
+}
+
+const mapOptions = {
+  disableDefaultUI: true,
+  styles: mapstyles
 }
 
 
@@ -60,8 +68,15 @@ class TestMap extends Component {
     //return center
     
     //let spots = this.props.place.spots
-    if(!!place.spots.length){
+    if(place.spots === undefined || place.spots.length == 0){
+      console.log("No spots entered")
+      return(this.setState({
+        center:{lat: place.lat, lng: place.lng}
+
+      }))
       
+    } else {
+      console.log("tried to calculate")
       return(this.setState({center:{
         lat: place.spots.reduce((total, spot) => {
           return total+spot.lat
@@ -70,13 +85,6 @@ class TestMap extends Component {
           return total+spot.lng
         }, 0)/place.spots.length
       }}))
-    }else{
-      console.log("No spots entered")
-      return(this.setState({
-        center:{lat: place.lat, lng: place.lng}
-
-      }))
-      
     }
 
   }
@@ -151,7 +159,7 @@ class TestMap extends Component {
             type="text"
             ref={this.googleField}
             name="spot"
-            placeholder="Add a new spot"
+            placeholder="Enter a location or address"
       
           />
         <InputGroup.Append>
@@ -166,6 +174,7 @@ class TestMap extends Component {
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
             zoom={10}
+            options={mapOptions}
           >
             {this.callPlace()}
           </GoogleMap>
