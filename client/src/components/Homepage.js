@@ -19,10 +19,12 @@ class Homepage extends Component {
 
 
   callPlaceContainer = () => {
-    if (this.props.places){
+    if (!!this.props.places.length){
       return (<PlaceContainer places={this.props.places} />)
     } else {
-      return (<h1>No Places Registered Yet</h1>)
+      return (<h5 className = "white-text">
+        Think of a place that's important to you.
+        </h5>)
     }
   }
 

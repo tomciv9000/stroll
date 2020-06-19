@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker, MarkerClusterer } from '@react-google-maps/api'
-import dot from '../../images/tiny_icon.png'
+//import dot from '../../images/tiny_icon.png'
 let mapstyles = require('./mapstyles.json')
 
-
+//let markerIcon = dot
 
 const mapContainerStyle = {
   height: "400px",
@@ -90,7 +90,7 @@ class AllSpotsMap extends Component {
 
         return <MarkerClusterer options={options}>
                 {clusterer => locations.map(location => (
-                <Marker key={this.createKey(location)} position={location} clusterer={clusterer} />
+                <Marker clickable = {false}  key={this.createKey(location)} position={location} clusterer={clusterer} />
         ))
       }
     </MarkerClusterer>

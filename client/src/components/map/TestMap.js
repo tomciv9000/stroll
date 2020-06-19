@@ -53,13 +53,14 @@ class TestMap extends Component {
    //BASED ON THE PLACE'S SPOTS
    
     let place = this.props.place
+    console.log(place)
     
    // let center = {lat: place.lat,lng: place.lng}
     //console.log('Center Coordinates: ', center)
     //return center
     
     //let spots = this.props.place.spots
-    if(place.spots){
+    if(!!place.spots.length){
       
       return(this.setState({center:{
         lat: place.spots.reduce((total, spot) => {
@@ -71,7 +72,11 @@ class TestMap extends Component {
       }}))
     }else{
       console.log("No spots entered")
-      return(<h1>no info yet</h1>)
+      return(this.setState({
+        center:{lat: place.lat, lng: place.lng}
+
+      }))
+      
     }
 
   }
