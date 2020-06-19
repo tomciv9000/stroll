@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 //import { connect } from 'react-redux'; 
 import AllMemories from './AllMemories'
 import CardDeck from 'react-bootstrap/CardDeck'
+import Row from 'react-bootstrap/Row'
 
 
 export const SpotDetails = () => {
@@ -26,10 +27,12 @@ export const SpotDetails = () => {
 
   return (
     <div>
-          
+        <Row >
         <CardDeck>
           {call()}
         </CardDeck>
+        </Row>
+        
         
          
        
