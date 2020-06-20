@@ -23,18 +23,18 @@ class PlaceShow extends Component{
 
   componentDidUpdate(prevProps){
     if (this.props.spot !== prevProps.spot){
-      
       this.props.getPlaceFetch(this.props.place.id)
-  
     }
   }
 
   //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
     callPlaceDetails = () => {
-      console.log(this.props.place.spots)
       if (this.props.place.spots){
         return (<PlaceDetails/>)
-      }else {
+      } else if (this.props.place.status) {
+        this.props.history.push('/homepage')
+      }
+      else {
         return (<h5 className = "white-text">
         Think of a spot that holds a specific memory for you.
         </h5>)
@@ -45,8 +45,6 @@ class PlaceShow extends Component{
       if (this.props.place.id){
         //return (<TestMap  />)
         return (<TestMap place={this.props.place} id={this.props.place.id} />)
-      }else {
-        return (<h1>No info yet </h1>)
       }
     }
 //

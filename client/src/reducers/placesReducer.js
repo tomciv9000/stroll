@@ -1,4 +1,4 @@
-import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY, CLEAR_PLACE, CLEAR_SPOT} from '../actions/types'
+import { FETCH_PLACES, NEW_PLACE, GET_PLACE, DELETE_PLACE, NEW_SPOT, GET_SPOT, DELETE_SPOT, NEW_MEMORY, DELETE_MEMORY, CLEAR_PLACE, CLEAR_SPOT} from '../actions/types'
 
 const initialState = {
     places: [],
@@ -77,7 +77,7 @@ export default function(state = initialState, action){
             console.log(state.first)
             return{
               ...state,
-              place: {}
+              place: {status: "removed"}
             }
   
       default:

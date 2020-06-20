@@ -14,7 +14,7 @@ export const PlaceDetails = () => {
   const onDeleteClick = () => {
     const id =  place.id;
     dispatch(placeDeleteFetch(id, () =>{
-      this.props.history.push('/homepage')
+      this.props.history.push('/private')
     })
   )}
   
