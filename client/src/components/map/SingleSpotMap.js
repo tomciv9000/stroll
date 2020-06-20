@@ -83,7 +83,7 @@ class SingleSpotMap extends Component {
  
 
   componentDidUpdate(prevProps) {
-    if (this.props.spot !== prevProps.spot) {
+    if (this.props.spot.id !== prevProps.spot.id) {
         let spot = this.props.spot
         console.log("componentDidUpdate Spot:", spot)
         //if (spot.lng)
