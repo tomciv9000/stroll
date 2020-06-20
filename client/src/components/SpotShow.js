@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
-import { getSpotFetch, clearSpotState } from '../actions/placeActions';
+import { getSpotFetch, clearSpotState, spotDeleteFetch } from '../actions/placeActions';
 import { SpotDetails } from './SpotDetails'
 import { Link } from 'react-router-dom';
 import SingleSpotMap from './map/SingleSpotMap'
@@ -47,10 +47,10 @@ class SpotShow extends Component{
       if (this.props.spot.id){
         let spot = this.props.spot
         return (
-          <div><h1 className = "question-text white-text">{spot.location}
+          <div><h1 className = "question-text white-text">{spot.location}</h1>
+          <Link  to = {`/places/${this.props.place.id}`} className="yellow-link" onClick={this.onDeleteClick}><small>[Delete {spot.location}]</small></Link>
           
-          </h1>
-           <Link  className="yellow-link" onClick={this.onDeleteClick}><small>Delete This Spot</small></Link>
+           
         <SingleSpotMap location={this.props.spot}/></div>
           )
         //return (<TestMap place={this.props.place} id={this.props.place.id} />)
@@ -73,8 +73,8 @@ class SpotShow extends Component{
 
     onDeleteClick = () => {
       const {id} =  this.props.match.params;
-      this.props.deleteTrip(id, () =>{
-        this.props.history.push('/homepage')
+      this.props.spotDeleteFetch(id, () =>{
+        this.props.history.push(`/places/${this.props.place.id}`)
       })
     }
 
@@ -117,7 +117,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     getSpotFetch: spotID => dispatch(getSpotFetch(spotID)),
-    clearSpotState: () => dispatch(clearSpotState())
+    clearSpotState: () => dispatch(clearSpotState()),
+    spotDeleteFetch: (spotID) => dispatch(spotDeleteFetch(spotID))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpotShow)

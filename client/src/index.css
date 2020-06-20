@@ -127,6 +127,7 @@ input:focus, textarea:focus {
 .question-text{
   font-size: 40px;
   font-weight: bolder;
+  margin-bottom: 0px;
 }
 
 

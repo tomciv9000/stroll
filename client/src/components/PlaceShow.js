@@ -8,6 +8,7 @@ import { PlaceDetails } from './PlaceDetails'
 import { Link } from 'react-router-dom';
 import TestMap from './map/TestMap'
 
+
 import '../index.css';
 
 
@@ -36,7 +37,7 @@ class PlaceShow extends Component{
       }
       else {
         return (<h5 className = "white-text">
-        Think of a spot that holds a specific memory for you.
+        Something went wrong...
         </h5>)
       }
     }
@@ -69,9 +70,10 @@ class PlaceShow extends Component{
               </Col>
             </Row>
             
+            
           </Container>
 
-            
+          
          
         
         

@@ -1,15 +1,27 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 //import { connect } from 'react-redux'; 
 import AllMemories from './AllMemories'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Row from 'react-bootstrap/Row'
+import { spotDeleteFetch } from '../actions/placeActions';
 
 
 export const SpotDetails = () => {
-  
+  //const dispatch = useDispatch()
+
   const spot = useSelector(state => state.places.spot)
+  //const place = useSelector(state => state.places.place)
   
+  //const onDeleteClick = () => {
+  //  const id =  spot.id;
+  //  dispatch(spotDeleteFetch(id, () =>{
+  //    this.props.history.push(`/places/${place.id}`)
+  //  })
+  //)}
+  
+
+
   
   const call = () => {
     
