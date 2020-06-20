@@ -15,9 +15,6 @@ export const userPostFetch = user => {
       .then(data => {
         if (data.message) {
           console.log(data)
-          // Here you should have logic to handle invalid creation of a user.
-          // This assumes your Rails API will return a JSON object with a key of
-          // 'message' if there is an error with creating the user, i.e. invalid username
         } else {
           console.log(data)
           return loginNewUser(user)
@@ -100,7 +97,6 @@ const loginFail = failObj => ({
     payload: failObj
 })
 
- 
 
 const getUser = email => {
   let loginData = {"user": {"email": email}}
@@ -132,11 +128,8 @@ export const getProfileFetch = () => {
         }
       })
         .then(resp => resp.json())
-        .then(data => {
-          
+        .then(data => {          
           if (data.user.data) {
-            // An error will occur if the token is invalid.
-            // If this happens, you may want to remove the invalid token
             dispatch(loginUser(data.user.data.attributes))
           } else {
             console.log(data)

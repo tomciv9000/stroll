@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import {userPostFetch} from '../../actions/actions';
@@ -6,15 +6,30 @@ import { useDispatch } from 'react-redux';
 
 import "../../containers/login.css";
 
+function ValidationMessage(props) {
+  if (!props.valid) {
+    return(
+      <div className='error-msg'>{props.message}</div>
+    )
+  }
+  return null;
+}
+
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  const [emailValid, setEmailValid] = useState(false)
+  const [passwordValid, setPasswordValid] = useState(false)
+  const [formValid, setFormValid] = useState(false)
+  const [errorMsg, setErrorMsg] = useState({})
+
 
   const dispatch = useDispatch()
 
   //need to add validations (unique username, password req.)
   const validateForm = () => {
-    return email.length > 0 && password.length > 0;
+    setFormValid(emailValid && passwordValid)
   }
 
   const handleSubmit = event => {
@@ -28,6 +43,53 @@ export default function Signup() {
       setEmail("")
       setPassword("")
   }
+
+  const updateEmail = (email) => {
+    setEmail(email) 
+    validateEmail()
+  }
+
+  const validateEmail = () => {
+    
+    setEmailValid(true)
+    setErrorMsg({...errorMsg})
+
+    // checks for format _@_._
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      setEmailValid(false);
+      setErrorMsg({...errorMsg, email:"Invalid email format"})
+    }
+    validateForm()
+  }
+
+  const updatePassword = (password) => {
+    setPassword(password) 
+    console.log(password)
+    
+  
+    setPasswordValid(true)
+    setErrorMsg({})
+    
+
+    // must be 6 chars
+    // must contain a number
+    // must contain a special character
+
+    if (password.length < 6) {
+      setPasswordValid(false)
+      setErrorMsg({password:'Password must be at least 6 characters long'})
+     
+    } else if (!/\d/.test(password)){
+      setPasswordValid(false)
+      setErrorMsg({password:'Password must contain a digit'})
+    } else if (!/[!@#$%^&*]/.test(password)){
+      setPasswordValid(false)
+      setErrorMsg({password:'Password must contain special character: !@#$%^&*'})
+    }
+
+    validateForm();
+  }
+
   
   return (
     <div className="Login">
@@ -35,23 +97,25 @@ export default function Signup() {
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email" size="large">
           <Form.Label className="white-text">Email</Form.Label>
+          < ValidationMessage valid={emailValid} message={errorMsg.email} />
           <Form.Control
             autoFocus
             
             type="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => updateEmail(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="password" size="large">
           <Form.Label className="white-text">Password</Form.Label>
+          < ValidationMessage valid={passwordValid} message={errorMsg.password} />
           <Form.Control
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => updatePassword(e.target.value)}
             type="password"
           />
         </Form.Group>
-        <Button block size="large" disabled={!validateForm()} type="submit">
+        <Button block size="large" disabled={!formValid} type="submit">
           Login
         </Button>
       </Form>
