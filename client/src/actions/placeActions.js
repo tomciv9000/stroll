@@ -1,5 +1,4 @@
-//import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, DELETE_MEMORY} from '../actions/types'
-import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, CLEAR_PLACE, CLEAR_SPOT, DELETE_MEMORY } from '../actions/types'
+import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, CLEAR_PLACE, CLEAR_SPOT, DELETE_MEMORY, DELETE_SPOT, DELETE_PLACE } from '../actions/types'
 
 const BASE_URL = "http://localhost:3000"
 
@@ -177,6 +176,52 @@ export const memoryDeleteFetch = (id) =>{
 }}}
 
 
+export const spotDeleteFetch = (id) =>{
+  return dispatch => {
+    const token = localStorage.token;
+    if (token) {
+     return fetch(`${BASE_URL}/spots/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  .then(() => {
+    console.log('removed')
+     dispatch(deleteSpot(id))
+  })
+  .catch(error => {
+    console.log(error)
+  })
+}}}
+
+export const placeDeleteFetch = (id) =>{
+  return dispatch => {
+    const token = localStorage.token;
+    if (token) {
+     return fetch(`${BASE_URL}/places/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  .then(() => {
+    console.log('removed')
+     dispatch(deletePlace(id))
+  })
+  .catch(error => {
+    console.log(error)
+  })
+}}}
+
+
+
+
+
 
 
 export const clearSpotState = () => {
@@ -234,5 +279,15 @@ const createMemory = memoryObj => ({
 
 const deleteMemory = id => ({
   type: DELETE_MEMORY,
+  payload: id
+})
+
+const deleteSpot = id => ({
+  type: DELETE_SPOT,
+  payload: id
+})
+
+const deletePlace = id => ({
+  type: DELETE_PLACE,
   payload: id
 })

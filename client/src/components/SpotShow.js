@@ -47,7 +47,10 @@ class SpotShow extends Component{
       if (this.props.spot.id){
         let spot = this.props.spot
         return (
-          <div><h1 className = "question-text white-text">{spot.location}</h1>
+          <div><h1 className = "question-text white-text">{spot.location}
+          
+          </h1>
+           <Link  className="yellow-link" onClick={this.onDeleteClick}><small>Delete This Spot</small></Link>
         <SingleSpotMap location={this.props.spot}/></div>
           )
         //return (<TestMap place={this.props.place} id={this.props.place.id} />)
@@ -58,18 +61,22 @@ class SpotShow extends Component{
 
     linkBack = () => {
         if(this.props.place){
-          return (<p><Link className = "yellow-link" to={`/places/${this.props.place.id}`}>Back to Place Page</Link></p>)
+          return (
+          <div>
+            <p><Link className = "yellow-link" to={`/places/${this.props.place.id}`}>Back to Place Page</Link></p>
+         
+          </div>)
         }else {
           return(<p className = "white-text">loading...</p>)
         }
     }
-//
-    //onDeleteClick = () => {
-    //  const {id} =  this.props.match.params;
-    //  this.props.deleteTrip(id, () =>{
-    //    this.props.history.push('/homepage')
-    //  })
-    //}
+
+    onDeleteClick = () => {
+      const {id} =  this.props.match.params;
+      this.props.deleteTrip(id, () =>{
+        this.props.history.push('/homepage')
+      })
+    }
 
     render(){
       return(
