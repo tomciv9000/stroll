@@ -9,47 +9,44 @@ const initialState = {
 }
 
 export default function(state = initialState, action){
-    switch(action.type){
-        case FETCH_PLACES:
+  switch(action.type){
+    case FETCH_PLACES:
   
+      return{
+        ...state,
+        places: action.payload
+      }
+      case NEW_PLACE:
+      return {
+        ...state,
+        places: state.places.concat(action.payload),
+        place: action.payload
+      }
+
+      case GET_PLACE:
+
+      return{
+        ...state,
+        place: action.payload
+      }
+      case CLEAR_PLACE:
+
+      return{
+        ...state,
+        place: {}
+      }
+
+      case NEW_SPOT:
         return{
           ...state,
-          places: action.payload
+          spot: action.payload
         }
 
-        case NEW_PLACE:
-        return {
-          ...state,
-          places: state.places.concat(action.payload),
-          place: action.payload
-        }
-  
-        case GET_PLACE:
-  
+      case GET_SPOT:
         return{
           ...state,
-          place: action.payload
+          spot: action.payload
         }
-
-        case CLEAR_PLACE:
-  
-        return{
-          ...state,
-          place: {}
-        }
-  
-        case NEW_SPOT:
-          return{
-            ...state,
-            spot: action.payload
-          }
-  
-          case GET_SPOT:
-          return{
-            ...state,
-            spot: action.payload
-          }
-
         case CLEAR_SPOT:
   
         return{
@@ -67,6 +64,20 @@ export default function(state = initialState, action){
             return{
               ...state,
               memory: {}
+            }
+
+            case DELETE_SPOT:
+            console.log(state.first)
+            return{
+              ...state,
+              spot: {}
+            }
+
+            case DELETE_PLACE:
+            console.log(state.first)
+            return{
+              ...state,
+              place: {}
             }
   
       default:
