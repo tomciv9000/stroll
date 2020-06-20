@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 //import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-//import { deleteEntry } from '../actions/tripAction';
+//THIS IS WHERE I LEFT OFF
+import { memoryDeleteFetch } from '../actions/placeActions';
 //import { Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,9 +12,9 @@ import Card from 'react-bootstrap/Card'
 class AllMemories extends Component {
 
   onDeleteClick = () => {
-    //const id =  this.props.tripData.entryID;
-    console.log("Delete Button Clicked")
-    //this.props.deleteEntry(id)
+    const id =  this.props.memoryData.id;
+    console.log("Delete Button Clicked, ID: ", id)
+    this.props.memoryDeleteFetch(id)
   }
 
   render(){
@@ -43,7 +44,9 @@ class AllMemories extends Component {
 
 }
 
+const mapDispatchToProps = dispatch => ({
+  memoryDeleteFetch: memoryID => dispatch(memoryDeleteFetch(memoryID))
+})
 
 
-
-export default connect(null, null)(AllMemories)
+export default connect(null, mapDispatchToProps)(AllMemories)
