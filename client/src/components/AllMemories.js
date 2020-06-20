@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 //THIS IS WHERE I LEFT OFF
 import { memoryDeleteFetch } from '../actions/placeActions';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -32,7 +32,8 @@ class AllMemories extends Component {
           
             
           </Card.Body>
-          <Card.Link onClick={this.onDeleteClick}>Delete Memory</Card.Link>
+          
+          <Link onClick={this.onDeleteClick}><small>Delete</small></Link>
         </Card>
         </Col>
        
