@@ -8,18 +8,10 @@ import { spotDeleteFetch } from '../actions/placeActions';
 
 
 export const SpotDetails = () => {
-  //const dispatch = useDispatch()
+
 
   const spot = useSelector(state => state.places.spot)
-  //const place = useSelector(state => state.places.place)
-  
-  //const onDeleteClick = () => {
-  //  const id =  spot.id;
-  //  dispatch(spotDeleteFetch(id, () =>{
-  //    this.props.history.push(`/places/${place.id}`)
-  //  })
-  //)}
-  
+
 
 
   
@@ -38,17 +30,17 @@ export const SpotDetails = () => {
   }
 
   return (
-    <div>
-        <Row>
+    
+        
         <CardDeck>
           {call()}
         </CardDeck>
-        </Row>
+        
         
         
          
        
-    </div>
+   
   )
 }
 

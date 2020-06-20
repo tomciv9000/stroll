@@ -21,8 +21,8 @@ class AllMemories extends Component {
 
     return(
       
-      <Col>
-        <Card bg="warning" >
+      
+        <Card className = "memory-card" bg="warning" style={{ minWidth: '18rem' }}>
           <Card.Body>
             
             
@@ -33,9 +33,9 @@ class AllMemories extends Component {
             
           </Card.Body>
           
-          <Link onClick={this.onDeleteClick}><small>Delete</small></Link>
+          <Link to="#" onClick={this.onDeleteClick}><small>Delete</small></Link>
         </Card>
-        </Col>
+        
        
         
 
