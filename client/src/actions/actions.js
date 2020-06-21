@@ -11,19 +11,19 @@ export const userPostFetch = user => {
       },
       body: JSON.stringify(loginData)
     })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.message) {
-          console.log(data)
-        } else {
-          console.log(data)
-          return loginNewUser(user)
-        }
-      })
-      .then(returnedUser => {
-        console.log(returnedUser)
-        dispatch(loginUser(returnedUser.user.data.attributes))
-      })
+    .then(resp => resp.json())
+    .then(data => {
+      if (data.message) {
+        console.log(data)
+      } else {
+        console.log(data)
+        return loginNewUser(user)
+      }
+    })
+    .then(returnedUser => {
+      console.log(returnedUser)
+      dispatch(loginUser(returnedUser.user.data.attributes))
+    })
   }
 }
 
@@ -38,15 +38,15 @@ const loginNewUser = user => {
     },
     body: JSON.stringify(loginData)
   })
-    .then(resp => resp.json())
-    .then(data => {
-      console.log(data)
-      localStorage.setItem("token", data.jwt)
-      return getUser(user.email)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  .then(resp => resp.json())
+  .then(data => {
+    console.log(data)
+    localStorage.setItem("token", data.jwt)
+    return getUser(user.email)
+  })
+  .catch(error => {
+    console.log(error)
+  })
 }
 
 export const userLoginFetch = user => {
@@ -87,15 +87,14 @@ export const userLoginFetch = user => {
 }
   
 const loginUser = userObj => ({
-    type: 'LOGIN_USER',
-    payload: userObj
+  type: 'LOGIN_USER',
+  payload: userObj
 })
 
 const loginFail = failObj => ({
-    type: 'LOGIN_FAIL',
-    payload: failObj
+  type: 'LOGIN_FAIL',
+  payload: failObj
 })
-
 
 const getUser = email => {
   let loginData = {"user": {"email": email}}
@@ -107,11 +106,11 @@ const getUser = email => {
     },  
     body: JSON.stringify(loginData)
   })
-    .then(response => response.json())
-    .then(userJson => {return userJson})
-    .catch(error => {
-      return error;
-    });
+  .then(response => response.json())
+  .then(userJson => {return userJson})
+  .catch(error => {
+    return error;
+  });
 }
 
 export const getProfileFetch = () => {
@@ -126,16 +125,16 @@ export const getProfileFetch = () => {
           'Authorization': `Bearer ${token}`
         }
       })
-        .then(resp => resp.json())
-        .then(data => {          
-          if (data.user.data) {
-            dispatch(loginUser(data.user.data.attributes))
-          } else {
-            console.log(data)
-            localStorage.removeItem("token")
-            dispatch(logoutUser())
-          }
-        })
+      .then(resp => resp.json())
+      .then(data => {          
+        if (data.user.data) {
+          dispatch(loginUser(data.user.data.attributes))
+        } else {
+          console.log(data)
+          localStorage.removeItem("token")
+          dispatch(logoutUser())
+        }
+      })
     }
   }
 }
