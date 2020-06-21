@@ -1,16 +1,12 @@
 class PlacesController < ApplicationController
-    before_action :set_place, only: [:show, :update, :destroy]
-    before_action :authenticate_user
+  before_action :set_place, only: [:show, :update, :destroy]
+  before_action :authenticate_user
 
-  ## eliminate all useless routes
+  def index
+      @places = current_user.places
+      render json: { place: PlaceSerializer.new(@places) }
+  end
 
-    def index
-        @places = current_user.places
-
-        render json: { place: PlaceSerializer.new(@places) }
-    end
-
-  # GET /users/1
   def show
     render json: { place: PlaceSerializer.new(@place) }
   end
@@ -25,7 +21,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  # POST /users
   def create
     @place = Place.create(place_params)
     if @place.valid?
@@ -35,7 +30,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
   def update
     if @place.update(place_params)
       render json: @place
@@ -44,19 +38,18 @@ class PlacesController < ApplicationController
     end
   end
 
-  # DELETE /users/1
   def destroy
     @place.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_place
-      @place = Place.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def place_params
-      params.require(:place).permit(:name, :description, :lat, :lng, :user_id)
-    end
+    
+  def set_place
+    @place = Place.find(params[:id])
+  end
+  
+  def place_params
+    params.require(:place).permit(:name, :description, :lat, :lng, :user_id)
+  end
+  
 end
