@@ -30,6 +30,7 @@ export default function Signup() {
   //need to add validations (unique username, password req.)
   const validateForm = () => {
     setFormValid(emailValid && passwordValid)
+    console.log(formValid)
   }
 
   const handleSubmit = event => {
@@ -43,6 +44,12 @@ export default function Signup() {
       setEmail("")
       setPassword("")
   }
+
+  useEffect(() => {
+    if(password.length > 6 && emailValid) {
+      validateForm()
+    }
+  })
 
   const updateEmail = (email) => {
     setEmail(email) 
@@ -119,6 +126,7 @@ export default function Signup() {
           Login
         </Button>
       </Form>
+      
     </div>
   )
 }
