@@ -14,18 +14,15 @@ export const placePostFetch = place => {
       },
       body: JSON.stringify(placeData)
     })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.message) {
-          console.log(data)
-          // Here you should have logic to handle invalid creation of a place.
-          // This assumes your Rails API will return a JSON object with a key of
-          // 'message' if there is an error with creating the place, i.e. invalid placename
-        } else {
-          console.log(data.place.data)
-          dispatch(createPlace(data.place.data))
-        }
-      })
+    .then(resp => resp.json())
+    .then(data => {
+      if (data.message) {
+        console.log(data)
+      } else {
+        console.log(data.place.data)
+        dispatch(createPlace(data.place.data))
+      }
+    })
   }
 }
 
@@ -41,19 +38,15 @@ export const getPlacesFetch = () => {
           'Authorization': `Bearer ${token}`
         }
       })
-        .then(resp => resp.json())
-        .then(data => {
-          if (data.place.data) {
-            // An error will occur if the token is invalid.
-            // If this happens, you may want to remove the invalid token
-            //dispatch(loginUser(data.user.data.attributes))
-            dispatch(fetchPlaces(data.place.data))
-          } else {
-            console.log(data.place.data.attributes)
-            
-            dispatch(fetchPlaces(data.place.data.attributes))
-          }
-        })
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.place.data) {
+          dispatch(fetchPlaces(data.place.data))
+        } else {
+          console.log(data.place.data.attributes)
+          dispatch(fetchPlaces(data.place.data.attributes))
+        }
+      })
     }
   }
 }
@@ -72,13 +65,9 @@ export const getPlaceFetch = (id) => {
       })
   .then(res => res.json())
   .then(data => {
-    
     dispatch(getPlace(data.place.data.attributes))  
   })
-}
-}}
-
-
+}}}
 
 export const spotPostFetch = spot => {
   return dispatch => {
@@ -92,18 +81,14 @@ export const spotPostFetch = spot => {
       },
       body: JSON.stringify(spotData)
     })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.message) {
-          console.log(data)
-          // Here you should have logic to handle invalid creation of a place.
-          // This assumes your Rails API will return a JSON object with a key of
-          // 'message' if there is an error with creating the place, i.e. invalid placename
-        } else {
-          
-          dispatch(createSpot(data.spot.data.attributes))
-        }
-      })
+    .then(resp => resp.json())
+    .then(data => {
+      if (data.message) {
+        console.log(data)
+      } else {         
+        dispatch(createSpot(data.spot.data.attributes))
+      }
+    })
   }
 }
 
@@ -129,7 +114,7 @@ export const getSpotFetch = (id) => {
 
 export const memoryPostFetch = memory => {
   return dispatch => {
-    let memoryData = {"memory": {"description": memory.description, "people": memory.people, "dates": memory.dates, "spot_id": memory.spot_id, "user_id": memory.user_id}} 
+    let memoryData = {"memory": {"description": memory.description, "spot_id": memory.spot_id, "user_id": memory.user_id}} 
     return fetch(`${BASE_URL}/memories`, {
       method: "POST",
       headers: {
@@ -139,18 +124,15 @@ export const memoryPostFetch = memory => {
       },
       body: JSON.stringify(memoryData)
     })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.message) {
-          console.log(data)
-          // Here you should have logic to handle invalid creation of a place.
-          // This assumes your Rails API will return a JSON object with a key of
-          // 'message' if there is an error with creating the place, i.e. invalid placename
-        } else {
-          console.log('Returned Memory Obj:', data)
-          dispatch(createMemory(data.memory.data.attributes))
-        }
-      })
+    .then(resp => resp.json())
+    .then(data => {
+      if (data.message) {
+        console.log(data)
+      } else {
+        console.log('Returned Memory Obj:', data)
+        dispatch(createMemory(data.memory.data.attributes))
+      }
+    })
   }
 }
 
@@ -168,7 +150,7 @@ export const memoryDeleteFetch = (id) =>{
     })
   .then(() => {
     console.log('removed')
-     dispatch(deleteMemory(id))
+    dispatch(deleteMemory(id))
   })
   .catch(error => {
     console.log(error)
@@ -190,7 +172,7 @@ export const spotDeleteFetch = (id) =>{
     })
   .then(() => {
     console.log('removed')
-     dispatch(deleteSpot(id))
+    dispatch(deleteSpot(id))
   })
   .catch(error => {
     console.log(error)
@@ -211,18 +193,12 @@ export const placeDeleteFetch = (id) =>{
     })
   .then(() => {
     console.log('removed')
-     dispatch(deletePlace(id))
+    dispatch(deletePlace(id))
   })
   .catch(error => {
     console.log(error)
   })
 }}}
-
-
-
-
-
-
 
 export const clearSpotState = () => {
   return dispatch => {
@@ -245,7 +221,6 @@ const clearPlace = () => ({
 const clearSpot = () => ({
   type: CLEAR_SPOT
 })
-
 
 const createPlace = placeObj => ({
   type: NEW_PLACE,
