@@ -1,2 +1,0 @@
-class Banana < ApplicationRecord
-end
