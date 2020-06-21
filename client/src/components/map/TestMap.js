@@ -139,6 +139,16 @@ class TestMap extends Component {
     }
   }
 
+  checkEmpty = () => {
+    let isEmpty = false
+    if (!this.state.spotData.location || !this.state.spotData.location.length < 0){
+      isEmpty=true
+    } else {
+      isEmpty=false
+    }
+    return isEmpty
+  }
+
   render() {
     return (
         <div>
@@ -163,7 +173,7 @@ class TestMap extends Component {
       
           />
         <InputGroup.Append>
-          <Button variant="outline-warning" onClick={this.handleSubmit}>Save Spot</Button>
+          <Button variant="outline-warning" onClick={this.handleSubmit} disabled = {this.checkEmpty()}>Save Spot</Button>
         </InputGroup.Append>
         </InputGroup>
         

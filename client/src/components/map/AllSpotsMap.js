@@ -95,24 +95,6 @@ class AllSpotsMap extends Component {
       }
     </MarkerClusterer>
 
-
-
-
-
-
-        //let spotsArray = newArray.map((m)=> {
-        //    return (
-        //    <Marker
-        //        clickable = {false}
-        //        key = {m.id}
-        //        onclick = { this.onMarkerClick }
-        //        position = {{lat:m.lat, lng:m.lng}} 
-        //        icon = {markerIcon} 
-        //        animation = {2}>
-        //            
-        //            </Marker>)
-        //})
-       // return spotsArray
     } else {
         return (<h1>No information yet</h1>)
     }

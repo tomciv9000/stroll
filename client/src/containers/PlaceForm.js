@@ -12,6 +12,15 @@ import InputGroup from 'react-bootstrap/InputGroup'
 
 const libraries = ["places"]
 
+//function ValidationMessage(props) {
+//  if (!props.valid) {
+//    return(
+//      <div className='error-msg'>{props.message}</div>
+//    )
+//  }
+//  return null;
+//}
+
 class PlaceForm extends Component {
   constructor (props) {
     super(props)
@@ -21,14 +30,43 @@ class PlaceForm extends Component {
     this.googleField = React.createRef()
     this.state = {
       name: "",
-      //description: "",
       lat: 0,
       lng: 0,
       user_id: this.props.user_id
     }
 }
   
+//validateForm = () => {
+//  const { nameValid } = this.state;
+//  this.setState({
+//    formValid: nameValid
+//  })
+//}
 
+// validateName = () => {
+//   console.log("ValidateName exec")
+//   const { name } = this.state;
+//   let nameValid = true
+//   let errorMsg = {...this.state.errorMsg}
+
+//   if (!name || name.length < 1) {
+//     nameValid = false;
+//     errorMsg.name = "Cannot be empty"
+//   }
+//   console.log(nameValid)
+
+//   this.setState({nameValid, errorMsg}, this.validateForm)
+// }
+
+checkEmpty = () => {
+  let nameEmpty = false
+  if (!this.state.name || this.state.name.length < 0){
+    nameEmpty=true
+  } else {
+    nameEmpty=false
+  }
+  return nameEmpty
+}
   
   handleChange = event => {
     this.setState({
@@ -37,23 +75,24 @@ class PlaceForm extends Component {
   }
 
   handleSubmit = (e) => {
-  
-    console.log(this.state)
-    this.props.placePostFetch(this.state)
-    this.googleField.current.value = ""
-    this.setState({
-          name: "",
-          
-          lat: 0,
-          lng: 0
-        })
+     e.preventDefault()
+      this.props.placePostFetch(this.state)
+      this.googleField.current.value = ""
+      this.setState({
+            name: "",
+            
+            lat: 0,
+            lng: 0
+          })
   }
-
-
-  onLoad (autocomplete) {
-    //console.log('autocomplete: ', autocomplete)
     
+  
 
+
+  
+  onLoad (autocomplete) {
+    
+    //console.log('autocomplete: ', autocomplete)
     this.autocomplete = autocomplete
   }
 
@@ -74,6 +113,7 @@ class PlaceForm extends Component {
 render() {
     return (
         <div>
+
         <LoadScript
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 
@@ -83,14 +123,16 @@ render() {
           onPlaceChanged={this.onPlaceChanged}
         >
           <InputGroup className="mb-3">
+          
                 <Form.Control
                   type="text"
                   ref={this.googleField}
                   name="city"
                   placeholder="Enter a city or region" 
                 />
+               
               <InputGroup.Append>
-                <Button variant="outline-warning" onClick={this.handleSubmit}>Add Place</Button>
+                <Button variant="outline-warning" disabled = {this.checkEmpty()} onClick={this.handleSubmit}>Add Place</Button>
               </InputGroup.Append>
               </InputGroup>
               
