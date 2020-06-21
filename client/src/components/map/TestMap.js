@@ -19,9 +19,6 @@ const mapOptions = {
   styles: mapstyles
 }
 
-
-  
-
 const libraries = ["places"]
 
 class TestMap extends Component {
@@ -32,49 +29,29 @@ class TestMap extends Component {
     this.onPlaceChanged = this.onPlaceChanged.bind(this)
     this.googleField = React.createRef()
     this.state = {
-      //position: null,
-      //showingInfoWindow: false,
-      //activeMarker: {},
-      //selectedSpot: {},
-      //place: this.props.place,
       spotData: {},
       center: {lat:0,lng:0},
-      //fetch: false
       }
   }
 
   componentDidMount(){
-    //console.log('Component State: ',this.state)
     this.calculateCenter()
   }
 
   componentDidUpdate(prevProps) {
-    
     if (this.props.place !== prevProps.place) {
-      console.log("Oh hey, it's a new place!")
       this.calculateCenter()
     }
   }
 
   calculateCenter = () => {
-   //IF NO SPOTS ARE ENTERED, THE CENTER SHOULD BE THE PLACE CENTER, OTHERWISE CALCULATE
-   //BASED ON THE PLACE'S SPOTS
-   
     let place = this.props.place
     console.log(place)
-    
-   // let center = {lat: place.lat,lng: place.lng}
-    //console.log('Center Coordinates: ', center)
-    //return center
-    
-    //let spots = this.props.place.spots
     if(place.spots === undefined || place.spots.length == 0){
       console.log("No spots entered")
       return(this.setState({
         center:{lat: place.lat, lng: place.lng}
-
       }))
-      
     } else {
       console.log("tried to calculate")
       return(this.setState({center:{
@@ -86,12 +63,10 @@ class TestMap extends Component {
         }, 0)/place.spots.length
       }}))
     }
-
   }
     
   handleSubmit = (e) => {
     e.preventDefault()
-    
     this.props.spotPostFetch(this.state.spotData)
     this.googleField.current.value = ""
     this.setState({
@@ -99,10 +74,7 @@ class TestMap extends Component {
     })
   }
 
-
   onLoad (autocomplete) {
-    
-    //console.log('autocomplete: ', autocomplete)
     this.autocomplete = autocomplete
   }
     
@@ -111,17 +83,16 @@ class TestMap extends Component {
       const spot = this.autocomplete.getPlace()
       if (!spot.geometry) return;
       if (spot.geometry.viewport){
-        
-          const spotData = {
-            location: spot.name,
-            lat: spot.geometry.location.lat(),
-            lng: spot.geometry.location.lng(),
-            place_id: this.props.place_id
-          }
-          this.setState({ position: spot.geometry.location, spotData: spotData })
+        const spotData = {
+          location: spot.name,
+          lat: spot.geometry.location.lat(),
+          lng: spot.geometry.location.lng(),
+          place_id: this.props.place_id
+        }
+        this.setState({ position: spot.geometry.location, spotData: spotData })
       }
     } else {
-      console.log('Autocomplete is not loaded yet!')
+      console.log('Error: Autocomplete is not loaded yet!')
     }
   }
 
@@ -151,35 +122,29 @@ class TestMap extends Component {
 
   render() {
     return (
-        <div>
-        
+      <div>
         <LoadScript
           googleMapsApiKey={(process.env.REACT_APP_GOOGLE_API_KEY)}
           libraries={libraries} 
         >
           <Autocomplete
-        onLoad={this.onLoad}
-        onPlaceChanged={this.onPlaceChanged}
-      >
-          
-        
-        
-        <InputGroup className="mb-3">
-          <Form.Control
-            type="text"
-            ref={this.googleField}
-            name="spot"
-            placeholder="Enter a location or address"
-      
-          />
-        <InputGroup.Append>
-          <Button variant="outline-warning" onClick={this.handleSubmit} disabled = {this.checkEmpty()}>Save Spot</Button>
-        </InputGroup.Append>
-        </InputGroup>
-        
-      </Autocomplete>
-     
-        
+            onLoad={this.onLoad}
+            onPlaceChanged={this.onPlaceChanged}
+          >
+            <InputGroup className="mb-3">
+              <Form.Control
+                type="text"
+                ref={this.googleField}
+                name="spot"
+                placeholder="Enter a location or address"
+              />
+            <InputGroup.Append>
+              <Button variant="outline-warning" onClick={this.handleSubmit} disabled = {this.checkEmpty()}>Save Spot</Button>
+            </InputGroup.Append>
+            </InputGroup> 
+
+          </Autocomplete>
+  
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
@@ -189,26 +154,22 @@ class TestMap extends Component {
             {this.callPlace()}
           </GoogleMap>
         </LoadScript>
-        
-       
-        </div>
-      )
-    }
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => {
-    return {
-      //place: state.places.place,
-      user_id: state.user.currentUser.id,
-      place_id: state.places.place.id
-    };
+  return {
+    user_id: state.user.currentUser.id,
+    place_id: state.places.place.id
+  };
 }
 
 const mapDispatchToProps = dispatch => ({
-    getSpotFetch: spotID => dispatch(getSpotFetch(spotID)),
-    spotPostFetch: spotInfo => dispatch(spotPostFetch(spotInfo))
+  getSpotFetch: spotID => dispatch(getSpotFetch(spotID)),
+  spotPostFetch: spotInfo => dispatch(spotPostFetch(spotInfo))
 })
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestMap)
