@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :places
+    has_many :places, dependent: :destroy
     has_many :spots, through: :places
     has_many :memories
 
