@@ -60,30 +60,29 @@ export const userLoginFetch = user => {
       },
       body: JSON.stringify(loginData)
     })
-      .then((response) => {
-        if (response.status >= 200 && response.status <= 299) {
-          return response.json();
-        } else {
-          throw Error(response.statusText);
-        }
-      })
-      .then(data => {
-        console.log(data)
-        localStorage.setItem("token", data.jwt)
-        return getUser(user.email)
-      })
-      .catch(error => {
-        console.log("Error Catch :", error.message)
+    .then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json();
+      } else {
+        throw Error(response.statusText);
+      }
+    })
+    .then(data => {
+      console.log(data)
+      localStorage.setItem("token", data.jwt)
+      return getUser(user.email)
+    })
+    .catch(error => {
+      console.log("Error Catch :", error.message)
         dispatch(loginFail(error.message))
         return undefined
-      })
-      .then(returnedData => {
-        if(returnedData){
-          console.log("User Object :", returnedData)
-          dispatch(loginUser(returnedData.user.data.attributes))
-        } 
-        
-      })
+    })
+    .then(returnedData => {
+      if(returnedData){
+        console.log("User Object :", returnedData)
+        dispatch(loginUser(returnedData.user.data.attributes))
+      }    
+    })
   }
 }
   
