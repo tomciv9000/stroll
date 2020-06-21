@@ -4,7 +4,6 @@ import placesReducer from './placesReducer';
 
 
 const rootReducer = combineReducers({
-
       places: placesReducer,  
       user: usersReducer
 });

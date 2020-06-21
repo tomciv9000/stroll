@@ -23,9 +23,8 @@ switch (action.type) {
       isAuthenticated: false,
       currentUser: {},
       errors: action.payload
-      
     }
   default:
     return state;
-}
+  }
 }
