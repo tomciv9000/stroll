@@ -9,7 +9,6 @@ export const AllSpots = (props) => {
 
         return (
             <div>
-                <br/>
                 <ul>
                     <li>
                     <Link 
