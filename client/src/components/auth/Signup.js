@@ -18,16 +18,13 @@ function ValidationMessage(props) {
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
   const [emailValid, setEmailValid] = useState(false)
   const [passwordValid, setPasswordValid] = useState(false)
   const [formValid, setFormValid] = useState(false)
   const [errorMsg, setErrorMsg] = useState({})
 
-
   const dispatch = useDispatch()
 
-  //need to add validations (unique username, password req.)
   const validateForm = () => {
     setFormValid(emailValid && passwordValid)
     console.log(formValid)
@@ -46,7 +43,7 @@ export default function Signup() {
   }
 
   useEffect(() => {
-    if(password.length > 6 && emailValid) {
+    if(password.length > 7 && emailValid) {
       validateForm()
     }
   })
@@ -57,30 +54,22 @@ export default function Signup() {
   }
 
   const validateEmail = () => {
-    
     setEmailValid(true)
     setErrorMsg({...errorMsg})
-
     // checks for format _@_._
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
       setEmailValid(false);
       setErrorMsg({...errorMsg, email:"Invalid email format"})
     }
+
     validateForm()
   }
 
   const updatePassword = (password) => {
     setPassword(password) 
-    console.log(password)
     
-  
     setPasswordValid(true)
     setErrorMsg({})
-    
-
-    // must be 6 chars
-    // must contain a number
-    // must contain a special character
 
     if (password.length < 7) {
       setPasswordValid(false)
@@ -89,6 +78,7 @@ export default function Signup() {
     } else if (!/\d/.test(password)){
       setPasswordValid(false)
       setErrorMsg({password:'Password must contain a digit'})
+
     } else if (!/[!@#$%^&*]/.test(password)){
       setPasswordValid(false)
       setErrorMsg({password:'Password must contain special character: !@#$%^&*'})
@@ -113,6 +103,7 @@ export default function Signup() {
             onChange={(e) => updateEmail(e.target.value)}
           />
         </Form.Group>
+
         <Form.Group controlId="password" size="large">
           <Form.Label className="white-text">Password</Form.Label>
           < ValidationMessage valid={passwordValid} message={errorMsg.password} />
@@ -122,11 +113,11 @@ export default function Signup() {
             type="password"
           />
         </Form.Group>
+
         <Button block size="large" disabled={!formValid} type="submit">
           Login
         </Button>
-      </Form>
-      
+      </Form> 
     </div>
   )
 }
