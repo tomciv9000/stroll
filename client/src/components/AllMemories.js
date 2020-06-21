@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-//import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-//THIS IS WHERE I LEFT OFF
 import { memoryDeleteFetch } from '../actions/placeActions';
 import { Link } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
 
 class AllMemories extends Component {
 
@@ -18,31 +13,16 @@ class AllMemories extends Component {
   }
 
   render(){
-
     return(
-      
-      
-        <Card className = "memory-card" bg="warning" style={{ minWidth: '18rem' }}>
-          <Card.Body>
-            
-            
-            
-                {this.props.memoryData.description}
-            
+      <Card className = "memory-card" bg="warning" style={{ minWidth: '18rem' }}>
+        <Card.Body>
+          {this.props.memoryData.description}
+        </Card.Body>
           
-            
-          </Card.Body>
-          
-          <Link to="#" onClick={this.onDeleteClick}><small>Delete</small></Link>
-        </Card>
-        
-       
-        
-
-
-          )
-        }
-
+        <Link to="#" onClick={this.onDeleteClick}><small>Delete</small></Link>
+      </Card>
+    )
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
