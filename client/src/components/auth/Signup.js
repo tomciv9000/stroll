@@ -82,9 +82,9 @@ export default function Signup() {
     // must contain a number
     // must contain a special character
 
-    if (password.length < 6) {
+    if (password.length < 7) {
       setPasswordValid(false)
-      setErrorMsg({password:'Password must be at least 6 characters long'})
+      setErrorMsg({password:'Password must be at least 7 characters long'})
      
     } else if (!/\d/.test(password)){
       setPasswordValid(false)
