@@ -5,6 +5,4 @@ class ApplicationController < ActionController::API
         JWT.encode(payload, 'my_secret')
     end
 
-    
-
 end
