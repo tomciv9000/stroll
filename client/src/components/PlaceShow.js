@@ -7,19 +7,13 @@ import { getPlaceFetch } from '../actions/placeActions';
 import { PlaceDetails } from './PlaceDetails'
 import { Link } from 'react-router-dom';
 import TestMap from './map/TestMap'
-
-
 import '../index.css';
-
-
-
 
 class PlaceShow extends Component{
 
-
   componentDidMount(){ 
     const {id} =  this.props.match.params;
-      this.props.getPlaceFetch(id);  
+    this.props.getPlaceFetch(id);  
   }
 
   componentDidUpdate(prevProps){
@@ -28,71 +22,54 @@ class PlaceShow extends Component{
     }
   }
 
-  //THIS IS UPDATED REGULARLY, THIS IS THE SWEET SPOT
-    callPlaceDetails = () => {
-      if (this.props.place.spots){
-        return (<PlaceDetails/>)
-      } else if (this.props.place.status) {
-        this.props.history.push('/homepage')
-      }
-      else {
-        return (<h5 className = "white-text">
-        Something went wrong...
-        </h5>)
-      }
+  callPlaceDetails = () => {
+    if (this.props.place.spots){
+      return (<PlaceDetails/>)
+    } else if (this.props.place.status) {
+      this.props.history.push('/homepage')
     }
-//
-    passPlaceInfo = () => {
-      if (this.props.place.id){
-        //return (<TestMap  />)
-        return (<TestMap place={this.props.place} id={this.props.place.id} />)
-      }
+    else {
+      return (<h5 className = "white-text">Something went wrong...</h5>)
     }
-//
-    //onDeleteClick = () => {
-    //  const {id} =  this.props.match.params;
-    //  this.props.deleteTrip(id, () =>{
-    //    this.props.history.push('/homepage')
-    //  })
-    //}
+  }
 
-    render(){
-      return(
-        <div >
-          <p><Link className = "yellow-link" to='/private'>Back To All Your Places</Link></p>
-          <Container>
-            <Row xs={2}> 
-              <Col sm={5}>
-                {this.callPlaceDetails()}
-              </Col>
-              <Col sm={7}>
-                {this.passPlaceInfo()}
-              </Col>
-            </Row>
+  passPlaceInfo = () => {
+    if (this.props.place.id){
+      return (<TestMap place={this.props.place} id={this.props.place.id} />)
+    }
+  }
+
+  render(){
+    return(
+      <div>
+        <p><Link className = "yellow-link" to='/private'>Back To All Your Places</Link></p>
+        
+        <Container>
+          <Row xs={2}> 
+            <Col sm={5}>
+              {this.callPlaceDetails()}
+            </Col>
             
-            
-          </Container>
+            <Col sm={7}>
+              {this.passPlaceInfo()}
+            </Col>
+          </Row>
+        </Container>
 
-          
-         
-        
-        
-        
-        </div>
-
-      )
-    }
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-      place: state.places.place,
-      spot: state.places.spot
-    };
+  return {
+    place: state.places.place,
+    spot: state.places.spot
+  };
 }
 
 const mapDispatchToProps = dispatch => ({
     getPlaceFetch: placeID => dispatch(getPlaceFetch(placeID))
-  })
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceShow)
