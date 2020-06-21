@@ -28,18 +28,18 @@ class Login extends Component {
   render() {
     return (
       <div className = "Login">
-      <h1>Login to an Existing Account</h1>
-      <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="email">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control type="email" onChange={this.handleChange} value={this.state.email} />
-            </Form.Group>
-            <Form.Group controlId="password">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control type="password" onChange={this.handleChange} value={this.state.password}/>
-            </Form.Group>
-      </Form>
-      <Button type="submit">Submit</Button>
+        <h1>Login to an Existing Account</h1>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="email">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control type="email" onChange={this.handleChange} value={this.state.email} />
+          </Form.Group>
+          <Form.Group controlId="password">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control type="password" onChange={this.handleChange} value={this.state.password}/>
+          </Form.Group>
+        </Form>
+        <Button type="submit">Submit</Button>
       </div>
     )
   }
