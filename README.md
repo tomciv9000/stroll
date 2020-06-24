@@ -11,8 +11,6 @@ To get started using this app do the following:
   - ```git clone https://github.com/tomciv9000/stroll```
 - From the root directory, install the required gem dependencies
   - ```bundle install```
-- Start a PostgreSQL server in the PostgreSQL app
-  - Download the app at 'https://www.postgresql.org/download/' if you don't have it
 - Create the database
   - ```rails db:create```
 - Migrate the tables
