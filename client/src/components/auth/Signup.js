@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-import {userPostFetch} from '../../actions/actions';
+import {userPostFetch} from '../../actions/userActions';
 import { useDispatch } from 'react-redux';
 
 import "../../containers/login.css";

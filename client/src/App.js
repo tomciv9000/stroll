@@ -5,7 +5,7 @@ import desktopImage from './images/Wide_NYC_background.jpg'
 import mobileImage from './images/narrow_NYC_background.jpg'
 import Homepage from './components/Homepage'
 import { useDispatch } from 'react-redux'
-import {getProfileFetch} from './actions/actions';
+import {getProfileFetch} from './actions/userActions';
 import Signup from './components/auth/Signup';
 import NewLogin from './components/auth/NewLogin';
 import NavigationBar from './components/NavigationBar';
