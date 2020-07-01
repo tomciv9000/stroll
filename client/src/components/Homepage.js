@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import PlaceForm from '../containers/PlaceForm'
+import PlaceForm from './PlaceForm'
 import { connect } from 'react-redux';
 import { getPlacesFetch, clearPlaceState } from '../actions/placeActions';
-import PlaceContainer from '../containers/PlaceContainer'
+import PlaceContainer from './PlaceContainer'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

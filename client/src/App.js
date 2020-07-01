@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import {getProfileFetch} from './actions/userActions';
 import Signup from './components/auth/Signup';
 import NewLogin from './components/auth/NewLogin';
-import NavigationBar from './components/NavigationBar';
+import NavigationBar from './components/nav/NavigationBar';
 import { LandingPage } from './components/Landing';
 import AuthRoute from './components/auth/AuthRoute';
 import PlaceShow from './components/PlaceShow'

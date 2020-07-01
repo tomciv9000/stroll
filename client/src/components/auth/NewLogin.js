@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/Alert'
 import {userLoginFetch} from '../../actions/userActions';
 import { useDispatch } from 'react-redux';
 
-import "../../containers/login.css";
+import "./login.css";
 
 export default function Login() {
   let errors = useSelector(state => state.user.errors)

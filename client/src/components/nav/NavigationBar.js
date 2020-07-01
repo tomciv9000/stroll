@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import cropLogo from '../images/logo_white_transparent_crop.png'
+import cropLogo from '../../images/logo_white_transparent_crop.png'
 import { connect } from 'react-redux';
-import { logoutUser } from '../actions/userActions';
+import { logoutUser } from '../../actions/userActions';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 

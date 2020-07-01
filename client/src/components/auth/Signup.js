@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import {userPostFetch} from '../../actions/userActions';
 import { useDispatch } from 'react-redux';
 
-import "../../containers/login.css";
+import "./login.css";
 
 function ValidationMessage(props) {
   if (!props.valid) {
