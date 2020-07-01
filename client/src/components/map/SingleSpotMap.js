@@ -36,7 +36,7 @@ class SingleSpotMap extends Component {
   onLoad = (streetViewService) => {
     let spot = this.props.spot
     let center = {lat:spot.lat, lng:spot.lng}
-    console.log("SVSonLoad spot: ", spot)
+    
     streetViewService.getPanorama({
       location: center, 
       radius: 200
@@ -75,7 +75,6 @@ class SingleSpotMap extends Component {
     let spot = this.props.spot
      
     if (Object.keys(spot).length !== 0 && this.state.panoStatus) {
-      console.log("We got the StreetView son!")
       return (
         <StreetViewPanorama
           position={this.state.center}
@@ -83,7 +82,6 @@ class SingleSpotMap extends Component {
         />
       )
     } else {
-       console.log("Spot is null")
        return (<h1>This spot isn't available for some reason...</h1>)
     }
   }

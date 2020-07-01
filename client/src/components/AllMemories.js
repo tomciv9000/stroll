@@ -8,7 +8,6 @@ class AllMemories extends Component {
 
   onDeleteClick = () => {
     const id =  this.props.memoryData.id;
-    console.log("Delete Button Clicked, ID: ", id)
     this.props.memoryDeleteFetch(id)
   }
 

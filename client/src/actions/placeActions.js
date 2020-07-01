@@ -106,7 +106,7 @@ export const getSpotFetch = (id) => {
       })
   .then(res => res.json())
   .then(data => {
-    console.log(data)
+    
     dispatch(getSpot(data.spot.data.attributes))  
   })
 }
@@ -149,7 +149,7 @@ export const memoryDeleteFetch = (id) =>{
       }
     })
   .then(() => {
-    console.log('removed')
+    
     dispatch(deleteMemory(id))
   })
   .catch(error => {
