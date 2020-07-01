@@ -33,7 +33,7 @@ class AllSpotsMap extends Component {
   callPlace = () => {
     if (this.props.places.length > 0) {
       let spotsObjArray = this.props.places.map((place)=> {return place.attributes.spots})
-      console.log('spotsObjArray: ', spotsObjArray)
+      
       let newArray = [].concat(...spotsObjArray)
       let locations = newArray.map((spot)=> {return {
         lat: spot.lat,
@@ -55,7 +55,7 @@ class AllSpotsMap extends Component {
         </MarkerClusterer>
       )
     } else {
-      return (console.log("No marker data detected."))
+      return null
     }
   }
 
@@ -68,7 +68,7 @@ class AllSpotsMap extends Component {
           <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center={this.state.center}
-            zoom={2}
+            zoom={2.5}
             options={mapOptions}>
             {this.callPlace()}
           </GoogleMap>

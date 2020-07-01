@@ -75,6 +75,7 @@ class SingleSpotMap extends Component {
     let spot = this.props.spot
      
     if (Object.keys(spot).length !== 0 && this.state.panoStatus) {
+      console.log("We got the StreetView son!")
       return (
         <StreetViewPanorama
           position={this.state.center}

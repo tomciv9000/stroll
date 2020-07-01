@@ -209,7 +209,7 @@ export const clearSpotState = () => {
 
 export const clearPlaceState = () => {
   return dispatch => {
-    console.log('State - Place Clear')
+    
     dispatch(clearPlace())
   }
 }

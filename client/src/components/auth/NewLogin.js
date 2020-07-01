@@ -26,7 +26,7 @@ export default function Login() {
         email: email,
         password: password
     }
-    console.log(loginObj) 
+     
     dispatch(userLoginFetch(loginObj))
     setEmail("")
     setPassword("")

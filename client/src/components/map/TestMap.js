@@ -47,7 +47,7 @@ class TestMap extends Component {
   calculateCenter = () => {
     let place = this.props.place
     console.log(place)
-    if(place.spots === undefined || place.spots.length == 0){
+    if(place.spots === undefined || place.spots.length === 0){
       console.log("No spots entered")
       return(this.setState({
         center:{lat: place.lat, lng: place.lng}
