@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/userActions';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
+import { LinkContainer } from "react-router-bootstrap"
 
 class NavigationBar extends Component {
 
@@ -24,14 +25,20 @@ class NavigationBar extends Component {
   render() {
     const userLinks = (
       <Nav className="mr-auto">
-        <Nav.Link href = "/" onClick={this.handleClick}>Log Out</Nav.Link>
+        <LinkContainer to="/">
+        <Nav.Link onClick={this.handleClick}>Log Out</Nav.Link>
+        </LinkContainer>
       </Nav>
     )
 
     const guestLinks = (
       <Nav className="mr-auto">
-        <Nav.Link href="/signup">Sign Up</Nav.Link>
-        <Nav.Link href="/login">Log in</Nav.Link>
+        <LinkContainer to="/signup">
+          <Nav.Link>Sign Up</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/login">
+          <Nav.Link>Log in</Nav.Link>
+        </LinkContainer>
       </Nav>
     )
 

@@ -14,6 +14,7 @@ import AuthRoute from './components/auth/AuthRoute';
 import PlaceShow from './components/PlaceShow'
 import SpotShow from './components/SpotShow'
 
+
 const App = () => {
   const dispatch = useDispatch();
   const imageUrl = useWindowWidth() >= 650 ? desktopImage : mobileImage;
