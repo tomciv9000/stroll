@@ -1,10 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+
 import '../index.css';
 
 const PlaceListItem = (props) => {
   let placeDetails = props.placeData.attributes
+
+  
     
+
   return (
     <li className='places-list'>
       <Link 
@@ -13,6 +17,7 @@ const PlaceListItem = (props) => {
         className='button two place'>
           {placeDetails.name}
       </Link>
+      
     </li>
   )
 }

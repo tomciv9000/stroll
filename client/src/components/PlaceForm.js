@@ -63,9 +63,8 @@ class PlaceForm extends Component {
           console.log("location", `${place.geometry.location.lat()} ${place.geometry.location.lng()}`)
           this.setState({  name: place.name, lat: place.geometry.location.lat(), lng: place.geometry.location.lng(), })
       }
-    } else {
-      console.log('Autocomplete is not loaded yet!')
-    }
+    } 
+    //deleted console log - not needed
   }
 
   render() {
