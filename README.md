@@ -26,9 +26,8 @@ To get started using this app do the following:
 
 - Enjoy your trip down memory lane!
 
-[Video Demo](upcoming)
+[Video Demo](https://www.dropbox.com/s/zn0ymg3ckmp0tqr/Stroll_TOM_WHITE.mp4?dl=0)
 
-[Blog Post](upcoming)
 
 ##### If you have any feedback for my application, please let me know. Thank you for taking a look.
 
