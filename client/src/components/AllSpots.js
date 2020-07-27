@@ -10,8 +10,7 @@ export const AllSpots = (props) => {
                 <li>
                 <Link 
                     to={`/spots/${spotData.id}`}
-                    style={{textDecoration : 'none'}}
-                    className='button two place'>
+                    className="big yellow-link">
                     {spotData.location}</Link>
                 </li>
             </ul>
