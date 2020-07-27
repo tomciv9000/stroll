@@ -63,23 +63,8 @@ a.place:hover{
 
 /* BUTTON TWEE */
 
-a.button.two:before, a.button.two:after{
-  opacity: 0;
-  transition: all 0.3s ease;	
-	font-size: 30px;
-}
 
 
-a.button.two:hover:before{
-  color: #ffc107;
-  margin-right: 10px;
-
-}
-a.button.two:hover:after{
-  color: #ffe8a3;
-  margin-left: 10px;
-  
-}
 
 
 .question{

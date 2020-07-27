@@ -13,8 +13,8 @@ const PlaceListItem = (props) => {
     <li className='places-list'>
       <Link 
         to={`/places/${placeDetails.id}`} 
-        className="big yellow-link">
-          {placeDetails.name}
+        className="big yellow-link"><h3>{placeDetails.name}</h3>
+          
       </Link>
       
     </li>
