@@ -68,12 +68,7 @@ a.button.two:before, a.button.two:after{
   transition: all 0.3s ease;	
 	font-size: 30px;
 }
-a.button.two:before{
-  content: '[';
-}
-a.button.two:after{
-  content: ']';
-}
+
 
 a.button.two:hover:before{
   color: #ffc107;
