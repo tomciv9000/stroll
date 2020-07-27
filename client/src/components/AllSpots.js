@@ -11,7 +11,8 @@ export const AllSpots = (props) => {
                 <Link 
                     to={`/spots/${spotData.id}`}
                     className="big yellow-link">
-                    {spotData.location}</Link>
+                    <h3>{spotData.location}</h3>
+                </Link>
                 </li>
             </ul>
         </div>
