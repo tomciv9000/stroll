@@ -3,10 +3,7 @@
             <Row >
               <Col >
                 <Form.Control
-                  type="text"
-                  ref={this.googleField}
-                  name="city"
-                  placeholder="Enter a city or region" 
+                
                 />
               </Col>
               <Col > 
