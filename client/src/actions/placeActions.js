@@ -1,204 +1,210 @@
 import { FETCH_PLACES, NEW_PLACE, GET_PLACE, NEW_SPOT, GET_SPOT, NEW_MEMORY, CLEAR_PLACE, CLEAR_SPOT, DELETE_MEMORY, DELETE_SPOT, DELETE_PLACE } from '../actions/types'
 
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = 'http://localhost:3000'
 
 export const placePostFetch = place => {
   return dispatch => {
-    let placeData = {"place": {"name": place.name, "description": place.description, "lat": place.lat, "lng": place.lng, "user_id": place.user_id}} 
+    const placeData = { place: { name: place.name, description: place.description, lat: place.lat, lng: place.lng, user_id: place.user_id } }
     return fetch(`${BASE_URL}/places`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "Authorization": `Bearer ${localStorage.token}`,
-        Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.token}`,
+        Accept: 'application/json'
       },
       body: JSON.stringify(placeData)
     })
-    .then(resp => resp.json())
-    .then(data => {
-      if (data.message) {
-        console.log(data)
-      } else {
-        console.log(data.place.data)
-        dispatch(createPlace(data.place.data))
-      }
-    })
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.message) {
+          console.log(data)
+        } else {
+          console.log(data.place.data)
+          dispatch(createPlace(data.place.data))
+        }
+      })
   }
 }
 
 export const getPlacesFetch = () => {
   return dispatch => {
-    const token = localStorage.token;
+    const token = localStorage.token
     if (token) {
       return fetch(`${BASE_URL}/places`, {
-        method: "GET",
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.place.data) {
-          dispatch(fetchPlaces(data.place.data))
-        } else {
-          console.log(data.place.data.attributes)
-          dispatch(fetchPlaces(data.place.data.attributes))
-        }
-      })
+        .then(resp => resp.json())
+        .then(data => {
+          if (data.place.data) {
+            dispatch(fetchPlaces(data.place.data))
+          } else {
+            console.log(data.place.data.attributes)
+            dispatch(fetchPlaces(data.place.data.attributes))
+          }
+        })
     }
   }
 }
 
 export const getPlaceFetch = (id) => {
   return dispatch => {
-  const token = localStorage.token;
+    const token = localStorage.token
     if (token) {
       return fetch(`${BASE_URL}/places/${id}`, {
-        method: "GET",
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       })
-  .then(res => res.json())
-  .then(data => {
-    dispatch(getPlace(data.place.data.attributes))  
-  })
-}}}
+        .then(res => res.json())
+        .then(data => {
+          dispatch(getPlace(data.place.data.attributes))
+        })
+    }
+  }
+}
 
 export const spotPostFetch = spot => {
   return dispatch => {
-    let spotData = {"spot": {"location": spot.location, "lat": spot.lat, "lng": spot.lng, "place_id": spot.place_id}} 
+    const spotData = { spot: { location: spot.location, lat: spot.lat, lng: spot.lng, place_id: spot.place_id } }
     return fetch(`${BASE_URL}/spots`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "Authorization": `Bearer ${localStorage.token}`,
-        Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.token}`,
+        Accept: 'application/json'
       },
       body: JSON.stringify(spotData)
     })
-    .then(resp => resp.json())
-    .then(data => {
-      if (data.message) {
-        console.log(data)
-      } else {         
-        dispatch(createSpot(data.spot.data.attributes))
-      }
-    })
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.message) {
+          console.log(data)
+        } else {
+          dispatch(createSpot(data.spot.data.attributes))
+        }
+      })
   }
 }
 
 export const getSpotFetch = (id) => {
   return dispatch => {
-  const token = localStorage.token;
+    const token = localStorage.token
     if (token) {
       return fetch(`${BASE_URL}/spots/${id}`, {
-        method: "GET",
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       })
-  .then(res => res.json())
-  .then(data => {
-    
-    dispatch(getSpot(data.spot.data.attributes))  
-  })
-}
-}}
-
-export const memoryPostFetch = memory => {
-  return dispatch => {
-    let memoryData = {"memory": {"description": memory.description, "spot_id": memory.spot_id, "user_id": memory.user_id}} 
-    return fetch(`${BASE_URL}/memories`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        "Authorization": `Bearer ${localStorage.token}`,
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(memoryData)
-    })
-    .then(resp => resp.json())
-    .then(data => {
-      if (data.message) {
-        console.log(data)
-      } else {
-        console.log('Returned Memory Obj:', data)
-        dispatch(createMemory(data.memory.data.attributes))
-      }
-    })
+        .then(res => res.json())
+        .then(data => {
+          dispatch(getSpot(data.spot.data.attributes))
+        })
+    }
   }
 }
 
-export const memoryDeleteFetch = (id) =>{
+export const memoryPostFetch = memory => {
   return dispatch => {
-    const token = localStorage.token;
-    if (token) {
-     return fetch(`${BASE_URL}/memories/${id}`, {
-      method: 'DELETE',
+    const memoryData = { memory: { description: memory.description, spot_id: memory.spot_id, user_id: memory.user_id } }
+    return fetch(`${BASE_URL}/memories`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
+        Authorization: `Bearer ${localStorage.token}`,
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(memoryData)
     })
-  .then(() => {
-    
-    dispatch(deleteMemory(id))
-  })
-  .catch(error => {
-    console.log(error)
-  })
-}}}
+      .then(resp => resp.json())
+      .then(data => {
+        if (data.message) {
+          console.log(data)
+        } else {
+          console.log('Returned Memory Obj:', data)
+          dispatch(createMemory(data.memory.data.attributes))
+        }
+      })
+  }
+}
 
-
-export const spotDeleteFetch = (id) =>{
+export const memoryDeleteFetch = (id) => {
   return dispatch => {
-    const token = localStorage.token;
+    const token = localStorage.token
     if (token) {
-     return fetch(`${BASE_URL}/spots/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    })
-  .then(() => {
-    console.log('removed')
-    dispatch(deleteSpot(id))
-  })
-  .catch(error => {
-    console.log(error)
-  })
-}}}
+      return fetch(`${BASE_URL}/memories/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(() => {
+          dispatch(deleteMemory(id))
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
+}
 
-export const placeDeleteFetch = (id) =>{
+export const spotDeleteFetch = (id) => {
   return dispatch => {
-    const token = localStorage.token;
+    const token = localStorage.token
     if (token) {
-     return fetch(`${BASE_URL}/places/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    })
-  .then(() => {
-    console.log('removed')
-    dispatch(deletePlace(id))
-  })
-  .catch(error => {
-    console.log(error)
-  })
-}}}
+      return fetch(`${BASE_URL}/spots/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(() => {
+          console.log('removed')
+          dispatch(deleteSpot(id))
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
+}
+
+export const placeDeleteFetch = (id) => {
+  return dispatch => {
+    const token = localStorage.token
+    if (token) {
+      return fetch(`${BASE_URL}/places/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(() => {
+          console.log('removed')
+          dispatch(deletePlace(id))
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
+}
 
 export const clearSpotState = () => {
   return dispatch => {
@@ -209,7 +215,6 @@ export const clearSpotState = () => {
 
 export const clearPlaceState = () => {
   return dispatch => {
-    
     dispatch(clearPlace())
   }
 }
