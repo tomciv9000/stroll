@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import { useSelector , useDispatch } from 'react-redux'
-import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
-import {userLoginFetch} from '../../actions/userActions';
+import { userLoginFetch } from '../../actions/userActions'
 
-
-import './login.css';
+import './login.css'
 
 export default function Login () {
   const errors = useSelector(state => state.user.errors)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  
+
   const dispatch = useDispatch()
 
   const validateForm = () => {
